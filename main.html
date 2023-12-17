@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Personal web of Ignacio Villanúa Cuenca." />
     <title>Villanúa</title>
+
+    <!-- Scripts -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/ui.js"></script>
 
     <!--Styles-->
     <link rel="stylesheet" href="css/navbar.css" />
@@ -24,7 +30,6 @@
                           <div class="mouth">
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 800 800"><g stroke-width="49" stroke="hsl(0, 0%, 100%)" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="rotate(128, 400, 400)"><path d="M250 253.01633644104004Q330 204.01633644104004 550 553.01633644104 " marker-end="url(#SvgjsMarker1500)"></path></g><defs><marker markerWidth="1" markerHeight="1" refX="0.5" refY="0.5" viewBox="0 0 1 1" orient="auto" id="SvgjsMarker1500"><polygon points="0,1 0,0 1,0.5" fill="hsl(0, 0%, 100%)"></polygon></marker></defs></svg>
                           </div>
-                          
                         </div>
                     </div>
                     <div class="antenna"></div>
@@ -32,12 +37,30 @@
                     <div class="ear right"></div>
                 </div>
             </div>
+
+            <div id="nav-top-buttons-area">
+              <a id="about-me-link" class="menu-link" href="#">
+                <p id="about-me" class="nav-top-button">About me</p>
+              </a>
+              <a id="projects-link" class="menu-link" href="#">
+                <p id="projects" class="nav-top-button">Projects</p>
+              </a>
+            </div>
         </nav>
     </header>
 
-    <main>
+    <div id="side-nav-projects" class="hide">
+      <a id="project1-link" class="side-menu-link" href="#">
+        <p id="project1" class="side-button">Project 1</p>
+      </a>
+      <a id="project2-link" class="side-menu-link" href="#">
+        <p id="project2" class="side-button">Project 2</p>
+      </a>
+    </div>
+
+    <div id="content">
         
         
-    </main>
+    </div>
   </body>
 </html>

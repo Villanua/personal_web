@@ -1,23 +1,29 @@
-#navbar{
+header {
     height: 80px; width: 100%;
-    background-color: black;
+    position: fixed; top: 0; z-index: 5;
+}
+
+#navbar {
+    height: 100%; width: 100%;
+    display: inline-flex; 
+    background-color: rgb(18, 18, 18); border: 1px solid black;
 }
 
 .logo {
-    height: 80px; width: 90px;
+    height: 100%; width: 90px;
     margin-left: 50px;
 }
 
 .robot {
     height: 100%; width: 100%;
     position: relative; display: flex; justify-content: center; align-items: center;
-    border: 0px solid red;
 }
 
 .robot .head {
     height: 60%; width: 70%; border-radius: 50% 50% 35% 35%;
     position: absolute; top: 25%; z-index: 2; display: flex; justify-content: center; align-items: center;
     background-color: white; border: 0.5px solid black;
+    cursor: pointer;
 }
 
 .robot .head .face{
@@ -74,12 +80,48 @@
     background-color: white; border: 0.5px solid black;
 }
 
-.robot .ear.left{
+.robot .ear.left {
     transform: rotate(-5deg);
     left: 7%;
 }
 
-.robot .ear.right{
+.robot .ear.right {
     transform: rotate(185deg);
     right: 7%;
+}
+
+#nav-top-buttons-area {
+    height: 100%; width: 340px;
+    margin: 0% 2%; display: inline-flex;
+    align-items: center;
+}
+
+.nav-top-button {
+    font-size: 22px; font-weight: 500;
+    background-color: transparent; color: white;
+}
+
+.menu-link {
+    margin: 24px;
+    text-decoration:none;
+}
+
+.menu-link.active p {
+    font-weight: bold;
+}
+
+#side-nav-projects {
+    height: 30rem; width: 20rem;
+    position: fixed; top: 79px; left: calc(164px + 116px + 2%); z-index: 5;
+    background-color: rgb(18, 18, 18);border: 1px solid black;
+}
+
+#side-nav-projects a{
+    margin: 24px;
+    text-decoration:none;
+}
+
+.side-button{
+    margin: 0 10px;
+    font-size: 18px; color: white;
 }

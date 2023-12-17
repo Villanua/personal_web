@@ -1,0 +1,21 @@
+
+#home-page img {
+    height: 300px;
+    position: absolute; top: 170px; margin-left: 50%; transform: translate(-50%);
+    border-radius: 50%;
+}
+
+#presentation-container {
+    height: 90px; width: auto;
+    display: flex; align-items: center; justify-content: center;
+}
+
+#presentation-container h1 {
+    padding: 20px; margin-top: 1000px;
+    font-size: 80px; font-weight: 600;
+    background-color: rgb(18, 18, 18); color: white;
+}
+
+#presentation-container h1 span {
+    color: rgb(255, 230, 0); font-style: italic;
+}

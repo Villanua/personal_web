@@ -14,6 +14,10 @@ body {
     background-color: rgb(35, 35, 35);
 }
 
+.content-panel {
+    min-height: 100%; width: 100%;
+}
+
 .hide {
     visibility: hidden;
 }

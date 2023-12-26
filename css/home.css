@@ -7,11 +7,12 @@
 
 #presentation-container {
     height: 90px; width: auto;
+    margin-top: 700px;
     display: flex; align-items: center; justify-content: center;
 }
 
 #presentation-container h1 {
-    padding: 20px; margin-top: 1000px;
+    padding: 20px; margin-bottom: 5%;
     font-size: 80px; font-weight: 600;
     background-color: rgb(18, 18, 18); color: white;
 }

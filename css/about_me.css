@@ -1,0 +1,8 @@
+#about-me-page {
+    padding: 3% 10vw;
+}
+
+#general-description h1, #general-description p{
+    margin-bottom: 20px;
+    color: white;
+}

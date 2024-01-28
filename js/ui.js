@@ -39,7 +39,7 @@ $(document).ready(function() {
     // Presentation
 
     var typed = new Typed(".auto-type", {
-        strings: ["Robotics Engineer", "Passionate Programmer", "Dedicated Learner"],
+        strings: ["Robotics Engineer", "Software Programmer", "Constant Learner"],
         typeSpeed: 150,
         backSpeed: 50,
         loop: true

@@ -6,13 +6,13 @@
 }
 
 #presentation-container {
-    height: 90px; width: auto;
-    margin-top: 700px;
+    width: auto;
+    margin-top: 600px;
     display: flex; align-items: center; justify-content: center;
 }
 
 #presentation-container h1 {
-    padding: 20px; margin-bottom: 5%;
+    padding: 20px; margin-bottom: 2%;
     font-size: 80px; font-weight: 600;
     background-color: rgb(18, 18, 18); color: white;
 }

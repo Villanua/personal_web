@@ -1,8 +1,27 @@
 #about-me-page {
     padding: 3% 10vw;
+    font-size: 30px; color: white;
 }
 
-#general-description h1, #general-description p{
+#about-me-page h1, #about-me-page p{
     margin-bottom: 20px;
-    color: white;
+}
+
+#about-me-page #degree #craneeal{
+    height: 500px;
+    display: flex; position: relative;
+}
+
+#about-me-page #degree #craneeal img {
+    height: 500px;
+}
+
+#about-me-page #degree #craneeal #platform {
+    position: absolute; right: 56.2%;
+    font-size: 16px;
+}
+
+#about-me-page #degree #craneeal #interface {
+    position: absolute; left: 50%;
+    font-size: 16px;
 }

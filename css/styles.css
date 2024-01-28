@@ -6,6 +6,7 @@
 
 html {
     background-color: rgb(35, 35, 35);
+    
 }
 
 #content {
@@ -15,10 +16,10 @@ html {
 .content-panel {
     width: 100%;
     position: absolute; margin-top: 80px; top: 0;
+    overflow:auto;
 }
 
 .hide {
-    visibility: hidden;
+    display: none;
     overflow: hidden;
 }
-

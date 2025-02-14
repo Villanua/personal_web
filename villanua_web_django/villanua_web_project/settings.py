@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'main_page_app.apps.MainPageAppConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -67,6 +68,11 @@ TEMPLATES = [
     },
 ]
 
+STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_DIRS = [
+    BASE_DIR / 'main_page_app/static',
+]
 WSGI_APPLICATION = 'villanua_web_project.wsgi.application'
 
 

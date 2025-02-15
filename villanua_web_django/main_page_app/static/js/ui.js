@@ -1,4 +1,3 @@
-
 // Add funcionality to web
 $(document).ready(function() {
 
@@ -34,6 +33,21 @@ $(document).ready(function() {
         $('#projects-page').removeClass("hide")
     })
 
+    // Detectar clics fuera del acordeón y del toggler y cerrarlos
+    $(document).click(function(event) {
+        var clickover = $(event.target);
+        var _accordionOpened = $("#projectsAccordion").hasClass("show");
+        var _navbarOpened = $(".navbar-collapse").hasClass("show");
+        
+        if (_accordionOpened === true && !clickover.closest('#projectsAccordion').length && !clickover.closest('#projects-link').length) {
+            $("#projectsAccordion").collapse('hide');
+        }
+        
+        if (_navbarOpened === true && !clickover.closest('.navbar-collapse').length && !clickover.closest('.navbar-toggler').length) {
+            $(".navbar-collapse").collapse('hide');
+        }
+    });
+
     // HOME PAGE
     // Presentation
 
@@ -43,8 +57,6 @@ $(document).ready(function() {
         backSpeed: 50,
         loop: true
     })
-
-
 
     // Chatbot
 

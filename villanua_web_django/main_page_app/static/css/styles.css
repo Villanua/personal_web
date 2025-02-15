@@ -6,8 +6,7 @@
 
 html {
     background-color: rgb(35, 35, 35);
-    
-}
+    }
 
 #content {
     margin-top: 80px;
@@ -21,5 +20,4 @@ html {
 
 .hide {
     display: none;
-    overflow: hidden;
 }

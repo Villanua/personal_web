@@ -1,18 +1,32 @@
 header {
-    height: 80px; width: 100%;
+    width: 100%;
     position: fixed; top: 0; z-index: 5;
 }
 
-#navbar {
-    height: 100%; width: 100%;
-    display: inline-flex; 
-    background-color: rgb(18, 18, 18); border: 1px solid black;
+.bg-dark {
+    background-color: #1d1d1d !important; /* Cambia el color de fondo del navbar */
 }
 
-.logo {
-    height: 100%; width: 90px;
-    margin-left: 50px;
+.navbar-dark .navbar-brand,
+.navbar-dark .navbar-nav .nav-link {
+    color: #ffffff; /* Cambia el color del texto del navbar */
+    transition: font-size 0.3s ease; /* Añade una transición suave para el cambio de tamaño de letra */
 }
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    font-size: 1.1em; /* Aumenta el tamaño de la letra al hacer hover */
+}
+
+.navbar-dark .navbar-toggler {
+    border-color: rgb(175, 175, 175); /* Cambia el color del borde del toggler */
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28175, 175, 175, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    /* Cambia el color del icono del toggler */
+}
+
+
 
 .robot {
     height: 100%; width: 100%;
@@ -88,40 +102,4 @@ header {
 .robot .ear.right {
     transform: rotate(185deg);
     right: 7%;
-}
-
-#nav-top-buttons-area {
-    height: 100%; width: 340px;
-    margin: 0% 2%; display: inline-flex;
-    align-items: center;
-}
-
-.nav-top-button {
-    font-size: 22px; font-weight: 500;
-    background-color: transparent; color: white;
-}
-
-.menu-link {
-    margin: 24px;
-    text-decoration:none;
-}
-
-.menu-link.active p {
-    font-weight: bold;
-}
-
-#side-nav-projects {
-    height: 30rem; width: 20rem;
-    position: fixed; top: 79px; left: calc(164px + 116px + 2%); z-index: 5;
-    background-color: rgb(18, 18, 18);border: 1px solid black;
-}
-
-#side-nav-projects a{
-    margin: 24px;
-    text-decoration:none;
-}
-
-.side-button{
-    margin: 0 10px;
-    font-size: 18px; color: white;
 }

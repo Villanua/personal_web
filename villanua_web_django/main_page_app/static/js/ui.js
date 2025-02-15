@@ -4,8 +4,7 @@ $(document).ready(function() {
 
     console.log("Document loaded.")
     
-
-    $('.logo').click(function() {
+    $('#logo-link').click(function() {
         console.log("Home")
         $('#about-me-link').removeClass("active")
         $('#projects-link').removeClass("active")
@@ -46,4 +45,8 @@ $(document).ready(function() {
     })
 
 
+
+    // Chatbot
+
+    
 });

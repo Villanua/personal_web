@@ -21,3 +21,21 @@ html {
 .hide {
     display: none;
 }
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(200, 200, 200);
+    text-decoration: underline;
+}
+
+a:visited {
+    color: white;
+}
+
+a:active {
+    color: rgb(180, 180, 180);
+}

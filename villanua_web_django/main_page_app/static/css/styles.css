@@ -4,9 +4,19 @@
     font-family: "Calibri", 'Trebuchet MS', sans-serif; text-align: justify;
 }
 
-html {
+html, body {
+    height: 100%; /* El documento ocupa toda la altura de la ventana */
+    margin: 0; /* Elimina márgenes predeterminados */
+    display: flex; /* Activa Flexbox en el cuerpo */
+    flex-direction: column; 
     background-color: rgb(35, 35, 35);
-    }
+}
+
+#content {
+    flex: 1; /* Permite que el contenido crezca y ocupe el espacio disponible */
+    display: flex;
+    flex-direction: column;
+}
 
 #content {
     margin-top: 80px;

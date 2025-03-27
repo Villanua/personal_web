@@ -54,3 +54,26 @@ header {
 .navbar-collapse {
     padding: 10px; /* Adjust value as needed */
 }
+
+
+.footer {
+    background-color: #303030; /* Fondo oscuro */
+    color: white; /* Texto blanco */
+    padding: 1.5rem 0; /* Espaciado interno */
+    text-align: center; /* Centra el texto */
+    width: 100%; /* Ocupa todo el ancho */
+}
+
+.footer a {
+    color: white; /* Color de los enlaces */
+    text-decoration: none; /* Sin subrayado */
+    transition: color 0.3s ease; /* Transición suave al pasar el cursor */
+}
+
+.footer a:hover {
+    color: #007bff; /* Cambia el color al pasar el cursor */
+}
+
+.footer i {
+    margin: 0 0.5rem; /* Espaciado entre los íconos */
+}

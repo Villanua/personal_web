@@ -45,15 +45,11 @@
     margin-bottom: 3rem
 }
 
-
-
-
-
 #about-me-page #info-section {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
     box-sizing: border-box;
 }
@@ -63,8 +59,8 @@
 }
 
 #about-me-page .custom-card {
-    flex: 1 1 calc(30% - 2rem);
-    max-width: calc(30% - 2rem);
+    flex: 1 1 calc(33% - 2rem);
+    max-width: calc(33% - 2rem);
     min-width: 280px;
     box-sizing: border-box;
     height: auto;
@@ -124,7 +120,7 @@
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
-    padding: 1.5rem;
+    padding: 1rem 8rem;
 }
 
 #about-me-page .custom-modal .modal-header {
@@ -134,13 +130,6 @@
 
 #about-me-page .custom-modal .modal-body {
     padding: 2rem;
-}
-
-#about-me-page .custom-modal img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 1rem;
 }
 
 #about-me-page .custom-modal .btn-close {
@@ -155,46 +144,43 @@
     opacity: 1;
 }
 
-
-
-
-
-
-
-#about-me-page #degree #craneeal {
-    height: 31.25rem;
+.figure-columns {
     display: flex;
-    position: relative;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 3rem 0;
 }
 
-#about-me-page #degree #craneeal img {
-    height: 31.25rem;
+.figure-columns figure {
+    flex: 1 1 auto;
+    max-width: calc(50% - 1rem);
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-#about-me-page #degree #craneeal #platform {
-    position: absolute;
-    right: 56.2%;
-    font-size: 0.625rem;
+#about-me-page .figure-columns img {
+    width: auto;
+    height: 100%;
+    border-radius: 8px;
 }
 
-#about-me-page #degree #craneeal #interface {
-    position: absolute;
-    left: 50%;
-    font-size: 0.625rem;
+figcaption {
+    font-size: 1rem;
+    color: rgb(92, 92, 92);
+    text-align: center;
 }
 
 /* Responsive styles */
 @media (max-width: 1024px) {
     #about-me-page {
         padding: 6rem 9rem;
-    }
-
-    #about-me-page #degree #craneeal {
-        height: 25rem;
-    }
-
-    #about-me-page #degree #craneeal img {
-        height: 25rem;
     }
 
     #about-me-page #general-description {
@@ -206,6 +192,15 @@
         max-width: 100%;
         margin: 0 auto;
     }
+
+    #craneeal figure {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    #about-me-page .custom-modal .modal-content {
+        padding: 1rem 4rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -213,19 +208,8 @@
         padding: 4rem 6rem;
     }
 
-    #about-me-page #degree #craneeal {
-        height: 18.75rem;
-        flex-direction: column;
-    }
-
-    #about-me-page #degree #craneeal img {
-        height: 18.75rem;
-    }
-
-    #about-me-page #degree #craneeal #platform,
-    #about-me-page #degree #craneeal #interface {
-        position: static;
-        margin-bottom: 0.75rem;
+    #about-me-page .custom-modal .modal-content {
+        padding: 1rem 2rem;
     }
 }
 
@@ -234,12 +218,7 @@
         padding: 2rem 3rem;
     }
 
-    #about-me-page #degree #craneeal {
-        height: auto;
-    }
-
-    #about-me-page #degree #craneeal img {
-        height: auto;
-        width: 100%;
+    #about-me-page .custom-modal .modal-content {
+        padding: 1rem 1rem;
     }
 }

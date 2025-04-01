@@ -4,18 +4,13 @@ header {
     position: fixed; top: 0; z-index: 5;
 }
 
-.bg-dark {
-    background-color: #1d1d1d !important; /* Change navbar background color */
+.navbar {
+    background: linear-gradient(#241a00ea, #dfaf1100);
 }
 
 .navbar-dark .navbar-brand,
 .navbar-dark .navbar-nav .nav-link {
-    color: #ffffff; /* Change navbar text color */
-    transition: font-size 0.3s ease; /* Smooth transition for font size change */
-}
-
-.navbar-dark .navbar-nav .nav-link:hover {
-    font-size: 1.1em; /* Increase font size on hover */
+    color: #ffffff;
 }
 
 .navbar-dark .navbar-toggler {
@@ -24,7 +19,6 @@ header {
 
 .navbar-dark .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28175, 175, 175, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-    /* Change toggler icon color */
 }
 
 /* Project accordion styles */
@@ -47,7 +41,7 @@ header {
 
 #projectsAccordion .list-group-item:hover {
     font-size: 1.1em; /* Increase font size on hover */
-    background-color: #565656; /* Change background color on hover */
+    background-color: #ff0000; /* Change background color on hover */
 }
 
 /* Add padding to navbar container when collapsed */
@@ -57,11 +51,14 @@ header {
 
 
 .footer {
-    background-color: #303030; /* Fondo oscuro */
-    color: white; /* Texto blanco */
-    padding: 1.5rem 0; /* Espaciado interno */
-    text-align: center; /* Centra el texto */
-    width: 100%; /* Ocupa todo el ancho */
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(to top, #362900b4, #382b0000);
+    font-size: 0.75em;
+    color: white;
+    padding: 1.5rem 0;
+    text-align: center;
+    width: 100%;
 }
 
 .footer a {

@@ -1,367 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{% load static %}
+    {% load static %}
 
-  <head>
-    <!-- Meta tags -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Personal web of Ignacio Villanúa Cuenca." />
-    <title>Villanúa</title>
+    <head>
+        <!-- Meta tags -->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Personal web of Ignacio Villanúa Cuenca." />
+        <title>Villanúa</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+
+        <!-- Bootstrap JS and dependencies -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+        <!-- Additional Scripts -->
+        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="{% static 'js/ui.js' %}"></script>
+        <script src="{% static 'js/background.js' %}"></script>
+
+        <!-- Custom Styles -->
+        <link rel="stylesheet" href="{% static 'css/background.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/about_me.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/chatbot.css' %}" />
+    </head>
+
+    <body>
+
+      <!-- Navbar -->
+      <header>
+          <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+          <!-- Brand logo -->
+          <a class="navbar-brand ms-5" id="logo-link" href="#">
+              <img src="{% static 'img/logo.png' %}" alt="Logo" height="30">
+          </a>
+          <!-- Toggler button for mobile view -->
+          <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- Navbar links -->
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+              <li class="nav-item ms-3">
+                  <a class="nav-link" href="#" id="about-me-link">About me</a>
+              </li>
+              <li class="nav-item ms-3">
+                  <a class="nav-link" href="#" id="projects-link" data-bs-toggle="collapse"
+                  data-bs-target="#projectsAccordion" aria-expanded="false" aria-controls="projectsAccordion">Projects</a>
+              </li>
+              </ul>
+          </div>
+          </nav>
+  
+          <!-- Projects accordion -->
+          <div class="collapse" id="projectsAccordion">
+          <div class="card card-body">
+              <ul class="list-group">
+              <li class="list-group-item"><a href="https://github.com/Villanua/vectra_hw" class="project-link" id="project1-link">Vectra (Work in progress)</a></li>
+              <!-- Add more projects here -->
+              </ul>
+          </div>
+          </div>
+      </header>
+
+        
+
+        <!-- Main content -->
+      <div id="content">
+
+          <!-- Home page section -->
+          <div id="home-page" class="content-panel">
+              <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
+              <p id='head1' class='header'>Welcome!</p>
+              <p id='head2' class='header'>This is a space of</p>
+              <p id='head3' class='header'>Robotics and AI Engineering</p>
+              <p id='head4' class='header'></p>
+              <div class='light x1'></div>
+              <div class='light x2'></div>
+              <div class='light x3'></div>
+              <div class='light x4'></div>
+              <div class='light x5'></div>
+              <div class='light x6'></div>
+              <div class='light x7'></div>
+              <div class='light x8'></div>
+              <div class='light x9'></div>
+              <footer class="footer py-2">
+                <div class="container text-center">
+                  <a href="https://www.linkedin.com/in/ignacio-villanua-cuenca/" target="_blank" class="text-white me-3">
+                    <i class="fab fa-linkedin fa-2x"></i>
+                  </a>
+                  <a href="https://github.com/Villanua" target="_blank" class="text-white">
+                    <i class="fab fa-github fa-2x"></i>
+                  </a>
+                </div>
+              </footer>
+          </div>
     
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
-
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"></script>
-
-    <!-- Additional Scripts -->
-    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="{% static 'js/ui.js' %}"></script>
-
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/about_me.css' %}" />
-  </head>
-
-  <body>
-    <!-- Navbar -->
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <!-- Brand logo -->
-        <a class="navbar-brand ms-5" id="logo-link" href="#">
-          <img src="{% static 'img/logo.png' %}" alt="Logo" height="30">
-        </a>
-        <!-- Toggler button for mobile view -->
-        <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Navbar links -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item ms-3">
-              <a class="nav-link" href="#" id="about-me-link">About me</a>
-            </li>
-            <li class="nav-item ms-3">
-              <a class="nav-link" href="#" id="projects-link" data-bs-toggle="collapse"
-                data-bs-target="#projectsAccordion" aria-expanded="false" aria-controls="projectsAccordion">Projects</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
-      <!-- Projects accordion -->
-      <div class="collapse" id="projectsAccordion">
-        <div class="card card-body">
-          <ul class="list-group">
-            <li class="list-group-item"><a href="https://github.com/Villanua/vectra_hw" class="project-link" id="project1-link">Vectra (Work in progress)</a></li>
-            <!-- Add more projects here -->
-          </ul>
-        </div>
-      </div>
-    </header>
-
-    <!-- Main content -->
-    <div id="content">
-
-      <!-- Home page section -->
-      <div id="home-page" class="content-panel">
-        <img src="{% static 'img/me.jpg' %}">
-        <div id="presentation-container">
-          <h1>I'm a <span class="auto-type"></span></h1>
-        </div>
-        <footer class="footer bg-dark text-white py-3">
-          <div class="container text-center">
-            <p>Connect with me:</p>
-            <a href="https://www.linkedin.com/in/your-linkedin-profile" target="_blank" class="text-white me-3">
-              <i class="fab fa-linkedin fa-2x"></i>
-            </a>
-            <a href="https://github.com/your-github-profile" target="_blank" class="text-white">
-              <i class="fab fa-github fa-2x"></i>
-            </a>
-            <p class="mt-3">&copy; 2025 Ignacio Villanúa Cuenca. All rights reserved.</p>
-          </div>
-        </footer>
-      </div>
-
-      <!-- About me page section -->
-      <div id="about-me-page" class="content-panel hide">
-        <div id="general-description">
-          <div class="column-text">
-              <p id="greeting">Hello Everyone!</p>
-              <h1 id="presentation">I'm Nacho Villanúa</h1>
-            <p>
-              I'm a robotics and AI engineer from Málaga, currently living in Madrid. I've always been passionate about
-              technology and its potential to change the world.
-              Robotics and artificial intelligence are revolutionizing industries, and I love being part of that
-              transformation, working on projects that push the boundaries of automation and intelligent systems.
-            </p>
-          </div>
-          <img src="{% static 'img/me_spot.jpg' %}" alt="About Me" class="about-me-image">
-        </div>
-
-        <br>
-
-        <div id="info-section">
-          <!-- Degree Section -->
-          <div id="degree-card" class="custom-card">
-            <div class="card-body">
-              <h2><i class="fas fa-university"></i>Bachelor's Degree</h2>
-              <p>Click to learn more about my Bachelor's Degree.</p>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#degreeModal">
-                Learn More
-              </button>
-            </div>
-          </div>
-        
-          <!-- Master's Section -->
-          <div id="master-card" class="custom-card">
-            <div class="card-body">
-              <h2><i class="fa-solid fa-graduation-cap"></i>Master's Degree</h2>
-              <p>Click to learn more about my Master's Degree.</p>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#masterModal">
-                Learn More
-              </button>
-            </div>
-          </div>
-        
-          <!-- Experience Section -->
-          <div id="experience-card" class="custom-card">
-            <div class="card-body">
-              <h2><i class="fa-solid fa-briefcase"></i>Work Experience</h2>
-              <p>Click to learn more about my professional experience.</p>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#experienceModal">
-                Learn More
-              </button>
-            </div>
-          </div>
-        </div>
-
-        
-        <!-- Degree Modal -->
-        <div class="modal fade custom-modal" id="degreeModal" tabindex="-1" aria-labelledby="degreeModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="degreeModalLabel">Bachelor's Degree in Industrial Technologies Engineering</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <!-- About me page section -->
+          <div id="about-me-page" class="content-panel">
+            <div id="general-description">
+              <div class="column-text">
+                  <p id="greeting">Hello Everyone!</p>
+                  <h1 id="presentation">I'm Nacho Villanúa</h1>
+                <p>
+                  I'm a robotics and AI engineer from Málaga, currently living in Madrid. I've always been passionate about
+                  technology and its potential to change the world.
+                  Robotics and artificial intelligence are revolutionizing industries, and I love being part of that
+                  transformation, working on projects that push the boundaries of automation and intelligent systems.
+                </p>
               </div>
-              <div class="modal-body">
-                <p>
-                  I studied Industrial Technologies Engineering at the University of Málaga, specializing in electronics and
-                  automation. This degree gave me a broad foundation in engineering, covering areas like mechanics, structural
-                  analysis, electrical engineering, fluid mechanics, and thermodynamics.
-                </p>
-                <p>
-                  As I progressed, I focused more on robotics, automation, and programming. I worked with object-oriented
-                  programming (C#, Unity), perception systems (3D vision, computer vision, machine learning, deep learning), and
-                  programming in C++, Python, and Matlab. I also gained experience in electronics, instrumentation, and
-                  programming for both industrial and collaborative robots.
-                </p>
-                <p>
-                  My Bachelor's Thesis, titled <i>"Estrategia de colaboración humano-robot en cirugía endonasal"</i> (Strategy
-                  of human-robot collaboration in endonasal surgery), was part of the National Research Plan project <i>"Global
-                    Planner for a Robotic System for Anastomosis"</i>. I also contributed to the publication <i>"<a
-                      href="https://www.mdpi.com/1424-8220/21/7/2320" target="_blank">Collaborative Robotic Assistant Platform
-                      for Endonasal Surgery: Preliminary In-Vitro Trials</a>"</i>.
-                </p>
-                <div id="craneeal" class="figure-columns">
-                  <figure id="platform">
-                    <img src="{% static 'img/Craneeal_platform.png' %}" alt='Craneeal platform' />
-                    <figcaption>Craneeal platform</figcaption>
-                  </figure>
-                  <figure id="interface">
-                    <img src="{% static 'img/Craneeal_interface.png' %}" alt='Craneeal interface' />
-                    <figcaption>Craneeal interface</figcaption>
-                  </figure>
+              <img src="{% static 'img/me_spot.jpg' %}" alt="About Me" class="about-me-image">
+            </div>
+    
+            <br>
+    
+            <div id="info-section">
+              <!-- Degree Section -->
+              <div id="degree-card" class="custom-card">
+                <div class="card-body">
+                  <h2><i class="fas fa-university"></i>Bachelor's Degree</h2>
+                  <p>Click to learn more about my Bachelor's Degree.</p>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#degreeModal">
+                    Learn More
+                  </button>
                 </div>
-                <p>
-                  The CRANEEAL robotic system includes two robotic arms, a haptic teleoperation device, and force sensors, all
-                  programmed using ROS for seamless communication and precise surgical assistance. The modular design ensures
-                  that all components interact efficiently.
-                </p>
-                <p>
-                  I designed an obstacle creation module to prevent collisions with critical areas, while virtual force feedback
-                  was integrated into the haptic device to guide teleoperated movements and improve safety during procedures.
-                </p>
-                <p>
-                  I also developed a camera calibration system to parametrize the extrinsic parameters, using a custom piece
-                  designed in Fusion 360 and 3D printed. This ensures accurate mapping between the 3D world and 2D images for
-                  enhanced surgical precision.
-                </p>
-                <p>
-                  For the human-robot interaction, I created a state machine based on an ontology. It manages two operating
-                  modes: autonomous and teleoperated. The system detects and transitions between these modes through computer
-                  vision and models state changes with Markov chains, adapting to the robot's movements for smooth performance.
-                </p>
-                <p>
-                  Finally, I designed a web interface that integrates all these components, giving operators an easy-to-use
-                  platform for interacting with the system. The interface offers real-time feedback, monitoring of the robotic
-                  arm, and control over both autonomous and teleoperated modes, making the system efficient and user-friendly
-                  during procedures.
-                </p>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Master's modal -->
-        <div class="modal fade custom-modal" id="masterModal" tabindex="-1" aria-labelledby="masterModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="masterModalLabel">Master's Degree in Robotics and Automation</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <h2>Master's Degree in Robotics and Automation</h2>
-                <p>
-                  I pursued a Master's in Robotics and Automation at the University Carlos III of Madrid. During the program, I
-                  took courses in intelligent control, machine learning, computer vision, medical robotics, humanoids, and
-                  mobile robotics.
-                </p>
-                <p>
-                  My Master's Thesis, <i>"Simultaneous Localization And Mapping And Segmentation"</i>, focused on mobile
-                  robotics.
-                </p>
-        
-                <div id="slamas" class="figure-columns">
-                  <figure id="slam">
-                    <img src="{% static 'img/slam3d.png' %}" alt='SLAMAS' />
-                    <figcaption>SLAMAS</figcaption>
-                  </figure>
-                  <figure id="segmentation">
-                    <img src="{% static 'img/segmentation.png' %}" alt='Segmentation' />
-                    <figcaption>Segmentation</figcaption>
-                  </figure>
+            
+              <!-- Master's Section -->
+              <div id="master-card" class="custom-card">
+                <div class="card-body">
+                  <h2><i class="fa-solid fa-graduation-cap"></i>Master's Degree</h2>
+                  <p>Click to learn more about my Master's Degree.</p>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#masterModal">
+                    Learn More
+                  </button>
                 </div>
-                <p>
-                  During my Master's, I developed a SLAM algorithm for both 2D and 3D environments, using point cloud techniques
-                  such as ICP and NDT to generate 2D and 3D maps through pose graphs. I implemented door and room detection
-                  using computer vision techniques, including watershed segmentation. To make the door detection more robust, I
-                  applied two different algorithms, ensuring more accurate identification. This approach allowed me to create
-                  topological maps from the generated geometric maps, enabling a more structured representation of the
-                  environment for autonomous navigation and mapping.
-                </p>
+              </div>
+            
+              <!-- Experience Section -->
+              <div id="experience-card" class="custom-card">
+                <div class="card-body">
+                  <h2><i class="fa-solid fa-briefcase"></i>Work Experience</h2>
+                  <p>Click to learn more about my professional experience.</p>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#experienceModal">
+                    Learn More
+                  </button>
+                </div>
               </div>
             </div>
+    
+            
+            <!-- Degree Modal -->
+            <div class="modal fade custom-modal" id="degreeModal" tabindex="-1" aria-labelledby="degreeModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="degreeModalLabel">Bachelor's Degree in Industrial Technologies Engineering</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>
+                      I studied Industrial Technologies Engineering at the University of Málaga, specializing in electronics and
+                      automation. This degree gave me a broad foundation in engineering, covering areas like mechanics, structural
+                      analysis, electrical engineering, fluid mechanics, and thermodynamics.
+                    </p>
+                    <p>
+                      As I progressed, I focused more on robotics, automation, and programming. I worked with object-oriented
+                      programming (C#, Unity), perception systems (3D vision, computer vision, machine learning, deep learning), and
+                      programming in C++, Python, and Matlab. I also gained experience in electronics, instrumentation, and
+                      programming for both industrial and collaborative robots.
+                    </p>
+                    <p>
+                      My Bachelor's Thesis, titled <i>"Estrategia de colaboración humano-robot en cirugía endonasal"</i> (Strategy
+                      of human-robot collaboration in endonasal surgery), was part of the National Research Plan project <i>"Global
+                        Planner for a Robotic System for Anastomosis"</i>. I also contributed to the publication <i>"<a
+                          href="https://www.mdpi.com/1424-8220/21/7/2320" target="_blank">Collaborative Robotic Assistant Platform
+                          for Endonasal Surgery: Preliminary In-Vitro Trials</a>"</i>.
+                    </p>
+                    <div id="craneeal" class="figure-columns">
+                      <figure id="platform">
+                        <img src="{% static 'img/Craneeal_platform.png' %}" alt='Craneeal platform' />
+                        <figcaption>Craneeal platform</figcaption>
+                      </figure>
+                      <figure id="interface">
+                        <img src="{% static 'img/Craneeal_interface.png' %}" alt='Craneeal interface' />
+                        <figcaption>Craneeal interface</figcaption>
+                      </figure>
+                    </div>
+                    <p>
+                      The CRANEEAL robotic system includes two robotic arms, a haptic teleoperation device, and force sensors, all
+                      programmed using ROS for seamless communication and precise surgical assistance. The modular design ensures
+                      that all components interact efficiently.
+                    </p>
+                    <p>
+                      I designed an obstacle creation module to prevent collisions with critical areas, while virtual force feedback
+                      was integrated into the haptic device to guide teleoperated movements and improve safety during procedures.
+                    </p>
+                    <p>
+                      I also developed a camera calibration system to parametrize the extrinsic parameters, using a custom piece
+                      designed in Fusion 360 and 3D printed. This ensures accurate mapping between the 3D world and 2D images for
+                      enhanced surgical precision.
+                    </p>
+                    <p>
+                      For the human-robot interaction, I created a state machine based on an ontology. It manages two operating
+                      modes: autonomous and teleoperated. The system detects and transitions between these modes through computer
+                      vision and models state changes with Markov chains, adapting to the robot's movements for smooth performance.
+                    </p>
+                    <p>
+                      Finally, I designed a web interface that integrates all these components, giving operators an easy-to-use
+                      platform for interacting with the system. The interface offers real-time feedback, monitoring of the robotic
+                      arm, and control over both autonomous and teleoperated modes, making the system efficient and user-friendly
+                      during procedures.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <!-- Master's modal -->
+            <div class="modal fade custom-modal" id="masterModal" tabindex="-1" aria-labelledby="masterModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="masterModalLabel">Master's Degree in Robotics and Automation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <h2>Master's Degree in Robotics and Automation</h2>
+                    <p>
+                      I pursued a Master's in Robotics and Automation at the University Carlos III of Madrid. During the program, I
+                      took courses in intelligent control, machine learning, computer vision, medical robotics, humanoids, and
+                      mobile robotics.
+                    </p>
+                    <p>
+                      My Master's Thesis, <i>"Simultaneous Localization And Mapping And Segmentation"</i>, focused on mobile
+                      robotics.
+                    </p>
+            
+                    <div id="slamas" class="figure-columns">
+                      <figure id="slam">
+                        <img src="{% static 'img/slam3d.png' %}" alt='SLAMAS' />
+                        <figcaption>SLAMAS</figcaption>
+                      </figure>
+                      <figure id="segmentation">
+                        <img src="{% static 'img/segmentation.png' %}" alt='Segmentation' />
+                        <figcaption>Segmentation</figcaption>
+                      </figure>
+                    </div>
+                    <p>
+                      During my Master's, I developed a SLAM algorithm for both 2D and 3D environments, using point cloud techniques
+                      such as ICP and NDT to generate 2D and 3D maps through pose graphs. I implemented door and room detection
+                      using computer vision techniques, including watershed segmentation. To make the door detection more robust, I
+                      applied two different algorithms, ensuring more accurate identification. This approach allowed me to create
+                      topological maps from the generated geometric maps, enabling a more structured representation of the
+                      environment for autonomous navigation and mapping.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <!-- Experience modal -->
+            <div class="modal fade custom-modal" id="experienceModal" tabindex="-1" aria-labelledby="experienceModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="experienceModalLabel">Professional Experience</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <h1>Professional Experience</h1>
+                    <p>
+                      I've worked on a variety of robotics and AI projects, from industrial automation to service robots and autonomous vehicles. My experience 
+                      spans programming, system integration, AI-driven applications, and deployment of autonomous systems.
+                    </p>
+                    
+                    <p>
+                      I have programmed UR3 and UR10 robotic arms, integrating them with various devices such as elevators, horizontal conveyors, and both 
+                      mechanical and suction grippers for diverse applications. Additionally, I developed a UR3 robot with ROS and a depth camera for waste 
+                      detection and recycling.
+                    </p>
+                  
+                    <p>
+                      I deployed an autonomous mobile robot (MIR) equipped with dual 2D LIDAR sensors on a corporate campus for workspace disinfection, 
+                      implementing programmed point-to-point movements and sensor activation. I also participated in reviving a mobile robot (Summit XL), 
+                      restoring its functionality and enabling precise localization using a 2D LIDAR and an RTK GPS. To enhance its autonomy, I implemented a 
+                      Kalman filter to fuse data from odometry, LIDAR, IMU, and GPS. Additionally, I developed a web interface in HTML, CSS, and JavaScript, 
+                      connecting it to ROS via Rosbridge. The system includes an SQLite database to manage routes and actions such as sound activation, image 
+                      capture, navigation, and map switching, all controlled via Python. I also created a mission-tracking algorithm in C++, using a state-machine 
+                      model to automate inspection routes.
+                    </p>        
+                  
+                    <p>
+                      In the area of service robotics, I deployed Bellabot and Kettybot autonomous robots for water delivery in a corporate dining space. These 
+                      robots feature 2D LIDAR and 3D cameras for obstacle avoidance and were also implemented in external company events. Additionally, I worked 
+                      with the Boston Dynamics Spot quadruped robot for events and pipeline inspections.
+                    </p>
+                  
+                    <p>
+                      I contributed to a Data Science project utilizing neural networks, Monte Carlo simulations, and KNN to predict economic trends in public 
+                      tenders. As part of this project, I developed a Django-based web interface that allows users to adjust algorithm parameters.
+                    </p>
+                  
+                    <p>
+                      In the field of Generative AI, I have applied advanced prompting strategies and flow engineering using GPT, Gemini, LangChain, and LangGraph. 
+                      I have implemented reactive agents, self-reflection systems, Human-In-The-Loop methodologies, and database query agents. Additionally, I 
+                      have integrated Knowledge Graphs into PostgreSQL, enabling hybrid search capabilities that combine structured and unstructured data. I have 
+                      also performed fine-tuning of language models in GCP, AWS, and local environments, applying quantization and LoRA techniques to optimize a 
+                      Deepseek R1 model for specific use cases. My role involved designing architectures, planning projects, and adapting solutions to client 
+                      requirements. I have developed multiple projects, including a document analysis system capable of extracting structured information from 
+                      uploaded files, and various document retrieval solutions that use Retrieval-Augmented Generation (RAG) to answer questions based on indexed 
+                      data. These solutions were customized for different clients, incorporating features such as database queries, reference question integration, 
+                      multilingual support, and the use of documents as guidelines.
+                    </p>
+                  
+                    <p>
+                      I developed a system for uploading and processing multimodal documents, including PDFs, Word files, Excel spreadsheets, and images, enabling 
+                      the extraction of client-defined information. I utilized libraries such as Unstructured to handle complex document parsing, ensuring accurate 
+                      data retrieval from checkboxes, tables, and embedded elements. The solution generated question batches for auto-completing specific forms, 
+                      streamlining manual workflows and enhancing accuracy.
+                    </p>
+    
+                    <p>
+                      I designed advanced RAG systems for contextual question answering, incorporating mechanisms for disambiguation and multi-response generation 
+                      to enhance answer accuracy. These systems utilize a comprehensive set of frequently asked questions to refine query interpretation and improve 
+                      relevance. Additionally, they integrate Knowledge Graphs to expand document understanding and include agents capable of retrieving and 
+                      processing information from databases dynamically. Embedding-based batch question generation and routing agents further optimize responses, 
+                      enabling context-aware decision-making and automated execution of client-specific actions.
+                    </p>
+    
+                    <p>
+                      I designed a semantic document search engine that retrieves files based on their content, overcoming limitations posed by non-intuitive file 
+                      naming conventions. The system processes and analyzes more than 3,000 documents, returning results along with their exact location within a 
+                      SharePoint repository.
+                    </p>
+                  
+                  </div>
+                </div>
+              </div>
           </div>
         </div>
 
-        <!-- Experience modal -->
-        <div class="modal fade custom-modal" id="experienceModal" tabindex="-1" aria-labelledby="experienceModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="experienceModalLabel">Professional Experience</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <h1>Professional Experience</h1>
-                <p>
-                  I've worked on a variety of robotics and AI projects, from industrial automation to service robots and autonomous vehicles. My experience 
-                  spans programming, system integration, AI-driven applications, and deployment of autonomous systems.
-                </p>
-                
-                <p>
-                  I have programmed UR3 and UR10 robotic arms, integrating them with various devices such as elevators, horizontal conveyors, and both 
-                  mechanical and suction grippers for diverse applications. Additionally, I developed a UR3 robot with ROS and a depth camera for waste 
-                  detection and recycling.
-                </p>
-              
-                <p>
-                  I deployed an autonomous mobile robot (MIR) equipped with dual 2D LIDAR sensors on a corporate campus for workspace disinfection, 
-                  implementing programmed point-to-point movements and sensor activation. I also participated in reviving a mobile robot (Summit XL), 
-                  restoring its functionality and enabling precise localization using a 2D LIDAR and an RTK GPS. To enhance its autonomy, I implemented a 
-                  Kalman filter to fuse data from odometry, LIDAR, IMU, and GPS. Additionally, I developed a web interface in HTML, CSS, and JavaScript, 
-                  connecting it to ROS via Rosbridge. The system includes an SQLite database to manage routes and actions such as sound activation, image 
-                  capture, navigation, and map switching, all controlled via Python. I also created a mission-tracking algorithm in C++, using a state-machine 
-                  model to automate inspection routes.
-                </p>        
-              
-                <p>
-                  In the area of service robotics, I deployed Bellabot and Kettybot autonomous robots for water delivery in a corporate dining space. These 
-                  robots feature 2D LIDAR and 3D cameras for obstacle avoidance and were also implemented in external company events. Additionally, I worked 
-                  with the Boston Dynamics Spot quadruped robot for events and pipeline inspections.
-                </p>
-              
-                <p>
-                  I contributed to a Data Science project utilizing neural networks, Monte Carlo simulations, and KNN to predict economic trends in public 
-                  tenders. As part of this project, I developed a Django-based web interface that allows users to adjust algorithm parameters.
-                </p>
-              
-                <p>
-                  In the field of Generative AI, I have applied advanced prompting strategies and flow engineering using GPT, Gemini, LangChain, and LangGraph. 
-                  I have implemented reactive agents, self-reflection systems, Human-In-The-Loop methodologies, and database query agents. Additionally, I 
-                  have integrated Knowledge Graphs into PostgreSQL, enabling hybrid search capabilities that combine structured and unstructured data. I have 
-                  also performed fine-tuning of language models in GCP, AWS, and local environments, applying quantization and LoRA techniques to optimize a 
-                  Deepseek R1 model for specific use cases. My role involved designing architectures, planning projects, and adapting solutions to client 
-                  requirements. I have developed multiple projects, including a document analysis system capable of extracting structured information from 
-                  uploaded files, and various document retrieval solutions that use Retrieval-Augmented Generation (RAG) to answer questions based on indexed 
-                  data. These solutions were customized for different clients, incorporating features such as database queries, reference question integration, 
-                  multilingual support, and the use of documents as guidelines.
-                </p>
-              
-                <p>
-                  I developed a system for uploading and processing multimodal documents, including PDFs, Word files, Excel spreadsheets, and images, enabling 
-                  the extraction of client-defined information. I utilized libraries such as Unstructured to handle complex document parsing, ensuring accurate 
-                  data retrieval from checkboxes, tables, and embedded elements. The solution generated question batches for auto-completing specific forms, 
-                  streamlining manual workflows and enhancing accuracy.
-                </p>
-
-                <p>
-                  I designed advanced RAG systems for contextual question answering, incorporating mechanisms for disambiguation and multi-response generation 
-                  to enhance answer accuracy. These systems utilize a comprehensive set of frequently asked questions to refine query interpretation and improve 
-                  relevance. Additionally, they integrate Knowledge Graphs to expand document understanding and include agents capable of retrieving and 
-                  processing information from databases dynamically. Embedding-based batch question generation and routing agents further optimize responses, 
-                  enabling context-aware decision-making and automated execution of client-specific actions.
-                </p>
-
-                <p>
-                  I designed a semantic document search engine that retrieves files based on their content, overcoming limitations posed by non-intuitive file 
-                  naming conventions. The system processes and analyzes more than 3,000 documents, returning results along with their exact location within a 
-                  SharePoint repository.
-                </p>
-              
-              </div>
-            </div>
-          </div>
+        <div id="chatbot-pulsing-container">
+          <div class="circle inner"></div>
+          <div class="circle middle"></div>
+          <div class="circle outer"></div>
         </div>
 
-
-        <footer class="footer bg-dark text-white py-3">
-          <div class="container text-center">
-            <p>Connect with me:</p>
-            <a href="https://www.linkedin.com/in/your-linkedin-profile" target="_blank" class="text-white me-3">
-              <i class="fab fa-linkedin fa-2x"></i>
-            </a>
-            <a href="https://github.com/your-github-profile" target="_blank" class="text-white">
-              <i class="fab fa-github fa-2x"></i>
-            </a>
-            <p class="mt-3">&copy; 2025 Ignacio Villanúa Cuenca. All rights reserved.</p>
-          </div>
-        </footer>
-
-
       </div>
 
-      <!-- Projects section -->
-      <div id="projects-page" class="content-panel hide">
+      
+    </body>
 
-      </div>
-
-    </div>
-  </body>
 
 </html>

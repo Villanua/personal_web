@@ -15,18 +15,35 @@ RUN apt-get update && apt-get install -y \
 # Establece directorio de trabajo
 WORKDIR /app
 
-# Copia los archivos
-COPY . .
+# Copia los archivos de dependencias
+COPY requirements.txt .
 
 # Instala dependencias
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt --root-user-action=ignore
+RUN pip install -r requirements.txt --no-cache-dir 
+
+ENV GOOGLE_CLOUD_PROJECT=villanua
+ENV DATABASE_URL=postgres://villanua-db-user:T&BNkU5=,`2,-R0X@//cloudsql/villanua:europe-southwest1:villanua-sql-instance/villanua-postgresql
+ENV GS_BUCKET_NAME=villanua-bucket
+ENV SECRET_KEY=UPVEXjFgKDLXDRapLdhrWEmicGphEwveHRUirHToIzkqRzqlLt
+
+
+# Copiar el código fuente de tu aplicación
+COPY . /app
+COPY credentials.json /tmp/credentials.json
+ENV GOOGLE_APPLICATION_CREDENTIALS=/tmp/credentials.json
+
 
 # Configura variables de entorno
 RUN python manage.py collectstatic --noinput
 
-# Expone el puerto
-EXPOSE 8080
+# Configuración de logs
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# Define cómo arrancar
-CMD ["gunicorn", "villanua_web_project.wsgi:application", "--bind", "0.0.0.0:8080"]
+# Configuración de variables de entorno
+ENV PYTHONUNBUFFERED=1
+ENV PORT=8080
+
+# Establecer el entrypoint
+ENTRYPOINT ["/entrypoint.sh"]

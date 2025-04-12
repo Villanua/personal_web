@@ -13,10 +13,13 @@ import os
 import io
 from pathlib import Path
 from urllib.parse import urlparse
+from dotenv import load_dotenv
 
 import environ
 import google.auth
 from google.cloud import secretmanager
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # [START cloudrun_django_secret_config]
 # SECURITY WARNING: don't run with debug turned on in production!
 # Change this to "False" when you are ready for production
-env = environ.Env(DEBUG=(bool, False))
+env = environ.Env(DEBUG=(bool, os.environ.get("IS_LOCAL", False)))
 env_file = os.path.join(BASE_DIR, ".env")
 
 # Attempt to load the Project ID into the environment, safely failing on error.
@@ -123,32 +126,32 @@ TEMPLATES = [
     },
 ]
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'static'
-STATICFILES_DIRS = [
-    BASE_DIR / 'main_page_app/static',
-]
+
 WSGI_APPLICATION = 'villanua_web_project.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# Use django-environ to parse the connection string
-# [START cloudrun_django_database_config]
-# Use django-environ to parse the connection string
-DATABASES = {"default": env.db()}
+DB_TYPE = os.getenv("DB_TYPE", "cloud").lower()
 
-# If the flag as been set, configure to use proxy
-if os.getenv("USE_CLOUD_SQL_AUTH_PROXY", None):
-    DATABASES["default"]["HOST"] = "127.0.0.1"
-    DATABASES["default"]["PORT"] = 5432
+if DB_TYPE == "sqlite":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
+else:
+    # Use django-environ to parse the connection string
+    DATABASES = {"default": env.db()}
 
-# [END cloudrun_django_database_config]
+    # If the flag has been set, configure to use proxy
+    if os.getenv("USE_CLOUD_SQL_AUTH_PROXY", None):
+        DATABASES["default"]["HOST"] = "127.0.0.1"
+        DATABASES["default"]["PORT"] = 5432
 
 
 # Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -179,16 +182,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # [START cloudrun_django_static_config]
 # Define static storage via django-storages[google]
-GS_BUCKET_NAME = env("GS_BUCKET_NAME")
-STATIC_URL = "/static/"
-STORAGES = {
-    "default": {
-        "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
-    },
-}
+if os.environ.get("IS_LOCAL", False):
+    STATIC_URL = "/static/"
+    STATIC_ROOT = BASE_DIR / 'static'
+    STATICFILES_DIRS = [
+        BASE_DIR / 'main_page_app/static',
+    ]
+else:
+    GS_BUCKET_NAME = env("GS_BUCKET_NAME")
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
+        },
+    }
 # [END cloudrun_django_static_config]
 
 # Default primary key field type

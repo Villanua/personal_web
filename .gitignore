@@ -1,4 +1,6 @@
 # Ignore DBs
 *.sqlite3
+.env
 
 __pycache__/
+credentials/

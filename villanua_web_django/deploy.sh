@@ -18,10 +18,10 @@ gcloud builds submit --tag $IMAGE_NAME .
 # Deploy the container image to Cloud Run
 echo "Deploying to Cloud Run..."
 gcloud run deploy $SERVICE_NAME \
-  --region $REGION \  # Specify the region for deployment
-  --image $IMAGE_NAME \  # Use the built container image
-  --add-cloudsql-instances "$PROJECT_ID:$REGION:$INSTANCE_NAME" \  # Attach the Cloud SQL instance
-  --allow-unauthenticated  # Allow unauthenticated access to the service
+  --region $REGION \
+  --image $IMAGE_NAME \
+  --add-cloudsql-instances "$PROJECT_ID:$REGION:$INSTANCE_NAME" \
+  --allow-unauthenticated
 
 # Print a completion message
 echo "Done!"

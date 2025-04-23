@@ -14,12 +14,14 @@ import io
 from pathlib import Path
 from urllib.parse import urlparse
 from dotenv import load_dotenv
+import logging
 
 import environ
 import google.auth
 from google.cloud import secretmanager
 
 load_dotenv()
+logging.basicConfig(level=logging.DEBUG)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,35 +41,29 @@ except google.auth.exceptions.DefaultCredentialsError:
 
 if os.path.isfile(env_file):
     # Use a local secret file, if provided
-
     env.read_env(env_file)
-# [START_EXCLUDE]
 elif os.getenv("TRAMPOLINE_CI", None):
     # Create local settings if running with CI, for unit testing
-
     placeholder = (
         f"SECRET_KEY=a\n"
         "GS_BUCKET_NAME=None\n"
         f"DATABASE_URL=sqlite://{os.path.join(BASE_DIR, 'db.sqlite3')}"
     )
     env.read_env(io.StringIO(placeholder))
-# [END_EXCLUDE]
 elif os.environ.get("GOOGLE_CLOUD_PROJECT", None):
     # Pull secrets from Secret Manager
     project_id = os.environ.get("GOOGLE_CLOUD_PROJECT")
-
     client = secretmanager.SecretManagerServiceClient()
     settings_name = os.environ.get("SETTINGS_NAME", "django_settings")
     name = f"projects/{project_id}/secrets/{settings_name}/versions/latest"
     payload = client.access_secret_version(name=name).payload.data.decode("UTF-8")
-
     env.read_env(io.StringIO(payload))
 else:
     raise Exception("No local .env or GOOGLE_CLOUD_PROJECT detected. No secrets found.")
 # [END cloudrun_django_secret_config]
-SECRET_KEY = env("SECRET_KEY")
 
-DEBUG = env("DEBUG")
+SECRET_KEY = env("SECRET_KEY", default="NOT_SECRET")
+DEBUG = env.bool("DEBUG", default=False)
 
 # [START cloudrun_django_csrf]
 # SECURITY WARNING: It's recommended that you use this when
@@ -96,10 +92,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -135,6 +133,7 @@ WSGI_APPLICATION = 'villanua_web_project.wsgi.application'
 DB_TYPE = os.getenv("DB_TYPE", "cloud").lower()
 
 if DB_TYPE == "sqlite":
+    logging.info("Using SQLite database")
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -142,6 +141,7 @@ if DB_TYPE == "sqlite":
         }
     }
 else:
+    logging.info("Using PostgreSQL database")
     # Use django-environ to parse the connection string
     DATABASES = {"default": env.db()}
 
@@ -171,33 +171,28 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # [START cloudrun_django_static_config]
 # Define static storage via django-storages[google]
-if os.environ.get("IS_LOCAL", False):
-    STATIC_URL = "/static/"
-    STATIC_ROOT = BASE_DIR / 'static'
-    STATICFILES_DIRS = [
-        BASE_DIR / 'main_page_app/static',
-    ]
-else:
-    GS_BUCKET_NAME = env("GS_BUCKET_NAME")
-    STORAGES = {
-        "default": {
-            "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
-        },
-        "staticfiles": {
-            "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
-        },
-    }
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / 'static_files'  # O el que quieras
+STATICFILES_DIRS = [
+    BASE_DIR / 'main_page_app/static',
+]
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
 # [END cloudrun_django_static_config]
 
 # Default primary key field type

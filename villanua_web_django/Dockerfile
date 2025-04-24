@@ -1,8 +1,10 @@
 # Use Python 3.12 as the base image
-FROM python:3.12
+FROM python:3.12-slim
 
-# Install system dependencies required for mysqlclient and other libraries
-RUN apt-get update && apt-get install -y \
+# Install system dependencies required for mysqlclient and other 
+RUN echo "deb http://deb.debian.org/debian trixie main" >> /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get -t trixie install -y \
     apt-utils \
     gcc \
     default-libmysqlclient-dev \

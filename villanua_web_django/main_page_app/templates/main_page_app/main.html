@@ -26,22 +26,23 @@
         <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="{% static 'js/ui.js' %}"></script>
-        <script src="{% static 'js/background.js' %}"></script>
 
         <!-- Custom Styles -->
-        <link rel="stylesheet" href="{% static 'css/background.css' %}" />
         <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
         <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
         <link rel="stylesheet" href="{% static 'css/home.css' %}" />
         <link rel="stylesheet" href="{% static 'css/about_me.css' %}" />
         <link rel="stylesheet" href="{% static 'css/chatbot.css' %}" />
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="{% static 'img/logo.png' %}" sizes="16x16" />
     </head>
 
     <body>
 
       <!-- Navbar -->
       <header>
-          <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
           <!-- Brand logo -->
           <a class="navbar-brand ms-5" id="logo-link" href="#">
               <img src="{% static 'img/logo.png' %}" alt="Logo" height="30">
@@ -63,22 +64,24 @@
               </li>
               </ul>
           </div>
-          </nav>
-  
-          <!-- Projects accordion -->
-          <div class="collapse" id="projectsAccordion">
+        </nav>
+
+        <!-- Projects accordion -->
+        <div class="collapse" id="projectsAccordion">
           <div class="card card-body">
               <ul class="list-group">
-              <li class="list-group-item"><a href="https://github.com/Villanua/vectra_hw" class="project-link" id="project1-link">Vectra (Work in progress)</a></li>
-              <!-- Add more projects here -->
+                <li class="list-group-item"><a href="https://github.com/Villanua/vectra_hw" class="project-link" id="project1-link">Vectra (Work in progress)</a></li>
+                <li class="list-group-item"><a href="https://github.com/Villanua" class="project-link" id="project1-link">Ada (Work in progress)</a></li>
+                <!-- Add more projects here -->
               </ul>
           </div>
-          </div>
+        </div>
+        
       </header>
 
         
 
-        <!-- Main content -->
+      <!-- Main content -->
       <div id="content">
 
           <!-- Home page section -->

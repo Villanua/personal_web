@@ -22,15 +22,22 @@ header {
 }
 
 /* Project accordion styles */
+#projectsAccordion {
+    margin-top: 80px;
+}
+
 #projectsAccordion .card {
-    background-color: #303030; /* Same background color as navbar */
+    background: none;
     border: none; /* No border */
+    padding-left: 50px;
 }
 
 #projectsAccordion .list-group-item {
-    background-color: #303030; /* Same background color as navbar */
-    color: #ffffff; /* Same text color as navbar */
-    border: none; /* No border */
+    margin: 1px;
+    background: linear-gradient(to right, #7a5f078a, #00000000);
+    color: #ffffff;
+    border: none;
+    border-radius: 0.5rem;
     transition: font-size 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Smooth transition for font size, background color, and text color change */
 }
 

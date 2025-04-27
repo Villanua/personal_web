@@ -1,4 +1,5 @@
 /* Navbar styles */
+/* Define the fixed position and background gradient for the navbar */
 header {
     width: 100%;
     position: fixed; top: 0; z-index: 5;
@@ -8,6 +9,7 @@ header {
     background: linear-gradient(#241a00ea, #dfaf1100);
 }
 
+/* Customize the appearance of navbar links and toggler */
 .navbar-dark .navbar-brand,
 .navbar-dark .navbar-nav .nav-link {
     color: #ffffff;
@@ -21,7 +23,7 @@ header {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28175, 175, 175, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-/* Project accordion styles */
+/* Style the project accordion and its hover effects */
 #projectsAccordion {
     margin-top: 80px;
 }
@@ -48,7 +50,7 @@ header {
 
 #projectsAccordion .list-group-item:hover {
     font-size: 1.1em; /* Increase font size on hover */
-    background-color: #ff0000; /* Change background color on hover */
+    background-color: rgba(141, 122, 0, 0.801); /* Change background color on hover */
 }
 
 /* Add padding to navbar container when collapsed */
@@ -56,7 +58,7 @@ header {
     padding: 10px; /* Adjust value as needed */
 }
 
-
+/* Define footer styles and responsive adjustments */
 .footer {
     position: absolute;
     bottom: 0;
@@ -69,15 +71,26 @@ header {
 }
 
 .footer a {
-    color: white; /* Color de los enlaces */
-    text-decoration: none; /* Sin subrayado */
-    transition: color 0.3s ease; /* Transición suave al pasar el cursor */
+    color: white; /* Color of the links */
+    text-decoration: none; /* No underline */
+    transition: color 0.3s ease; /* Smooth transition on hover */
 }
 
 .footer a:hover {
-    color: #007bff; /* Cambia el color al pasar el cursor */
+    color: #007bff; /* Change color on hover */
 }
 
 .footer i {
-    margin: 0 0.5rem; /* Espaciado entre los íconos */
+    margin: 0 0.5rem; /* Spacing between icons */
+}
+
+@media (max-width: 990px) {
+    #projectsAccordion {
+        margin-top: 140px;
+    }
+    #projectsAccordion .card {
+        background: none;
+        border: none; /* No border */
+        padding-left: 20px;
+    }
 }

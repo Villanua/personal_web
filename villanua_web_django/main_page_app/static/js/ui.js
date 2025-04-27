@@ -34,7 +34,7 @@ $(document).ready(function() {
         setTimeout(() => {
             zoomContainer.remove();
             if (callback) callback();
-        }, 10000);
+        }, 100);
     }
 
     $('#logo-link').click(function() {
@@ -43,6 +43,7 @@ $(document).ready(function() {
             $('#home-page').css("display", "block");
             $('#about-me-page').css("display", "none");
             $('#projects-page').css("display", "none");
+            $('body').css("overflow", "hidden")
         });
         $(".navbar-collapse").collapse('hide');
     });
@@ -55,6 +56,7 @@ $(document).ready(function() {
             $('#projects-page').css("display", "none");
         });
         $(".navbar-collapse").collapse('hide');
+        $('body').css("overflow-y", "scroll")
     });
 
     $('.project-link').click(function() {
@@ -66,6 +68,7 @@ $(document).ready(function() {
         });
         $("#projectsAccordion").collapse('hide');
         $(".navbar-collapse").collapse('hide');
+        $('body').css("overflow-y", "scroll")
     });
 
     // Detectar clics fuera del acordeón y del toggler y cerrarlos

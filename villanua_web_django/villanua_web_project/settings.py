@@ -180,7 +180,7 @@ USE_TZ = True
 # [START cloudrun_django_static_config]
 # Define static storage via django-storages[google]
 STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / 'static_files'  # O el que quieras
+STATIC_ROOT = BASE_DIR / 'static_files'
 STATICFILES_DIRS = [
     BASE_DIR / 'main_page_app/static',
 ]

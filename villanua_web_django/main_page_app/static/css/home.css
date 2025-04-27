@@ -1,3 +1,4 @@
+/* Define animations for floating light effects */
 .light {
     position: absolute;
     width: 0px;
@@ -23,6 +24,7 @@
   right: 0px;
 }
 
+/* Define animations for floating light effects */
 .x1{
   -webkit-animation: floatUp 4s infinite linear;
   -moz-animation: floatUp 4s infinite linear;
@@ -159,6 +161,7 @@
   100%{top: -100vh; opacity: 0;}
 }
 
+/* Style the header text with animations */
 .header{
   position: absolute;
   top: 40%;
@@ -283,6 +286,7 @@
   100%{opacity: 1;}
 }
 
+/* Add responsive styles for different screen sizes */
 /* Responsive styles */
 @media (max-width: 1024px) {
     #home-page img {
@@ -368,18 +372,17 @@
     }
 }
 
-
+/* Define transition effects for moving between pages */
 /* Move from home */
-
 .line-effect {
   position: absolute;
-  width: 2px; /* Ancho de las líneas */
-  height: 100%; /* Altura de la pantalla */
+  width: 2px; /* Width of the lines */
+  height: 100%; /* Height of the screen */
   background-color: white;
   top: 0;
   left: 0;
-  animation: line-move 1s ease-in-out forwards; /* Animación para mover las líneas */
-  z-index: 1000; /* Asegúrate de que las líneas estén por encima de todo */
+  animation: line-move 1s ease-in-out forwards; /* Animation to move the lines */
+  z-index: 1000; /* Ensure the lines are above everything */
 }
 
 @keyframes floatUpSlow {

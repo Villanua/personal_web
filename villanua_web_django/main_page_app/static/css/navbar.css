@@ -1,61 +1,69 @@
-/* Navbar styles */
 /* Define the fixed position and background gradient for the navbar */
 header {
     width: 100%;
-    position: fixed; top: 0; z-index: 5;
+    position: fixed; 
+    top: 0; 
+    z-index: 5; /* Ensure the navbar stays above other elements */
 }
 
 .navbar {
-    background: linear-gradient(#241a00ea, #dfaf1100);
+    /* Apply a gradient background to the navbar */
+    background: linear-gradient(#241a00, #dfaf1100);
 }
 
 /* Customize the appearance of navbar links and toggler */
 .navbar-dark .navbar-brand,
 .navbar-dark .navbar-nav .nav-link {
-    color: #ffffff;
+    color: #ffffff; /* Set text color for links */
 }
 
 .navbar-dark .navbar-toggler {
-    border-color: rgb(175, 175, 175); /* Change toggler border color */
+    /* Change the border color of the toggler button */
+    border-color: rgb(175, 175, 175);
 }
 
 .navbar-dark .navbar-toggler-icon {
+    /* Customize the toggler icon with an inline SVG */
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28175, 175, 175, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
 /* Style the project accordion and its hover effects */
 #projectsAccordion {
-    margin-top: 80px;
+    margin-top: 80px; /* Add spacing below the navbar */
 }
 
 #projectsAccordion .card {
+    /* Remove background and border for a clean look */
     background: none;
-    border: none; /* No border */
+    border: none;
     padding-left: 50px;
 }
 
 #projectsAccordion .list-group-item {
+    /* Define hover effects and transitions for project links */
     margin: 1px;
     background: linear-gradient(to right, #7a5f078a, #00000000);
     color: #ffffff;
     border: none;
     border-radius: 0.5rem;
-    transition: font-size 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Smooth transition for font size, background color, and text color change */
+    transition: font-size 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 #projectsAccordion .list-group-item a {
-    color: #ffffff; /* Change link text color */
-    text-decoration: none; /* Remove link underline */
+    /* Style links inside the accordion */
+    color: #ffffff;
+    text-decoration: none;
 }
 
 #projectsAccordion .list-group-item:hover {
-    font-size: 1.1em; /* Increase font size on hover */
-    background-color: rgba(141, 122, 0, 0.801); /* Change background color on hover */
+    /* Increase font size and change background color on hover */
+    font-size: 1.1em;
+    background-color: rgba(141, 122, 0, 0.801);
 }
 
 /* Add padding to navbar container when collapsed */
 .navbar-collapse {
-    padding: 10px; /* Adjust value as needed */
+    padding: 10px;
 }
 
 /* Define footer styles and responsive adjustments */
@@ -71,26 +79,28 @@ header {
 }
 
 .footer a {
-    color: white; /* Color of the links */
-    text-decoration: none; /* No underline */
-    transition: color 0.3s ease; /* Smooth transition on hover */
+    /* Style footer links */
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .footer a:hover {
-    color: #007bff; /* Change color on hover */
+    /* Change link color on hover */
+    color: #007bff;
 }
 
 .footer i {
-    margin: 0 0.5rem; /* Spacing between icons */
+    /* Add spacing between footer icons */
+    margin: 0 0.5rem;
 }
 
+/* Responsive styles for smaller screens */
 @media (max-width: 990px) {
     #projectsAccordion {
         margin-top: 140px;
     }
     #projectsAccordion .card {
-        background: none;
-        border: none; /* No border */
         padding-left: 20px;
     }
 }

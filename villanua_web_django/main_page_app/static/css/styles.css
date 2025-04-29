@@ -1,9 +1,11 @@
-/* General styles for the entire website */
-*{
-    /* Reset padding and margin for all elements */
-    padding: 0; margin: 0;
+/* Reset styles for all elements to ensure consistent rendering across browsers */
+* {
+    /* Remove default padding and margin */
+    padding: 0; 
+    margin: 0;
+    /* Set box-sizing to include padding and border in element's total width/height */
     box-sizing: border-box;
-    /* Set default font and color */
+    /* Define default font and color for the website */
     font-family: 'Roboto', sans-serif;
     color: white;
     font-weight: 600;
@@ -11,56 +13,52 @@
 }
 
 html {
-    /* Ensure the document occupies the full height of the viewport */
-    height: 100%; /* The document occupies the full height of the viewport */
-    margin: 0; /* Remove default margins */
-    display: flex; /* Enable Flexbox on the body */
-    flex-direction: column; 
+    /* Ensure the document spans the full height of the viewport */
+    height: 100%;
+    margin: 0;
+    /* Enable Flexbox layout for the body */
+    display: flex;
+    flex-direction: column;
 }
 
 body {
+    /* Remove default margin and set a lightweight font */
     margin: 0;
-    min-height: 100vh; /* Change height to min-height */
     font-weight: 100;
-    /* overflow-y is controlled by ui.js depending on the active page */
-    overflow-y: hidden; /* Default state for home page */
-    display: flex; /* Ensure body acts as a flex container if needed */
-    flex-direction: column; /* Ensure body acts as a flex container if needed */
 }
 
 #content {
-    /* Define the main content area with a radial gradient background */
-    padding-top: 80px;
-    background: radial-gradient(#977100, #291f00);
+    /* Define the main content area with flexible height and a radial gradient background */
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
 .content-panel {
+    /* Allow content panels to adjust height and enable scrolling */
     height: auto;
     width: 100%;
-    overflow:auto;
+    overflow: auto;
 }
 
 a {
-    /* Define styles for links */
+    /* Define default link styles */
     color: white;
     text-decoration: none;
 }
 
 a:hover {
-    /* Define hover state for links */
+    /* Change link color and underline on hover */
     color: rgb(200, 200, 200);
     text-decoration: underline;
 }
 
 a:visited {
-    /* Define visited state for links */
+    /* Maintain white color for visited links */
     color: white;
 }
 
 a:active {
-    /* Define active state for links */
+    /* Slightly darken color for active links */
     color: rgb(180, 180, 180);
 }

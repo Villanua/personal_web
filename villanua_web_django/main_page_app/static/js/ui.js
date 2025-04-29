@@ -1,77 +1,84 @@
-// Add funcionality to web
+// Wait for the DOM to be fully loaded before executing scripts
 $(document).ready(function() {
 
-    console.log("Document loaded.")
+    console.log("Document loaded.");
 
+    // Detect if the user is on a mobile device and add a 'mobile' class to the body
     if (/Mobi|Android/i.test(navigator.userAgent)) {
         $('body').addClass('mobile');
     }
 
-    // Function to apply zoom effect
-    function applyZoomEffect(callback) {
-        const zoomContainer = $('<div></div>'); // Temporary container for zoom effect
-        zoomContainer.css({
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            zIndex: 999,
-            pointerEvents: 'none',
-            transform: 'scale(1)',
-            transition: 'transform 5s ease-in-out',
+    // Function to apply a zoom effect to a target element
+    // Parameters:
+    // - target: Selector for the element to apply the zoom effect
+    // - callback: Function to execute after the zoom animation completes
+    function applyZoomEffect(target, callback) {
+        const zoomTarget = $(target); // Target element for the zoom effect
+
+        // Disable scrolling during the zoom animation
+        $('body').css('overflow', 'hidden');
+
+        // Apply initial styles for the zoom effect
+        zoomTarget.css({
+            transformOrigin: '50% 40%', // Set the origin point for scaling
+            transition: 'transform 5s cubic-bezier(0.42, 0, 1, 1)', // Smooth scaling transition
         });
 
-        // Append the zoom container to the body
-        $('body').append(zoomContainer);
-
-        // Start the zoom effect
+        // Start the zoom effect after a short delay
         setTimeout(() => {
-            zoomContainer.css('transform', 'scale(3)');
-        }, 100); // Small delay to ensure transition applies
+            zoomTarget.css('transform', 'scale(8)'); // Scale the element
+        }, 100); // Delay ensures the transition is applied
 
-        // Remove the zoom container and execute callback after 5 seconds
+        // Hide the header after 2 seconds
         setTimeout(() => {
-            zoomContainer.remove();
-            if (callback) callback();
-        }, 100);
+            $('.header').addClass('hidden');
+        }, 2000);
+
+        // Restore styles and execute the callback after the animation ends
+        setTimeout(() => {
+            $('body').css('overflow', ''); // Re-enable scrolling
+            $('.header').removeClass('hidden'); // Show the header again
+            if (callback) callback(); // Execute the callback if provided
+        }, 4100); // Total duration of the transition + 100ms buffer
     }
 
+    // Event handler for the home link
     $('#logo-link').click(function() {
         console.log("Home");
-        applyZoomEffect(() => {
-            $('#home-page').css("display", "block");
-            $('#about-me-page').css("display", "none");
-            $('#projects-page').css("display", "none");
-            $('body').css("overflow", "hidden")
-        });
-        $(".navbar-collapse").collapse('hide');
+        // Display the home page and hide other sections
+        $('#home-page').css("display", "block");
+        $('#about-me-page').css("display", "none");
+        $('#projects-page').css("display", "none");
+        $(".navbar-collapse").collapse('hide'); // Collapse the navbar
     });
 
-    $('#about-me-link').click(function() {
+    // Event handler for the "About Me" link
+    $('#about-me-link').click(function () {
         console.log("About me");
-        applyZoomEffect(() => {
+        // Apply zoom effect to the home page before transitioning to the "About Me" page
+        applyZoomEffect('#home-page', () => {
+            // Update visibility of sections after the zoom effect
             $('#home-page').css("display", "none");
             $('#about-me-page').css("display", "block");
-            $('#projects-page').css("display", "none");
+            $('#home-page').css('transform', ''); // Reset zoom transformation
         });
-        $(".navbar-collapse").collapse('hide');
-        $('body').css("overflow-y", "scroll")
+        $(".navbar-collapse").collapse('hide'); // Collapse the navbar
     });
 
+    // Event handler for project links
     $('.project-link').click(function() {
         console.log("Project link clicked");
+        // Apply zoom effect before transitioning to the projects page
         applyZoomEffect(() => {
             $('#home-page').css("display", "none");
             $('#about-me-page').css("display", "none");
             $('#projects-page').css("display", "block");
         });
-        $("#projectsAccordion").collapse('hide');
-        $(".navbar-collapse").collapse('hide');
-        $('body').css("overflow-y", "scroll")
+        $("#projectsAccordion").collapse('hide'); // Collapse the accordion
+        $(".navbar-collapse").collapse('hide'); // Collapse the navbar
     });
 
-    // Detectar clics fuera del acordeón y del toggler y cerrarlos
+    // Detect clicks outside the accordion and navbar toggler to close them
     $(document).click(function(event) {
         var clickover = $(event.target);
         var _accordionOpened = $("#projectsAccordion").hasClass("show");
@@ -85,10 +92,5 @@ $(document).ready(function() {
             $(".navbar-collapse").collapse('hide');
         }
     });
-
-    // HOME PAGE
-
-    // Chatbot
-
     
 });

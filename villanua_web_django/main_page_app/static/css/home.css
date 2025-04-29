@@ -1,5 +1,14 @@
+#home-page {
+  /* Define the main container for the home page with a radial gradient background */
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  background: radial-gradient(#977100, #291f00);
+}
+
 /* Define animations for floating light effects */
 .light {
+    /* Position lights absolutely and center them */
     position: absolute;
     width: 0px;
     opacity: 0;
@@ -13,6 +22,7 @@
 }
 
 .transition-light {
+  /* Similar to .light but used for transitions */
   position: absolute;
   width: 0px;
   opacity: 0;
@@ -24,145 +34,71 @@
   right: 0px;
 }
 
-/* Define animations for floating light effects */
-.x1{
-  -webkit-animation: floatUp 4s infinite linear;
-  -moz-animation: floatUp 4s infinite linear;
-  -o-animation: floatUp 4s infinite linear;
+/* Define animations for floating light effects with varying speeds and scales */
+.x1 {
   animation: floatUp 4s infinite linear;
-   -webkit-transform: scale(1.0);
-   -moz-transform: scale(1.0);
-   -o-transform: scale(1.0);
   transform: scale(1.0);
 }
 
-.x2{
-  -webkit-animation: floatUp 7s infinite linear;
-  -moz-animation: floatUp 7s infinite linear;
-  -o-animation: floatUp 7s infinite linear;
+.x2 {
   animation: floatUp 7s infinite linear;
-  -webkit-transform: scale(1.6);
-  -moz-transform: scale(1.6);
-  -o-transform: scale(1.6);
   transform: scale(1.6);
   left: 15%;
 }
 
-.x3{
-  -webkit-animation: floatUp 2.5s infinite linear;
-  -moz-animation: floatUp 2.5s infinite linear;
-  -o-animation: floatUp 2.5s infinite linear;
+.x3 {
   animation: floatUp 2.5s infinite linear;
-  -webkit-transform: scale(.5);
-  -moz-transform: scale(.5);
-  -o-transform: scale(.5);
-  transform: scale(.5);
+  transform: scale(0.5);
   left: -15%;
 }
 
-.x4{
-  -webkit-animation: floatUp 4.5s infinite linear;
-  -moz-animation: floatUp 4.5s infinite linear;
-  -o-animation: floatUp 4.5s infinite linear;
+.x4 {
   animation: floatUp 4.5s infinite linear;
-  -webkit-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  -o-transform: scale(1.2);
   transform: scale(1.2);
   left: -34%;
 }
 
-.x5{
-  -webkit-animation: floatUp 8s infinite linear;
-  -moz-animation: floatUp 8s infinite linear;
-  -o-animation: floatUp 8s infinite linear;
+.x5 {
   animation: floatUp 8s infinite linear;
-  -webkit-transform: scale(2.2);
-  -moz-transform: scale(2.2);
-  -o-transform: scale(2.2);
   transform: scale(2.2);
   left: -57%;
 }
 
-.x6{
-  -webkit-animation: floatUp 3s infinite linear;
-  -moz-animation: floatUp 3s infinite linear;
-  -o-animation: floatUp 3s infinite linear;
+.x6 {
   animation: floatUp 3s infinite linear;
-  -webkit-transform: scale(.8);
-  -moz-transform: scale(.8);
-  -o-transform: scale(.8);
-  transform: scale(.8);
+  transform: scale(0.8);
   left: -81%;
 }
 
-.x7{
-  -webkit-animation: floatUp 5.3s infinite linear;
-  -moz-animation: floatUp 5.3s infinite linear;
-  -o-animation: floatUp 5.3s infinite linear;
+.x7 {
   animation: floatUp 5.3s infinite linear;
-  -webkit-transform: scale(3.2);
-  -moz-transform: scale(3.2);
-  -o-transform: scale(3.2);
   transform: scale(3.2);
   left: 37%;
 }
 
-.x8{
-  -webkit-animation: floatUp 4.7s infinite linear;
-  -moz-animation: floatUp 4.7s infinite linear;
-  -o-animation: floatUp 4.7s infinite linear;
+.x8 {
   animation: floatUp 4.7s infinite linear;
-  -webkit-transform: scale(1.7);
-  -moz-transform: scale(1.7);
-  -o-transform: scale(1.7);
   transform: scale(1.7);
   left: 62%;
 }
 
-.x9{
-  -webkit-animation: floatUp 4.1s infinite linear;
-  -moz-animation: floatUp 4.1s infinite linear;
-  -o-animation: floatUp 4.1s infinite linear;
+.x9 {
   animation: floatUp 4.1s infinite linear;
-  -webkit-transform: scale(0.9);
-  -moz-transform: scale(0.9);
-  -o-transform: scale(0.9);
   transform: scale(0.9);
   left: 85%;
 }
 
-@-webkit-keyframes floatUp{
-  0%{top: 100vh; opacity: 0;}
-  25%{opacity: 1;}
-  50%{top: 0vh; opacity: .8;}
-  75%{opacity: 1;}
-  100%{top: -100vh; opacity: 0;}
-}
-@-moz-keyframes floatUp{
-  0%{top: 100vh; opacity: 0;}
-  25%{opacity: 1;}
-  50%{top: 0vh; opacity: .8;}
-  75%{opacity: 1;}
-  100%{top: -100vh; opacity: 0;}
-}
-@-o-keyframes floatUp{
-  0%{top: 100vh; opacity: 0;}
-  25%{opacity: 1;}
-  50%{top: 0vh; opacity: .8;}
-  75%{opacity: 1;}
-  100%{top: -100vh; opacity: 0;}
-}
-@keyframes floatUp{
-  0%{top: 100vh; opacity: 0;}
-  25%{opacity: 1;}
-  50%{top: 0vh; opacity: .8;}
-  75%{opacity: 1;}
-  100%{top: -100vh; opacity: 0;}
+/* Keyframes for floating lights animation */
+@keyframes floatUp {
+  0% { top: 100vh; opacity: 0; }
+  25% { opacity: 1; }
+  50% { top: 0vh; opacity: 0.8; }
+  75% { opacity: 1; }
+  100% { top: -100vh; opacity: 0; }
 }
 
 /* Style the header text with animations */
-.header{
+.header {
   position: absolute;
   top: 40%;
   left: 50%;
@@ -171,128 +107,57 @@
   text-align: center;
   color: white;
   font-size: 3em;
+  filter: opacity(1);
+  transition: filter 1.5s ease-in-out;
 }
 
-#head1, #head2,#head3, #head4, #head5{
+.header.hidden {
+  /* Apply opacity filter when the header is hidden */
+  filter: opacity(0);
+}
+
+#head1, #head2, #head3, #head4, #head5 {
+  /* Initially hide all header elements */
   opacity: 0;
 }
 
-#head1{
-  -webkit-animation: fadeOut 1 5s ease-in;
-  -moz-animation: fadeOut 1 5s ease-in;
-  -o-animation: fadeOut 1 5s ease-in;
+#head1 {
   animation: fadeOut 1 5s ease-in;
 }
 
-#head2{
-  -webkit-animation: fadeOut 1 5s ease-in;
-  -moz-animation: fadeOut 1 5s ease-in;
-  -o-animation: fadeOut 1 5s ease-in;
+#head2 {
   animation: fadeOut 1 5s ease-in;
-  -webkit-animation-delay: 6s;
-  -moz-animation-delay: 6s;
-  -o-animation-delay: 6s;
   animation-delay: 6s;
 }
 
-#head3{
-  -webkit-animation: finalFade 1 5s ease-in;
-  -moz-animation: finalFade 1 5s ease-in;
-  -o-animation: finalFade 1 5s ease-in;
+#head3 {
   animation: finalFade 1 5s ease-in;
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
-  -o-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
-  -webkit-animation-delay: 12s;
-  -moz-animation-delay: 12s;
-  -o-animation-delay: 12s;
   animation-delay: 12s;
 }
 
-@-webkit-keyframes fadeIn{
-  from{opacity: 0;}
-  to{opacity: 1;}
+/* Keyframes for fade-in and fade-out effects */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-@-moz-keyframes fadeIn{
-  from{opacity: 0;}
-  to{opacity: 1;}
+@keyframes fadeOut {
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  80% { opacity: 0.9; }
+  100% { opacity: 0; }
 }
 
-@-o-keyframes fadeIn{
-  from{opacity: 0;}
-  to{opacity: 1;}
+@keyframes finalFade {
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  80% { opacity: 0.9; }
+  100% { opacity: 1; }
 }
 
-@keyframes fadeIn{
-  from{opacity: 0;}
-  to{opacity: 1;}
-}
-
-@-webkit-keyframes fadeOut{
-  0%{opacity: 0;}
-  30%{opacity: 1;}
-  80%{opacity: .9;}
-  100%{opacity: 0;}
-}
-
-@-moz-keyframes fadeOut{
-  0%{opacity: 0;}
-  30%{opacity: 1;}
-  80%{opacity: .9;}
-  100%{opacity: 0;}
-}
-
-@-o-keyframes fadeOut{
-  0%{opacity: 0;}
-  30%{opacity: 1;}
-  80%{opacity: .9;}
-  100%{opacity: 0;}
-}
-
-@keyframes fadeOut{
-  0%{opacity: 0;}
-  30%{opacity: 1;}
-  80%{opacity: .9;}
-  100%{opacity: 0;}
-}
-
-@-webkit-keyframes finalFade{
-  0%{opacity: 0;}
-  30%{opacity: 1;}
-  80%{opacity: .9;}
-  100%{opacity: 1;}
-}
-
-@-moz-keyframes finalFade{
-  0%{opacity: 0;}
-  30%{opacity: 1;}
-  80%{opacity: .9;}
-  100%{opacity: 1;}
-}
-
-@-o-keyframes finalFade{
-  0%{opacity: 0;}
-  30%{opacity: 1;}
-  80%{opacity: .9;}
-  100%{opacity: 1;}
-}
-
-@keyframes finalFade{
-  0%{opacity: 0;}
-  30%{opacity: 1;}
-  80%{opacity: .9;}
-  100%{opacity: 1;}
-}
-
-/* Add responsive styles for different screen sizes */
-/* Responsive styles */
+/* Responsive styles for different screen sizes */
 @media (max-width: 1024px) {
-    #home-page img {
-        height: 15rem;
-        top: 8rem;
-    }
 
     #presentation-container {
         margin-top: 30rem;
@@ -305,10 +170,6 @@
 }
 
 @media (max-width: 768px) {
-    #home-page img {
-        height: 12.5rem;
-        top: 6.25rem;
-    }
 
     #presentation-container {
         margin-top: 25rem;
@@ -331,10 +192,6 @@
 }
 
 @media (max-width: 480px) {
-    #home-page img {
-        height: 9.375rem;
-        top: 5rem;
-    }
 
     #presentation-container {
         margin-top: 18.75rem;
@@ -357,10 +214,6 @@
 }
 
 @media (max-width: 320px) {
-    #home-page img {
-        height: 7.5rem;
-        top: 4rem;
-    }
 
     #presentation-container {
         margin-top: 15rem;

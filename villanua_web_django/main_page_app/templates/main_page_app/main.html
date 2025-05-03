@@ -100,10 +100,10 @@
               <p id="greeting">Hello Everyone!</p>
               <h1 id="presentation">I'm Nacho Villanúa</h1>
               <p>
-                Robotics & AI engineer from Málaga, currently based in Madrid. I design and develop intelligent robotic systems that integrate automation, perception, and AI, always seeking solutions that are technically and practically impactful.
+                I'm a Robotics & AI engineer, passionate about continuous learning. My love for mathematics and physics, along with a deep curiosity about how the world works, has driven me to take on the exciting challenges of robotics and artificial intelligence.
               </p>
               <p>
-                My background combines deep technical expertise in robotics and software with strong problem-solving and project leadership skills. I’ve led and implemented full-stack robotics and AI projects—from embedded control and SLAM to Generative AI platforms and semantic search systems.
+                I specialize in software development for robotic platforms and AI-powered applications, with a strong focus on generative AI and intelligent agents. I've also worked on web interfaces and deployed solutions on cloud platforms like Google Cloud and Azure, always aiming to build systems that are both technically solid and practically valuable.
               </p>
             </div>
             <img src="{% static 'img/me.png' %}" alt="About Me" class="about-me-image">
@@ -111,31 +111,53 @@
 
           <div id="working-experience-page" class="page">
             <h2>Professional Experience</h2>
+          
+            <h3>Acciona</h3>
             <p>
-              In Generative AI, I developed document analysis systems, RAG-based Q&A platforms, and semantic search over SharePoint using GPT, Gemini, LangChain, LangGraph, and multimodal processing. I've integrated Knowledge Graphs into PostgreSQL, performed LLM fine-tuning (LoRA, quantization), and deployed scalable AI solutions via GCP.
+              I work as a Software Developer at Acciona's Digital Hub, focusing on the design and development of innovative applications that bring cutting-edge technologies into real-world business solutions. While my main role is backend development, I've also contributed to frontend tasks across various projects.
             </p>
             <p>
-              I also built a predictive system using neural networks, Monte Carlo simulations, and KNN to forecast public tender outcomes.
+              I've been involved in projects from their earliest stages: gathering requirements directly from clients, analyzing their needs, designing system architectures, planning resources and timelines, and developing the final product. I also participate in follow-up meetings to align progress with client expectations and iteratively improve our solutions.
+            </p>
+          
+            <h4>Artificial Intelligence & Data Science Projects</h4>
+            <p>
+              I've worked on a range of projects applying Machine Learning and Deep Learning techniques to extract insights, predict behaviors, and support data-driven decisions. My main focus has been on Generative AI and intelligent agent design, where I build tailored solutions that meet real client needs.
+            </p>
+            <p>
+              This includes developing customized RAG (Retrieval-Augmented Generation) systems with Human-in-the-Loop pipelines, creating autonomous agents capable of executing Python code, performing live web searches, or analyzing documents across modalities (text, image, tables). I've also designed agents capable of detecting inconsistencies across document bases or finding contradictions in knowledge repositories.
+            </p>
+            <p>
+              I've built agents using frameworks like LangChain and LangGraph, adapting their architectures to specific workflows and integration needs. I've also worked on applying Knowledge Graphs to structure unorganized data into meaningful graph-based relationships—helping define dependencies, enhance semantic search, and support reasoning tasks in larger systems.
+            </p>
+            <p>
+              Additionally, I've performed fine-tuning both locally and in the cloud, applying techniques like LoRA and model quantization. This includes local fine-tuning of models such as Deepseek and Gemma, as well as cloud-based fine-tuning of Gemini 2.0 on Google Cloud Platform. These efforts have allowed me to adapt LLMs to domain-specific needs and optimize their performance for real-world use cases.
+            </p>            
+            
+            <h4>Robotics Development</h4>
+            <p>
+              I've worked with a wide range of robotic platforms across different domains, including collaborative manipulators and autonomous mobile robots. My experience includes programming and deploying systems using UR3 and UR10 robotic arms, as well as mobile platforms like Boston Dynamics Spot, Summit-XL, MiR, Bellabot, and Kettybot—each adapted to specific tasks in logistics, inspection, and human-robot interaction.
             </p>
             <div class="columns">
-              
               <img src="{% static 'img/me_spot.jpg' %}" alt="About Me" class="me-spot-image">
               <div class="column-text">
                 <p>
-                  I've programmed UR3 and UR10 robotic arms integrated with elevators, conveyors, and different grippers. I deployed and recovered autonomous mobile robots (MIR, Summit XL) with 2D LIDAR and RTK GPS for disinfection and campus surveillance. I implemented localization via EKF, AMCL, and built web interfaces with ROSBridge, SQLite databases for path/action planning, and C++ state machines for mission execution.
+                  For robotic arms, I've integrated peripherals such as elevators, conveyors, and custom grippers, creating complex automation workflows. On mobile robots, I've implemented localization systems using EKF and AMCL, built mission behavior logic through C++ state machines, and developed planning systems using SQLite databases for task sequencing and navigation.
                 </p>
                 <p>
-                  I worked with service robots such as Bellabot and Kettybot (2D LIDAR + 3D cameras), and operated Boston Dynamics Spot in events and inspection tasks.
+                  I've also built web interfaces connected to ROS via ROSBridge to allow intuitive control and monitoring, enhancing accessibility for operators and non-technical users. Additionally, I've managed field deployments and recovery procedures for real-world use cases, such as autonomous disinfection, event participation, and campus surveillance.
                 </p>
               </div>
             </div>
+
           </div>
+
           <div id="academic-background-page" class="page">
             <h2>Academic Background</h2>
             <div class="columns">
               <div class="column-text">
                 <p>
-                  I hold a Bachelor's Degree in Industrial Technologies Engineering (University of Málaga), where I developed a strong foundation in mechanics, structural analysis, electrical engineering, fluid mechanics, thermodynamics, control theory, and electronics. I specialized in automation and embedded systems, learning object-oriented programming (C#, Unity), signal processing, and robotics (industrial and collaborative).
+                  I hold a Bachelor's Degree in Industrial Technologies Engineering (University of Málaga), where I developed a strong foundation in mechanics, structural analysis, electrical engineering, fluid mechanics, thermodynamics, control theory, and electronics. I specialized in automation and embedded systems, learning object-oriented programming, signal processing, and robotics (industrial and collaborative).
                 </p>
               </div>
               <img src="{% static 'img/me_final_thesis.jpg' %}" alt="About Me" class="me-final-thesis-image">
@@ -154,7 +176,7 @@
               </figure>
             </div>
             <p>
-              I completed a Master’s in Robotics and Automation (UC3M), where I deepened my knowledge in mobile robotics, intelligent control, SLAM, 3D computer vision, machine learning, and medical robotics. My thesis focused on LIDAR-based SLAM and segmentation, where I created geometric and topological maps using ICP, NDT, pose graphs, and watershed techniques for door and room detection.
+              I completed a Master's in Robotics and Automation (UC3M), where I deepened my knowledge in mobile robotics, intelligent control, SLAM, 3D computer vision, machine learning, and medical robotics. My thesis focused on LIDAR-based SLAM and segmentation, where I created geometric and topological maps using ICP, NDT, pose graphs, and watershed techniques for door and room detection.
             </p>
             <div class="figure-columns" id="slamas">
               <figure id="slam">

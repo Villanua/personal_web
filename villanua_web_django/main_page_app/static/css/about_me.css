@@ -2,14 +2,24 @@
     --gold-light: #fff4d5;
     --gold-medium: #dfb011;
     --gold-dark: #977100;
-    --gold-deep: #664300;
+    --gold-deep: #614900;
     --gold-muted: #bd8e00;
+    --white: #fff;
+    --white-dark: #eee;
+    --black: #000;
+    --gray-dark: #0f0a00; /* Dark shade derived from --gold-medium (#dfb011) */
+    --gray-darker: #0c0700; /* Slightly darker than --gray-dark (#0f0a00) */
+    --gold-gradient-light: rgba(199, 162, 0, 0.06);
+    --gold-gradient-medium: rgba(255, 203, 131, 0.1);
+    --gold-gradient-dark: rgba(255, 215, 120, 0.08);
+    --title-color: #ffffff; /* Brighter gold for better contrast */
+    --subtitle-color: #ffffff; /* Lighter gold for better contrast */
+    --subtitle-color-gold: #f0e6b2; /* Darker shade for subtitles */
 }
 
-/* Estilo base para el contenedor principal de About Me */
 #about-me-page {
-    width: 100%; /* Ocupa todo el ancho del contenedor padre */
-    color: #fff; /* Texto blanco */
+    width: 100%;
+    color: var(--white);
     font-size: 1.2rem;
     line-height: 1.8;
     opacity: 0;
@@ -17,12 +27,9 @@
     transform: translateY(30px);
     pointer-events: none;
     transition: all 0.6s ease-out;
-    background-color: var(--gold-deep); /* Fondo dorado principal */
-    padding-top: 80px; /* Espacio superior para no quedar debajo de la navbar fija */
-    padding-bottom: 40px; /* Espacio inferior */
+    padding-top: 80px; /* Space to avoid overlapping with the fixed navbar */
 }
 
-/* Animación de entrada */
 @keyframes fadeUp {
     from {
         opacity: 0;
@@ -34,7 +41,6 @@
     }
 }
 
-/* Cuando está visible */
 #about-me-page.visible {
     opacity: 1;
     transform: translateY(0);
@@ -42,24 +48,42 @@
     animation: fadeUp 1s ease-out forwards;
 }
 
-/* Estilo para cada "página" o sección dentro de About Me */
 #about-me-page .page {
-    padding: 10rem 14rem; /* Reducimos el padding general */
-    margin: 0; /* Centra el contenido interno */
-    border-radius: 0; /* Aseguramos que no haya bordes redondeados en las secciones */
+    padding: 10rem 14rem;
+    margin: 0;
+    border-radius: 0;
 }
 
-/* Fondo ligeramente diferente para la sección de descripción general */
-#about-me-page #general-description-page, #about-me-page #academic-background-page {
-    background-color: var(--gold-deep); /* Dorado muy claro y sutil */
+#about-me-page #general-description-page {
+    margin-top: -80px;
+    padding-top: calc(10rem + 80px); /* Adjust padding to compensate for negative margin */
+    background: radial-gradient(
+        circle at 75% 60%,
+        var(--gold-gradient-light),
+        var(--gray-dark)
+    );
+    background-blend-mode: soft-light;
 }
 
-/* Fondo ligeramente diferente para la sección de experiencia laboral */
 #about-me-page #working-experience-page {
-    background-color: var(--gold-medium); /* Dorado un poco más claro */
+    background: radial-gradient(
+        circle at 0% 0%,
+        var(--gold-gradient-light),
+        var(--gold-gradient-dark) 10%,
+        var(--gray-darker) 100%
+    );
+    background-blend-mode: soft-light;
 }
 
-/* Estilo para la sección de figuras */
+#about-me-page #academic-background-page {
+    background: radial-gradient(
+        circle at 40% 30%,
+        var(--gold-gradient-dark),
+        var(--gray-dark)
+    );
+    background-blend-mode: soft-light;
+}
+
 .figure-columns {
     display: flex;
     flex-wrap: wrap;
@@ -67,7 +91,7 @@
     justify-content: space-between;
     width: 100%;
     max-width: 1200px;
-    margin: 4rem auto; /* Centramos también esta sección */
+    margin: 4rem auto;
 }
 
 .figure-columns figure {
@@ -86,11 +110,10 @@
 
 #about-me-page figcaption {
     font-size: 1rem;
-    color: #eee; /* Un blanco ligeramente más oscuro para las leyendas */
+    color: var(--white-dark);
     text-align: center;
 }
 
-/* Estilos específicos para la descripción general */
 #about-me-page #general-description-page {
     display: flex;
     align-items: center;
@@ -115,47 +138,56 @@
 }
 
 #about-me-page #greeting {
-    color: var(--gold-light); /* Un blanco ligeramente más oscuro para el saludo */
+    color: var(--gold-light);
     font-weight: 600;
     margin-bottom: 1rem;
 }
 
 #about-me-page #presentation {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #fff;
+    font-size: 3.5rem; /* Increase font size for better visibility */
+    font-weight: 800; /* Make the title bolder */
+    color: var(--title-color); /* Updated to brighter gold */
+    margin-bottom: 2rem;
+}
+
+#about-me-page h2 {
+    font-size: 2.5rem; /* Increase font size for subtitles */
+    font-weight: 700; /* Make subtitles bold */
+    color: var(--title-color); /* Updated to lighter gold */
     margin-bottom: 1.5rem;
 }
 
-/* Ajustes para la sección de información (si la tienes) */
-#about-me-page #info-section {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: space-evenly;
-    width: 100%;
-    max-width: 1200px;
-    margin: 2rem auto; /* Centramos esta sección también */
-    box-sizing: border-box;
+#about-me-page h3 {
+    font-size: 2rem; /* Slightly increase font size for smaller subtitles */
+    font-weight: 600; /* Make smaller subtitles bold */
+    color: var(--subtitle-color); /* Updated to lighter gold */
+    margin-bottom: 1rem;
+}
+
+#about-me-page h4 {
+    font-size: 1.5rem; /* Slightly increase font size for smaller subtitles */
+    font-weight: 400; /* Make smaller subtitles bold */
+    color: var(--subtitle-color-gold); /* Updated to lighter gold */
+    margin: 3rem 0 1rem 0;
 }
 
 #about-me-page #working-experience-page .columns {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Prevent wrapping to enforce two columns */
     gap: 2rem;
 }
 
 #about-me-page #working-experience-page .column-text {
-    flex: 1 1 50%;
-    margin-right: 2rem;
+    flex: 1 1 50%; /* Ensure equal width for text */
+    margin-left: 2rem;
 }
 
 #about-me-page .me-spot-image {
-    flex: 1 1 20%;
-    margin: 0 3rem;
-    max-width: 30%;
+    flex: 1 1 50%; /* Ensure equal width for the image */
+    max-width: 50%; /* Limit the image width */
     height: auto;
+    margin: 0 3rem;
     border-radius: 12px;
     object-fit: cover;
 }
@@ -181,27 +213,62 @@
     object-fit: cover;
 }
 
-/* Responsive styles */
+@media (min-width: 1300px) {
+    #about-me-page #working-experience-page .columns {
+        flex-wrap: nowrap; /* Enforce two columns for wide screens */
+    }
+
+    #about-me-page #working-experience-page .column-text {
+        flex: 1 1 50%; /* Maintain equal width for text */
+        margin-left: 2rem;
+    }
+
+    #about-me-page .me-spot-image {
+        flex: 1 1 50%; /* Maintain equal width for the image */
+        max-width: 50%;
+        margin: 0 3rem;
+    }
+}
+
 @media (max-width: 1350px) {
     #about-me-page .page {
-        padding: 4rem 8rem; /* Further increased padding for medium screens */
+        padding: 4rem 8rem;
     }
 
     #about-me-page #general-description-page .column-text {
-        flex: 1 1 100%; /* Make column-text occupy 100% width */
+        flex: 1 1 100%;
         margin-right: 0;
     }
 
     #about-me-page .about-me-image {
-        flex: 1 1 35%; /* Retain the size defined for ~1000px */
-        max-width: 400px; /* Ensure the image does not exceed this width */
-        margin: 0 auto 2rem; /* Center the image with margin adjustments */
+        flex: 1 1 35%;
+        max-width: 300px;
+        margin: 0 auto 2rem;
     }
+
+    #about-me-page .me-spot-image {
+        flex: 1 1 70%; /* Further increase image width for smaller screens */
+        width: 100%;
+        max-width: 700px;
+        margin: 0 auto 2rem;
+        margin-top: 2rem;
+    }
+
+    #about-me-page #working-experience-page .columns {
+        flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    }
+
+    #about-me-page #working-experience-page .column-text {
+        flex: 1 1 100%; /* Full width for text */
+        margin-left: 0;
+    }
+
+    
 }
 
-@media (max-width: 1103px) {
+@media (max-width: 991px) {
     #about-me-page .page {
-        padding: 4rem 3rem; /* Further increased padding for medium screens */
+        padding: 6rem 3rem;
     }
 
     #about-me-page #general-description-page {
@@ -211,7 +278,7 @@
 
     #about-me-page .about-me-image {
         width: 100%;
-        max-width: 400px;
+        max-width: 300px;
         margin: 0 auto 2rem;
     }
 
@@ -228,7 +295,7 @@
 
 @media (max-width: 768px) {
     #about-me-page .page {
-        padding: 3.5rem 2.5rem; /* Further increased padding for smaller screens */
+        padding: 4rem 2.5rem;
     }
 
     #about-me-page #presentation {
@@ -238,7 +305,7 @@
 
 @media (max-width: 480px) {
     #about-me-page .page {
-        padding: 3rem 2rem; /* Further increased padding for very small screens */
+        padding: 3rem 2rem;
     }
 
     #about-me-page #presentation {

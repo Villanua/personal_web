@@ -1,240 +1,247 @@
-/* Define the layout and typography for the About Me page */
+:root {
+    --gold-light: #fff4d5;
+    --gold-medium: #dfb011;
+    --gold-dark: #977100;
+    --gold-deep: #664300;
+    --gold-muted: #bd8e00;
+}
+
+/* Estilo base para el contenedor principal de About Me */
 #about-me-page {
-    font-size: 1rem; /* Base font size for the page */
-    color: white; /* Text color */
-    display: none; /* Initially hide the page */
-    z-index: 1; /* Ensure proper stacking order */
-    background-color: #8b6900; /* Background color */
+    width: 100%; /* Ocupa todo el ancho del contenedor padre */
+    color: #fff; /* Texto blanco */
+    font-size: 1.2rem;
+    line-height: 1.8;
+    opacity: 0;
+    display: none;
+    transform: translateY(30px);
+    pointer-events: none;
+    transition: all 0.6s ease-out;
+    background-color: var(--gold-deep); /* Fondo dorado principal */
+    padding-top: 80px; /* Espacio superior para no quedar debajo de la navbar fija */
+    padding-bottom: 40px; /* Espacio inferior */
 }
 
-/* Define styles for individual pages within the About Me section */
+/* Animación de entrada */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Cuando está visible */
+#about-me-page.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    animation: fadeUp 1s ease-out forwards;
+}
+
+/* Estilo para cada "página" o sección dentro de About Me */
 #about-me-page .page {
-    padding: 12rem 12rem; /* Add padding around the content */
-    font-size: 1.5rem; /* Adjust font size for readability */
-    border: 1px solid #ff0000; /* Add a dividing line between pages */
+    padding: 10rem 14rem; /* Reducimos el padding general */
+    margin: 0; /* Centra el contenido interno */
+    border-radius: 0; /* Aseguramos que no haya bordes redondeados en las secciones */
 }
 
-#about-me-page p {
-    color: rgb(221, 221, 221); /* Set paragraph text color */
+/* Fondo ligeramente diferente para la sección de descripción general */
+#about-me-page #general-description-page, #about-me-page #academic-background-page {
+    background-color: var(--gold-deep); /* Dorado muy claro y sutil */
 }
 
-/* Style the general description section with text and image alignment */
-#about-me-page #general-description {
-    display: flex; /* Use Flexbox for layout */
-    align-items: center; /* Vertically align items */
-    gap: 1rem; /* Add spacing between elements */
-    margin-bottom: 5rem; /* Add spacing below the section */
+/* Fondo ligeramente diferente para la sección de experiencia laboral */
+#about-me-page #working-experience-page {
+    background-color: var(--gold-medium); /* Dorado un poco más claro */
 }
 
-#about-me-page #general-description .column-text {
-    flex: 1 1 60%; /* Allocate 60% width for text */
-}
-
-#about-me-page .about-me-image {
-    flex: 1 1 40%; /* Allocate 40% width for the image */
-    max-width: 40%; /* Limit the maximum width */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 8px; /* Add rounded corners */
-    object-fit: cover; /* Ensure the image covers its container */
-    margin-left: 3rem; /* Add spacing to the left */
-}
-
-#about-me-page #general-description #greeting {
-    color: rgb(182, 182, 182); /* Set text color */
-    font-weight: bold; /* Make text bold */
-    margin-bottom: 3rem; /* Add spacing below the greeting */
-}
-
-#about-me-page #general-description #presentation {
-    font-size: 4rem; /* Large font size for the presentation text */
-    font-weight: bold; /* Make text bold */
-    text-align: left; /* Align text to the left */
-    margin-bottom: 3rem; /* Add spacing below the presentation */
-}
-
-/* Define the layout for the information section */
-#about-me-page #info-section {
-    display: flex; /* Use Flexbox for layout */
-    flex-wrap: wrap; /* Allow wrapping of items */
-    gap: 2rem; /* Add spacing between items */
-    justify-content: space-around; /* Distribute items evenly */
-    width: 100%; /* Full width */
-    box-sizing: border-box; /* Include padding and border in width */
-}
-
-#about-me-page #info-section i {
-    margin-right: 1rem; /* Add spacing to the right of icons */
-}
-
-/* Define styles for the working experience section */
-#working-experience {
-    height: 100vh; /* Full viewport height */
-    background-color: red; /* Background color */
-    display: flex; /* Use Flexbox for layout */
-    flex-direction: column; /* Stack items vertically */
-    gap: 2rem; /* Add spacing between items */
-    margin-bottom: 5rem; /* Add spacing below the section */
-}
-
-/* Add hover effects for custom cards */
-#about-me-page .custom-card {
-    flex: 1 1 calc(33% - 2rem); /* Allocate one-third width with spacing */
-    max-width: calc(33% - 2rem); /* Limit maximum width */
-    min-width: 280px; /* Set minimum width */
-    box-sizing: border-box; /* Include padding and border in width */
-    height: auto; /* Adjust height automatically */
-    background-color: #303030; /* Background color */
-    color: white; /* Text color */
-    border: none; /* Remove border */
-    border-radius: 8px; /* Add rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
-    padding: 1.5rem; /* Add padding inside the card */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
-}
-
-#about-me-page .custom-card .card-body {
-    display: flex; /* Use Flexbox for layout */
-    flex-direction: column; /* Stack items vertically */
-    justify-content: space-between; /* Distribute space evenly */
-    height: 100%; /* Full height */
-}
-
-#about-me-page .custom-card:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
-}
-
-/* Define styles for primary buttons */
-#about-me-page .btn-primary {
-    background-color: #565656; /* Button background color */
-    border: none; /* Remove border */
-    color: white; /* Text color */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
-}
-
-#about-me-page .btn-primary:hover {
-    background-color: #303030; /* Darken background on hover */
-    transform: scale(1.05); /* Slightly enlarge on hover */
-}
-
-#about-me-page .btn-primary:focus, 
-#about-me-page .btn-primary:active {
-    background-color: #404040; /* Change background on focus/active */
-    box-shadow: none; /* Remove shadow */
-}
-
-/* Define modal styles for displaying detailed information */
-#about-me-page .custom-modal .modal-dialog {
-    max-width: 90%; /* Limit maximum width */
-    max-height: 90%; /* Limit maximum height */
-    margin: auto; /* Center the modal */
-    display: flex; /* Use Flexbox for layout */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
-}
-
-#about-me-page .custom-modal .modal-content {
-    background-color: #303030; /* Modal background color */
-    color: white; /* Text color */
-    border: none; /* Remove border */
-    border-radius: 8px; /* Add rounded corners */
-    width: 100%; /* Full width */
-    max-height: 90vh; /* Limit maximum height */
-    overflow-y: auto; /* Enable vertical scrolling */
-    padding: 1rem 8rem; /* Add padding inside the modal */
-}
-
-#about-me-page .custom-modal .modal-header {
-    border-bottom: none; /* Remove border below the header */
-    padding: 1.5rem; /* Add padding inside the header */
-}
-
-#about-me-page .custom-modal .modal-body {
-    padding: 2rem; /* Add padding inside the body */
-}
-
-#about-me-page .custom-modal .btn-close {
-    background-color: white; /* Button background color */
-    border: none; /* Remove border */
-    color: black; /* Text color */
-    font-size: 1.2rem; /* Set font size */
-    opacity: 0.8; /* Set initial opacity */
-}
-
-#about-me-page .custom-modal .btn-close:hover {
-    opacity: 1; /* Increase opacity on hover */
-}
-
+/* Estilo para la sección de figuras */
 .figure-columns {
-    display: flex; /* Use Flexbox for layout */
-    flex-wrap: wrap; /* Allow wrapping of items */
-    gap: 2rem; /* Add spacing between items */
-    justify-content: space-between; /* Distribute items evenly */
-    align-items: stretch; /* Stretch items to fill space */
-    width: 100%; /* Full width */
-    box-sizing: border-box; /* Include padding and border in width */
-    margin: 3rem 0; /* Add spacing above and below */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 4rem auto; /* Centramos también esta sección */
 }
 
 .figure-columns figure {
-    flex: 1 1 auto; /* Allow flexible width */
-    max-width: calc(50% - 1rem); /* Limit maximum width */
-    box-sizing: border-box; /* Include padding and border in width */
-    text-align: center; /* Center-align text */
-    display: flex; /* Use Flexbox for layout */
-    flex-direction: column; /* Stack items vertically */
-    justify-content: space-between; /* Distribute space evenly */
+    flex: 1 1 45%;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 #about-me-page .figure-columns img {
-    width: auto; /* Adjust width automatically */
-    height: 100%; /* Full height */
-    border-radius: 8px; /* Add rounded corners */
+    max-width: 100%;
+    border-radius: 10px;
 }
 
-figcaption {
-    font-size: 1rem; /* Set font size */
-    color: rgb(92, 92, 92); /* Set text color */
-    text-align: center; /* Center-align text */
+#about-me-page figcaption {
+    font-size: 1rem;
+    color: #eee; /* Un blanco ligeramente más oscuro para las leyendas */
+    text-align: center;
 }
 
-/* Responsive styles for smaller screens */
-@media (max-width: 991px) {
-    #about-me-page {
-        padding: 6rem 9rem; /* Adjust padding */
+/* Estilos específicos para la descripción general */
+#about-me-page #general-description-page {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+#about-me-page #general-description-page .column-text {
+    flex: 1 1 50%;
+    margin-right: 2rem;
+}
+
+#about-me-page .about-me-image {
+    flex: 1 1 35%;
+    margin: 0 3rem;
+    max-width: 30%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent);
+    mask-image: linear-gradient(to bottom, black 80%, transparent);
+}
+
+#about-me-page #greeting {
+    color: var(--gold-light); /* Un blanco ligeramente más oscuro para el saludo */
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+#about-me-page #presentation {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+/* Ajustes para la sección de información (si la tienes) */
+#about-me-page #info-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: space-evenly;
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto; /* Centramos esta sección también */
+    box-sizing: border-box;
+}
+
+#about-me-page #working-experience-page .columns {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+#about-me-page #working-experience-page .column-text {
+    flex: 1 1 50%;
+    margin-right: 2rem;
+}
+
+#about-me-page .me-spot-image {
+    flex: 1 1 20%;
+    margin: 0 3rem;
+    max-width: 30%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+#about-me-page #academic-background-page .columns {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+#about-me-page #academic-background-page .column-text {
+    flex: 1 1 50%;
+    margin-right: 2rem;
+}
+
+#about-me-page .me-final-thesis-image {
+    flex: 1 1 20%;
+    margin: 0 3rem;
+    max-width: 30%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* Responsive styles */
+@media (max-width: 1350px) {
+    #about-me-page .page {
+        padding: 4rem 8rem; /* Further increased padding for medium screens */
     }
 
-    #about-me-page #general-description {
-        flex-direction: column; /* Stack items vertically */
-        text-align: center; /* Center-align text */
+    #about-me-page #general-description-page .column-text {
+        flex: 1 1 100%; /* Make column-text occupy 100% width */
+        margin-right: 0;
     }
 
     #about-me-page .about-me-image {
-        max-width: 100%; /* Full width for smaller screens */
-        margin: 0 auto; /* Center the image */
+        flex: 1 1 35%; /* Retain the size defined for ~1000px */
+        max-width: 400px; /* Ensure the image does not exceed this width */
+        margin: 0 auto 2rem; /* Center the image with margin adjustments */
+    }
+}
+
+@media (max-width: 1103px) {
+    #about-me-page .page {
+        padding: 4rem 3rem; /* Further increased padding for medium screens */
     }
 
-    #about-me-page .custom-modal .modal-content {
-        padding: 1rem 4rem; /* Adjust padding */
+    #about-me-page #general-description-page {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #about-me-page .about-me-image {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto 2rem;
+    }
+
+    .figure-columns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .figure-columns figure {
+        width: 80%;
+        margin-bottom: 2rem;
     }
 }
 
 @media (max-width: 768px) {
-    #about-me-page {
-        padding: 4rem 6rem; /* Adjust padding */
+    #about-me-page .page {
+        padding: 3.5rem 2.5rem; /* Further increased padding for smaller screens */
     }
 
-    #about-me-page .custom-modal .modal-content {
-        padding: 1rem 2rem; /* Adjust padding */
+    #about-me-page #presentation {
+        font-size: 2.5rem;
     }
 }
 
 @media (max-width: 480px) {
-    #about-me-page {
-        padding: 2rem 3rem; /* Adjust padding */
+    #about-me-page .page {
+        padding: 3rem 2rem; /* Further increased padding for very small screens */
     }
 
-    #about-me-page .custom-modal .modal-content {
-        padding: 1rem 1rem; /* Adjust padding */
+    #about-me-page #presentation {
+        font-size: 2rem;
     }
 }

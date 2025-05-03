@@ -12,6 +12,14 @@
     text-align: justify;
 }
 
+:root {
+    --gold-light: #fff4d5;
+    --gold-medium: #dfb011;
+    --gold-dark: #977100;
+    --gold-deep: #664300;
+    --gold-muted: #bd8e00;
+}
+
 html {
     /* Ensure the document spans the full height of the viewport */
     height: 100%;
@@ -25,6 +33,8 @@ body {
     /* Remove default margin and set a lightweight font */
     margin: 0;
     font-weight: 100;
+    background-color: var(--gold-dark);
+    color: var(--gold-light);
 }
 
 #content {

@@ -1,9 +1,11 @@
 /* Define the fixed position and background gradient for the navbar */
 header {
     width: 100%;
-    position: fixed; 
-    top: 0; 
-    z-index: 5; /* Ensure the navbar stays above other elements */
+    position: absolute;
+    top: 0;
+    z-index: 5;
+    transform: none;
+    transition: none;
 }
 
 .navbar {
@@ -19,7 +21,7 @@ header {
 
 .navbar-dark .navbar-toggler {
     /* Change the border color of the toggler button */
-    border-color: rgb(175, 175, 175);
+    border-color: var(--light-gold);
 }
 
 .navbar-dark .navbar-toggler-icon {
@@ -28,15 +30,12 @@ header {
 }
 
 /* Style the project accordion and its hover effects */
-#projectsAccordion {
-    margin-top: 80px; /* Add spacing below the navbar */
-}
 
 #projectsAccordion .card {
     /* Remove background and border for a clean look */
     background: none;
     border: none;
-    padding-left: 50px;
+    padding-left: 15px; /* Ajuste del padding izquierdo */
 }
 
 #projectsAccordion .list-group-item {
@@ -76,6 +75,7 @@ header {
     padding: 1.5rem 0;
     text-align: center;
     width: 100%;
+    z-index: 10; /* Asegura que esté por encima de otros contenidos si es necesario */
 }
 
 .footer a {
@@ -97,10 +97,7 @@ header {
 
 /* Responsive styles for smaller screens */
 @media (max-width: 990px) {
-    #projectsAccordion {
-        margin-top: 140px;
-    }
     #projectsAccordion .card {
-        padding-left: 20px;
+        padding-left: 10px; /* Ajuste del padding izquierdo en pantallas pequeñas */
     }
 }

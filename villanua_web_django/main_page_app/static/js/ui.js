@@ -54,28 +54,23 @@ $(document).ready(function() {
 
     // Event handler for the "About Me" link
     $('#about-me-link').click(function () {
-        console.log("About me");
-        // Apply zoom effect to the home page before transitioning to the "About Me" page
-        applyZoomEffect('#home-page', () => {
-            // Update visibility of sections after the zoom effect
-            $('#home-page').css("display", "none");
-            $('#about-me-page').css("display", "block");
-            $('#home-page').css('transform', ''); // Reset zoom transformation
-        });
+        console.log("About me page");
+        $('#home-page').css("display", "none");
+        $('#about-me-page').css("display", "block").addClass('visible');
         $(".navbar-collapse").collapse('hide'); // Collapse the navbar
     });
 
     // Event handler for project links
     $('.project-link').click(function() {
         console.log("Project link clicked");
-        // Apply zoom effect before transitioning to the projects page
-        applyZoomEffect(() => {
-            $('#home-page').css("display", "none");
-            $('#about-me-page').css("display", "none");
-            $('#projects-page').css("display", "block");
-        });
-        $("#projectsAccordion").collapse('hide'); // Collapse the accordion
-        $(".navbar-collapse").collapse('hide'); // Collapse the navbar
+        
+        // Directly transition to the projects page without zoom effect
+        // $('#home-page').css("display", "none");
+        // $('#about-me-page').css("display", "none");
+        // $('#projects-page').css("display", "block");
+        
+        // $("#projectsAccordion").collapse('hide'); // Collapse the accordion
+        // $(".navbar-collapse").collapse('hide'); // Collapse the navbar
     });
 
     // Detect clicks outside the accordion and navbar toggler to close them

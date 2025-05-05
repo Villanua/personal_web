@@ -213,6 +213,11 @@
     object-fit: cover;
 }
 
+strong {
+    font-weight: 900; /* Increase font weight for emphasis */
+    color: var(--gold-medium); /* Optional: Use gold color for better visibility */
+}
+
 @media (min-width: 1300px) {
     #about-me-page #working-experience-page .columns {
         flex-wrap: nowrap; /* Enforce two columns for wide screens */
@@ -263,6 +268,20 @@
         margin-left: 0;
     }
 
+    #about-me-page .me-final-thesis-image {
+        flex: 1 1 100%; /* Full width for the image */
+        max-width: 70%;
+        margin: 0 auto 2rem;
+    }
+
+    #about-me-page #academic-background-page .columns {
+        flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    }
+
+    #about-me-page #academic-background-page .column-text {
+        flex: 1 1 100%; /* Full width for text */
+        margin-right: 0;
+    }
     
 }
 

@@ -34,22 +34,24 @@
 
       <header>
         <nav class="navbar navbar-expand-lg navbar-dark">
-          <div class="container-fluid ms-md-5 me-md-3"> <a class="navbar-brand" id="logo-link" href="#">
-                <img src="{% static 'img/logo.png' %}" alt="Logo" height="30">
+          <div class="container-fluid ms-md-5 me-md-3">
+            <a class="navbar-brand" id="logo-link" href="#">
+              <img src="{% static 'img/logo.png' %}" alt="Logo" height="30">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto"> <li class="nav-item ms-md-3">
-                    <a class="nav-link" href="#" id="about-me-link">About me</a>
+              <ul class="navbar-nav ms-md-5"> <!-- Cambiado de ms-auto a ms-md-5 -->
+                <li class="nav-item ms-md-3">
+                  <a class="nav-link" href="#" id="about-me-link">About me</a>
                 </li>
                 <li class="nav-item ms-md-3">
-                    <a class="nav-link" href="#" id="projects-link" data-bs-toggle="collapse"
+                  <a class="nav-link" href="#" id="projects-link" data-bs-toggle="collapse"
                     data-bs-target="#projectsAccordion" aria-expanded="false" aria-controls="projectsAccordion">Projects</a>
                 </li>
-                </ul>
+              </ul>
             </div>
           </div>
         </nav>

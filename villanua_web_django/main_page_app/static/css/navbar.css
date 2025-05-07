@@ -20,13 +20,44 @@ header {
 }
 
 .navbar-dark .navbar-toggler {
-    /* Change the border color of the toggler button */
-    border-color: var(--light-gold);
+    border-color: #fff;
+    outline: none;
+    box-shadow: none;
+}
+
+.navbar-dark .navbar-toggler:focus,
+.navbar-dark .navbar-toggler:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #fff !important;
 }
 
 .navbar-dark .navbar-toggler-icon {
-    /* Customize the toggler icon with an inline SVG */
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28175, 175, 175, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    /* Customize the toggler icon with an inline SVG (white lines) */
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255,255,255,1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Toggler dorado cuando está activo */
+.navbar-dark .navbar-toggler[aria-expanded="true"] {
+    border-color: #a17c00;
+    outline: none;
+    box-shadow: none;
+}
+
+.navbar-dark .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23a17c00' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Prevent selection and interaction with the navbar logo image */
+.navbar-brand img {
+    user-select: none;
+    pointer-events: none;
+}
+
+/* Prevent selection of navbar brand and nav links */
+.navbar-brand,
+.navbar-nav .nav-link {
+    user-select: none;
 }
 
 /* Style the project accordion and its hover effects */
@@ -93,6 +124,27 @@ header {
 .footer i {
     /* Add spacing between footer icons */
     margin: 0 0.5rem;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    transition: font-size 0.2s, font-weight 0.2s, color 0.2s;
+    font-weight: 400;
+    text-decoration: none !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:active,
+.navbar-dark .navbar-nav .nav-link.active {
+    font-size: 1.12em;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus {
+    outline: none;
+    box-shadow: none;
 }
 
 /* Responsive styles for smaller screens */

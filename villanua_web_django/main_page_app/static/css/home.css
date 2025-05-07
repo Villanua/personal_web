@@ -13,7 +13,7 @@
     width: 0px;
     opacity: 0;
     background-color: #dfb011;
-    box-shadow: #ffe79a 0px 0px 20px 2px;
+    box-shadow: #ffe79a 0vw 0vw 2vw 0.2vw;
     top: 100vh;
     bottom: 0px;
     left: 0px;
@@ -109,6 +109,7 @@
   font-size: 3em;
   filter: opacity(1);
   transition: filter 1.5s ease-in-out;
+  user-select: none;
 }
 
 .header.hidden {
@@ -222,6 +223,24 @@
     #presentation-container h1 {
         font-size: 1rem;
         padding: 0.3125rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .header {
+        font-size: 4.5em;
+    }
+    #presentation-container h1 {
+        font-size: 4rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    .header {
+        font-size: 6em;
+    }
+    #presentation-container h1 {
+        font-size: 5rem;
     }
 }
 

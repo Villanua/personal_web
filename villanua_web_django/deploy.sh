@@ -5,10 +5,10 @@ set -e
 
 # Define variables for the Cloud SQL instance, region, project ID, service name, and artifact registry
 INSTANCE_NAME="villanua-sql-instance"  # Name of the Cloud SQL instance
-REGION="europe-southwest1"            # Region where the resources are deployed
+REGION="europe-west1"            # Region where the resources are deployed
 PROJECT_ID=$(gcloud config get-value project)  # Fetch the current GCP project ID
 SERVICE_NAME="villanua-service"       # Name of the Cloud Run service
-ARTIFACT_REGISTRY="cloud-run-source-deploy"  # Name of the artifact registry
+ARTIFACT_REGISTRY="cloud-run-source"  # Name of the artifact registry
 IMAGE_NAME="$REGION-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REGISTRY/$SERVICE_NAME"  # Full path to the container image
 
 # Build the container image and submit it to the artifact registry

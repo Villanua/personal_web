@@ -16,6 +16,9 @@ $(document).ready(function() {
         $('#about-me-page').css("display", "none");
         $('#projects-page').css("display", "none");
         $(".navbar-collapse").collapse('hide'); // Collapse the navbar
+        if ($('#chatbot-pulsing-container').hasClass('button-container')) {
+            $('#chatbot-pulsing-container').removeClass('button-container');
+        }
     });
 
     // Event handler for the "About Me" link
@@ -24,6 +27,9 @@ $(document).ready(function() {
         $('#home-page').css("display", "none");
         $('#about-me-page').css("display", "block").addClass('visible');
         $(".navbar-collapse").collapse('hide'); // Collapse the navbar
+        if ($('body').hasClass('mobile')) {
+            $('#chatbot-pulsing-container').addClass('button-container');
+        }
     });
 
     // Event handler for project links
@@ -60,5 +66,28 @@ $(document).ready(function() {
         $(this).addClass('active');
     });
 
-    
+    // Toggle visibility of pulsing container and chatbot panel
+    $('#chatbot-pulsing-container .inner').click(function() {
+        console.log("Pulsing container clicked");
+        $('#chatbot-pulsing-container').hide(); // Hide the pulsing container
+        $('#chatbot-panel').show(); // Show the chatbot panel
+    });
+
+    // Hide chatbot panel and show pulsing container when clicking outside the chatbot panel
+    $(document).click(function(event) {
+        var clickTarget = $(event.target);
+        var isChatbotPanel = clickTarget.closest('#chatbot-panel').length > 0;
+        var isPulsingContainer = clickTarget.closest('#chatbot-pulsing-container').length > 0;
+
+        if (!isChatbotPanel && !isPulsingContainer) {
+            $('#chatbot-panel').hide(); // Hide the chatbot panel
+            $('#chatbot-pulsing-container').show(); // Show the pulsing container
+        }
+    });
+
+    // Prevent hiding when clicking inside the chatbot panel
+    $('#chatbot-panel').click(function(event) {
+        event.stopPropagation();
+    });
+
 });

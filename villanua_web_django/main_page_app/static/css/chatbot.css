@@ -101,6 +101,17 @@
     overflow: hidden;
 }
 
+/* Reduce container size when in button mode */
+#chatbot-pulsing-container.button-container {
+    width: 90px;
+    height: 80px;
+    bottom: 10px;
+    right: -15px;
+    transition: width 0.5s ease, height 0.5s ease;
+    background-color: rgba(82, 57, 0, 0.7);
+    border-radius: 10px 0 0 10px;
+}
+
 /* Define the pulsing effect for the chatbot container */
 #chatbot-pulsing-container::after {
     content: '';
@@ -111,7 +122,51 @@
     background: radial-gradient(circle, rgba(255, 223, 0, 0.5), transparent);
     animation: golden-pulse 2s infinite;
     z-index: -1;
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Transición suave */
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+/* Containment styles for when button class is added */
+#chatbot-pulsing-container.button-container::after {
+    animation: none; /* Disable the default pulsing animation */
+    transform: scale(0.6);
+        opacity: 0.6;
+}
+
+/* Contain inner circle when button class is applied */
+#chatbot-pulsing-container.button-container .inner {
+    width: 25px; /* Reduced from 30px */
+    height: 25px;
+}
+
+/* Contain middle circle when button class is applied */
+#chatbot-pulsing-container.button-container .middle {
+    width: 40px; /* Reduced from 45px */
+    height: 40px;
+    animation: contained-pulse 2s infinite;
+}
+
+/* Contain outer circle when button class is applied */
+#chatbot-pulsing-container.button-container .outer {
+    width: 55px; /* Reduced from 70px */
+    height: 55px;
+    animation: contained-pulse 2s infinite;
+    animation-delay: 0.5s;
+}
+
+/* New animation for contained pulsing */
+@keyframes contained-pulse {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(0.9);
+        opacity: 0.8;
+    }
 }
 
 /* Define the keyframes for the golden-pulse animation */
@@ -189,3 +244,74 @@
     border-color: #a88718;
     animation-name: unset;
 }
+
+/* Define the appearance and position of the chatbot panel */
+#chatbot-panel {
+    display: none; /* Initially hide the chatbot panel */
+    position: fixed;
+    right: 1rem; /* Adjust distance from the right edge */
+    bottom: 1rem; /* Adjust distance from the bottom edge */
+    z-index: 20; /* Ensure it appears above other elements */
+    max-width: 400px;
+    height: 600px;
+    background: linear-gradient(to bottom, var(--gold-dark), var(--gray-dark)); /* Gradient background */
+    color: var(--gold-light); /* Text color matching the theme */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add a stronger shadow for better visibility */
+    border-radius: 12px; /* Add rounded corners */
+    overflow: hidden; /* Ensure content stays within the panel */
+    border: 1px solid var(--gold-medium); /* Add a subtle border */
+}
+
+#chatbot-panel .card-header {
+    background: var(--gold-medium); /* Header background color */
+    color: var(--black); /* Header text color */
+    font-weight: bold; /* Make the header text bold */
+    text-align: center; /* Center-align the header text */
+    padding: 1rem; /* Add padding for better spacing */
+    font-size: 1.2rem; /* Slightly increase font size */
+}
+
+#chatbot-panel .card-body {
+    background: var(--gray-dark); /* Body background color */
+    color: var(--gold-light); /* Text color */
+    padding: 1rem; /* Add padding for spacing */
+    font-size: 1rem; /* Set a readable font size */
+    overflow-y: auto; /* Enable scrolling for overflow content */
+    height: 400px; /* Fixed height for the chat log */
+}
+
+#chatbot-panel .card-footer {
+    background: var(--gold-dark); /* Footer background color */
+    padding: 0.5rem; /* Add padding for spacing */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center-align items vertically */
+    gap: 0.5rem; /* Add spacing between elements */
+}
+
+#chatbot-panel .card-footer .form-control {
+    background: var(--gray-dark); /* Input background color */
+    color: var(--gold-light); /* Input text color */
+    border: 1px solid var(--gold-medium); /* Input border color */
+    border-radius: 8px; /* Rounded corners for the input */
+    padding: 0.5rem; /* Add padding for better usability */
+}
+
+#chatbot-panel .card-footer .form-control::placeholder {
+    color: var(--gold-light); /* Placeholder text color */
+}
+
+#chatbot-panel .card-footer .btn {
+    background: var(--gold-medium); /* Button background color */
+    color: var(--black); /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 8px; /* Rounded corners for the button */
+    padding: 0.5rem 1rem; /* Add padding for better usability */
+    font-weight: bold; /* Make the button text bold */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+#chatbot-panel .card-footer .btn:hover {
+    background: var(--gold-light); /* Lighter background on hover */
+    color: var(--black); /* Ensure text remains visible */
+}
+

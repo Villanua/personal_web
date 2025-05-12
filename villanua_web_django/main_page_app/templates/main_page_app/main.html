@@ -218,10 +218,25 @@
         
         
 
-        <div id="chatbot-pulsing-container">
+        <div id="chatbot-pulsing-container" class="">
           <div class="circle inner"></div>
           <div class="circle middle"></div>
           <div class="circle outer"></div>
+        </div>
+
+        <div id="chatbot-panel" class="card" style="max-width: 400px; height: 600px;">
+          <div class="card-header text-white">
+            Chatbot
+          </div>
+          <div class="card-body overflow-auto" id="chat-log" style="height: 400px;">
+            <!-- Chat messages go here -->
+          </div>
+          <div class="card-footer">
+            <div class="input-group">
+              <input type="text" id="user-input" class="form-control" placeholder="Work in progress...">
+              <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+            </div>
+          </div>
         </div>
 
       </main>

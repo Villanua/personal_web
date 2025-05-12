@@ -100,13 +100,13 @@
 /* Style the header text with animations */
 .header {
   position: absolute;
-  top: 40%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-weight: 200;
   text-align: center;
   color: white;
-  font-size: 3em;
+  font-size: 2.5em; /* Reduced font size */
   filter: opacity(1);
   transition: filter 1.5s ease-in-out;
   user-select: none;
@@ -182,7 +182,7 @@
     }
 
     .header {
-        font-size: 2em; /* Reduce header font size */
+        font-size: 1.8em; /* Further reduce font size for smaller screens */
     }
 
     #chatbot-pulsing-container {
@@ -204,7 +204,7 @@
     }
 
     .header {
-        font-size: 1.5em; /* Further reduce header font size */
+        font-size: 1.4em; /* Further reduce font size for very small screens */
     }
 
     #chatbot-pulsing-container {
@@ -228,7 +228,7 @@
 
 @media (min-width: 1600px) {
     .header {
-        font-size: 4.5em;
+        font-size: 3.5em; /* Slightly larger font size for very large screens */
     }
     #presentation-container h1 {
         font-size: 4rem;
@@ -237,7 +237,7 @@
 
 @media (min-width: 1920px) {
     .header {
-        font-size: 6em;
+        font-size: 4em; /* Larger font size for ultra-wide screens */
     }
     #presentation-container h1 {
         font-size: 5rem;

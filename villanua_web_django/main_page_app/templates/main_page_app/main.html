@@ -26,6 +26,7 @@
         <link rel="stylesheet" href="{% static 'css/chatbot.css' %}" />
 
         <script src="{% static 'js/ui.js' %}"></script>
+        <script src="{% static 'js/chatbot.js' %}"></script>
 
         <link rel="icon" type="image/png" href="{% static 'img/logo.png' %}" sizes="16x16" />
     </head>
@@ -224,17 +225,27 @@
           <div class="circle outer"></div>
         </div>
 
-        <div id="chatbot-panel" class="card" style="max-width: 400px; height: 600px;">
-          <div class="card-header text-white">
-            Chatbot
-          </div>
-          <div class="card-body overflow-auto" id="chat-log" style="height: 400px;">
-            <!-- Chat messages go here -->
-          </div>
-          <div class="card-footer">
-            <div class="input-group">
-              <input type="text" id="user-input" class="form-control" placeholder="Work in progress...">
-              <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+        <div id="chatbot-panel" class="chatbot-wrapper">
+          <div class="chatbot-container">
+            <div class="chatbot-header">
+              <div class="chatbot-title">AI assistant Ada</div>
+              <div class="chatbot-subtitle">Hello! How can I assist you today?</div>
+        
+              <!-- Quick Replies -->
+              <div class="chatbot-quick-replies">
+                <button class="quick-btn">Provide pricing</button>
+                <button class="quick-btn">Schedule a demo</button>
+                <button class="quick-btn">Contact support</button>
+              </div>
+            </div>
+        
+            <div class="chatbot-body" id="chat-log">
+              <!-- Mensajes del chat -->
+            </div>
+        
+            <div class="chatbot-footer">
+              <input type="text" id="user-input" class="chatbot-input" placeholder="Type a message..." />
+              <button class="chatbot-send-btn">➤</button>
             </div>
           </div>
         </div>

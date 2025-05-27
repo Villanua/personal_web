@@ -30,13 +30,17 @@ const roboticsLogo = `\
 `
 
 $(document).ready(function() {
-    
-
     // Toggle visibility of pulsing container and chatbot panel
     $('#chatbot-pulsing-container .inner').click(function() {
         console.log("Pulsing container clicked");
         $('#chatbot-pulsing-container').hide(); // Hide the pulsing container
         $('#chatbot-panel').css('display', 'flex'); // Show the chatbot panel with flex display
+    });
+
+    // Close chatbot when close button is clicked
+    $('#chatbot-close-btn').click(function() {
+        $('#chatbot-panel').hide(); // Hide the chatbot panel
+        $('#chatbot-pulsing-container').show(); // Show the pulsing container
     });
 
     // Hide chatbot panel and show pulsing container when clicking outside the chatbot panel

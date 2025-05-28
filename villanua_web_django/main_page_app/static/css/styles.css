@@ -1,3 +1,23 @@
+:root {
+    --gold-light: #ffedbb;
+    --gold-light-medium: #ffe396;
+    --gold-medium: #dfb011;
+    --gold-dark: #977100;
+    --gold-deep: #614900;
+    --gold-muted: #bd8e00;
+    --white: #fff;
+    --white-dark: #eee;
+    --black: #000;
+    --gray-dark: #0f0a00; /* Dark shade derived from --gold-medium (#dfb011) */
+    --gray-darker: #0c0700; /* Slightly darker than --gray-dark (#0f0a00) */
+    --gold-gradient-light: rgba(199, 162, 0, 0.06);
+    --gold-gradient-medium: rgba(255, 232, 131, 0.1);
+    --gold-gradient-dark: rgba(187, 131, 0, 0.08);
+    --title-color: #ffffff; /* Brighter gold for better contrast */
+    --subtitle-color: #ffffff; /* Lighter gold for better contrast */
+    --subtitle-color-gold: #fff7cd; /* Darker shade for subtitles */
+}
+
 /* Reset styles for all elements to ensure consistent rendering across browsers */
 * {
     /* Remove default padding and margin */
@@ -10,14 +30,6 @@
     color: white;
     font-weight: 600;
     text-align: justify;
-}
-
-:root {
-    --gold-light: #fff4d5;
-    --gold-medium: #dfb011;
-    --gold-dark: #977100;
-    --gold-deep: #664300;
-    --gold-muted: #bd8e00;
 }
 
 html {
@@ -33,8 +45,6 @@ body {
     /* Remove default margin and set a lightweight font */
     margin: 0;
     font-weight: 100;
-    background-color: var(--gold-dark);
-    color: var(--gold-light);
 }
 
 #content {
@@ -42,6 +52,8 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
+    background-color: var(--gold-dark);
+    color: var(--gold-light);
 }
 
 .content-panel {

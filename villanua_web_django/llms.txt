@@ -1,0 +1,29 @@
+# Índice del Sitio Web de Ignacio Villanúa Cuenca
+
+Este archivo proporciona un resumen estructurado del contenido principal de la página web de Ignacio Villanúa Cuenca, un ingeniero de Robótica e IA.
+
+## 1. Inicio
+- **URL**: [https://ignacio-villanua.com/](https://ignacio-villanua.com/)
+- **Descripción**: Página de bienvenida e introducción a la especialización en Robótica e Ingeniería de IA.
+
+## 2. Sobre Mí
+- **URL**: [https://ignacio-villanua.com/#about-me-page](https://ignacio-villanua.com/#about-me-page)
+- **Descripción**: Información detallada sobre Ignacio Villanúa, incluyendo su presentación, experiencia profesional y formación académica.
+    - **Presentación**: Resumen de su perfil como ingeniero de Robótica e IA.
+    - **Experiencia Profesional**: Detalles sobre su rol en Acciona, proyectos de IA y Data Science (Generative AI, RAG, agentes autónomos, Knowledge Graphs, fine-tuning de LLMs) y proyectos de Desarrollo Robótico (UR3, UR10, Boston Dynamics Spot, Summit-XL, MiR, Bellabot, Kettybot, ROS, control, etc.).
+    - **Formación Académica**: Información sobre su Grado en Ingeniería de Tecnologías Industriales (Universidad de Málaga) y Máster en Robótica y Automatización (Universidad Carlos III de Madrid), incluyendo detalles sobre sus proyectos de tesis (CRANEEAL y SLAMAS).
+
+## 3. Proyectos
+- **URL**: [https://ignacio-villanua.com/#projectsAccordion](https://ignacio-villanua.com/#projectsAccordion)
+- **Descripción**: Listado de proyectos en los que Ignacio ha trabajado o está trabajando, con enlaces a sus repositorios de GitHub.
+    - [**Vectra (Work in progress)**](https://github.com/Villanua/vectra_hw)
+    - [**Ada (Work in progress)**](https://github.com/Villanua)
+
+## 4. Contacto y Redes Sociales
+- **URL**: [https://www.linkedin.com/in/ignacio-villanua-cuenca/](https://www.linkedin.com/in/ignacio-villanua-cuenca/)
+- **URL**: [https://github.com/Villanua](https://github.com/Villanua)
+- **Descripción**: Enlaces a los perfiles de LinkedIn y GitHub de Ignacio.
+
+## 5. Chatbot (Ada)
+- **URL**: [https://ignacio-villanua.com/#chatbot-panel](https://ignacio-villanua.com/#chatbot-panel)
+- **Descripción**: Descripción del asistente de IA "Ada" integrado en el sitio web, con capacidades de navegación web y búsqueda en internet.

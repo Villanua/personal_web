@@ -1,0 +1,3 @@
+[submodule "villanua_web_django/ada-chatbot"]
+	path = villanua_web_django/ada-chatbot
+	url = git@github.com:Villanua/ada-chatbot.git

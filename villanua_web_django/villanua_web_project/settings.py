@@ -86,6 +86,7 @@ else:
 
 INSTALLED_APPS = [
     'main_page_app.apps.MainPageAppConfig',
+    'wedding_app.apps.WeddingAppConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -21,7 +21,6 @@ import google.auth
 from google.cloud import secretmanager
 
 load_dotenv()
-logging.basicConfig(level=logging.DEBUG)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -143,7 +142,17 @@ if DB_TYPE == "sqlite":
 else:
     logging.info("Using PostgreSQL database")
     # Use django-environ to parse the connection string
-    DATABASES = {"default": env.db()}
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            "NAME": os.getenv("POSTGRE_DB"),
+            "USER": os.getenv("POSTGRE_USER"),
+            "PASSWORD": os.getenv("POSTGRE_PASSWORD"),
+            "HOST": os.getenv("POSTGRE_HOST","127.0.0.1"),
+            "PORT": os.getenv("POSTGRE_PORT", "5432"),
+            "CONN_MAX_AGE": 500,
+        }
+    }
 
     # If the flag has been set, configure to use proxy
     if os.getenv("USE_CLOUD_SQL_AUTH_PROXY", None):

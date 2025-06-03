@@ -1,0 +1,253 @@
+:root {
+    --color-white: #ffffff;
+    --color-beige: #fffde3;
+    --color-dark-gray: #333333;
+    --color-light-gray: #e7e7e5;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: var(--color-dark-gray);
+  background-color: var(--color-white);
+}
+
+header {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 15px;
+}
+
+.gallery img {
+  width: 250px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+.date-location {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Navbar styles */
+.navbar {
+  background-color: var(--color-light-gray);
+  padding: 15px 0;
+    top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.navbar a {
+  color: var(--color-dark-gray);
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  min-width: 60px;
+  padding: 10px 20px;
+  margin: 5px 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.story,
+.details,
+.wedding-party {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.story {
+  background-color: var(--color-light-gray);
+}
+
+.details {
+  background-color: var(--color-white);
+}
+
+.wedding-party {
+  background-color: var(--color-light-gray);
+}
+
+.story h2,
+.details h2,
+.wedding-party h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.story p,
+.details p,
+.wedding-party p {
+  max-width: 600px;
+  margin: auto;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.story-container {
+  display: flex;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: center;
+  gap: 40px;
+}
+
+.story-image, .story-text {
+  flex: 1;
+}
+
+.story-text p {
+  text-align: left;
+  margin: 0;
+}
+
+.story img.feature-image {
+  width: 400px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.timeline {
+  margin-top: 20px;
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.timeline div {
+  margin-bottom: 15px;
+}
+
+.timeline strong {
+  display: block;
+  font-weight: bold;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 28px;
+  }
+  
+  .gallery {
+    flex-wrap: wrap;
+  }
+  
+  .gallery img {
+    width: calc(50% - 15px);
+    height: 180px;
+  }
+  
+  .story img.feature-image {
+    width: 300px;
+  }
+  
+  .navbar a {
+    padding: 8px 15px;
+    font-size: 14px;
+    margin: 3px 5px;
+  }
+  
+  .story h2,
+  .details h2,
+  .wedding-party h2 {
+    font-size: 22px;
+  }
+  
+  .timeline {
+    padding: 0 15px;
+  }
+  
+  .story-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .story-text p {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 20px 10px;
+  }
+  
+  header h1 {
+    font-size: 24px;
+  }
+  
+  .gallery img {
+    width: 100%;
+    max-width: 250px;
+    height: 150px;
+    margin-bottom: 8px;
+  }
+  
+  .date-location {
+    font-size: 12px;
+  }
+  
+  .story,
+  .details,
+  .wedding-party {
+    padding: 30px 15px;
+  }
+  
+  .story p,
+  .details p,
+  .wedding-party p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .navbar {
+    padding: 10px 0;
+  }
+  
+  .navbar a {
+    min-width: 40px;
+    padding: 8px 12px;
+    margin: 2px;
+    font-size: 13px;
+  }
+}

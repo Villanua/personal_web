@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "villanua-web"
+version = "0.1.0"
+description = ""
+authors = ["Villanua <NachoViCu16@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.13"
+# lista aquí tus dependencias
+django = "^5.2.4"
+python-dotenv = "^1.1.1"
+django-environ = "^0.12.0"
+whitenoise = "^6.9.0"
+gunicorn = "^23.0.0"
+djangorestframework = "^3.16.0"
+langchain-google-vertexai = "^2.0.27"
+google-cloud-secret-manager = "^2.24.0"
+
+
+[tool.poetry.group.dev.dependencies]
+# opcional para dependencias de desarrollo
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

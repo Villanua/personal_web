@@ -8,11 +8,6 @@ touch /app/logs/gunicorn-access.log
 # Start tailing the log files to keep the container running and allow log inspection
 tail -n 0 -f /app/logs/gunicorn*.log &
 
-# Apply database migrations to ensure the database schema is up-to-date
-python manage.py migrate --noinput
-
-echo "GS_BUCKET_NAME=${GS_BUCKET_NAME}"
-
 # Start the Gunicorn server to serve the Django application
 exec gunicorn villanua_web_project.wsgi:application \
     --bind 0.0.0.0:8080 \

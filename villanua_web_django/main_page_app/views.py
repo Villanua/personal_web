@@ -8,7 +8,8 @@ from langchain_core.messages import AIMessage
 
 from villanua_web_project.shared.utils import logger
 from ada_chatbot.graph import get_ada_graph
-from .models import ChatConversation, ChatMessage  # Asegúrate de importar tus modelos
+from ada_chatbot.utils import load_chat_model
+from .models import ChatConversation, ChatMessage
 
 
 # Create your views here.
@@ -53,6 +54,16 @@ def ada_bot(request):
             sender="ai",
             content=""
         )
+
+        llm = load_chat_model()
+
+        response_stream = llm.stream(user_message)
+        collected = ""
+
+        for chunk in response_stream:
+            content = chunk.content if hasattr(chunk, "content") else str(chunk)
+            print(content, end="", flush=True)
+            collected += content
 
         return Response({
             "status": "error",

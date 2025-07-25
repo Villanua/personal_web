@@ -89,7 +89,7 @@ $(document).ready(function() {
     });
 
     /**
-     * Send user message and quick-btn states to the backend via AJAX.
+     * Send user message and quick-btn states to the backend via WebSocket.
      */
     function sendMessage() {
         const userInput = $('#user-input').val().trim();
@@ -114,9 +114,9 @@ $(document).ready(function() {
             const key = $(this).text().trim().replace(/\s+/g, '_').toLowerCase();
             quickBtnStates[key] = $(this).hasClass('active');
         });
-        console.log("Info: Quick button states for AJAX:", quickBtnStates);
+        console.log("Info: Quick button states for WebSocket:", quickBtnStates);
 
-        // Prepare AJAX data payload
+        // Prepare WebSocket data payload
         const chatLog = [];
         $('#chat-log .message').each(function() {
             const messageContent = $(this).find('.message-content').text().trim();
@@ -133,26 +133,31 @@ $(document).ready(function() {
             internet_search: quickBtnStates['internet_search'] || false
         };
 
-        // Send AJAX request to backend
-        $.ajax({
-            url: '/ada_bot', // Replace with your actual endpoint
-            type: 'POST',
-            headers: { 'X-CSRFToken': getCsrfToken() },
-            data: ajaxData,
-            success: function(response) {
-                console.log("Success: Bot response received.", response);
-                conversationId = response.conversation_id || conversationId; // Update conversation ID if provided
-                removeTypingIndicator();
-                addBotMessageToChat(response.message || "I'm sorry, I couldn't process your request.");
-            },
-            error: function(xhr, status, error) {
-                console.error("Error: AJAX request failed.", status, error);
-                const response = xhr.responseJSON || {};
-                conversationId = response.conversation_id || conversationId;
-                removeTypingIndicator();
-                addBotMessageToChat("I'm sorry, I'm currently deactivated and cannot respond to you.");
-            }
-        });
+        // Send WebSocket request to backend
+        const socket = new WebSocket('ws://' + window.location.host + '/ws/ada_bot/');
+
+        socket.onopen = function() {
+            console.log("WebSocket connection established.");
+            socket.send(JSON.stringify(ajaxData)); // Send the data to the WebSocket server
+        };
+
+        socket.onmessage = function(event) {
+            const response = JSON.parse(event.data);
+            console.log("WebSocket message received:", response);
+            conversationId = response.conversation_id || conversationId; // Update conversation ID if provided
+            removeTypingIndicator();
+            addBotMessageToChat(response.message || "I'm sorry, I couldn't process your request.");
+        };
+
+        socket.onerror = function(error) {
+            console.error("WebSocket error:", error);
+            removeTypingIndicator();
+            addBotMessageToChat("I'm sorry, I'm currently deactivated and cannot respond to you.");
+        };
+
+        socket.onclose = function() {
+            console.log("WebSocket connection closed.");
+        };
     }
 
     /**

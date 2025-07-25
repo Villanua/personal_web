@@ -25,50 +25,45 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env()
 
-# [START cloudrun_django_secret_config]
-# SECURITY WARNING: don't run with debug turned on in production!
-# Change this to "False" when you are ready for production
-env = environ.Env(DEBUG=(bool, os.environ.get("IS_LOCAL", False)))
-env_file = os.path.join(BASE_DIR, ".env")
-
-# Attempt to load the Project ID into the environment, safely failing on error.
+# Try to load GOOGLE_CLOUD_PROJECT from the environment
 try:
     _, os.environ["GOOGLE_CLOUD_PROJECT"] = google.auth.default()
 except google.auth.exceptions.DefaultCredentialsError:
     pass
+    
+# Local .env file
+env_file = BASE_DIR / ".env"
 
-if os.path.isfile(env_file):
-    # Use a local secret file, if provided
+if env_file.exists(): # If a local .env file exists, load it
+    logging.info(f"Loading environment variables from {env_file}")
     env.read_env(env_file)
-elif os.getenv("TRAMPOLINE_CI", None):
-    # Create local settings if running with CI, for unit testing
+elif os.getenv("TRAMPOLINE_CI"): # If running in CI, use a placeholder
+    logging.info("Running in CI environment, using placeholder for secrets")
     placeholder = (
         f"SECRET_KEY=a\n"
         "GS_BUCKET_NAME=None\n"
-        f"DATABASE_URL=sqlite://{os.path.join(BASE_DIR, 'db.sqlite3')}"
+        f"DATABASE_URL=sqlite:///{BASE_DIR / 'db.sqlite3'}"
     )
     env.read_env(io.StringIO(placeholder))
-elif os.environ.get("GOOGLE_CLOUD_PROJECT", None):
-    # Pull secrets from Secret Manager
-    project_id = os.environ.get("GOOGLE_CLOUD_PROJECT")
+elif os.getenv("GOOGLE_CLOUD_PROJECT"): # If GOOGLE_CLOUD_PROJECT is set, fetch secrets from Secret Manager
+    logging.info("Fetching secrets from Google Cloud Secret Manager")
+    project_id = os.getenv("GOOGLE_CLOUD_PROJECT")
     client = secretmanager.SecretManagerServiceClient()
-    settings_name = os.environ.get("SETTINGS_NAME", "django_settings")
+    settings_name = os.getenv("SETTINGS_NAME", "django_settings")
     name = f"projects/{project_id}/secrets/{settings_name}/versions/latest"
     payload = client.access_secret_version(name=name).payload.data.decode("UTF-8")
     env.read_env(io.StringIO(payload))
 else:
     raise Exception("No local .env or GOOGLE_CLOUD_PROJECT detected. No secrets found.")
-# [END cloudrun_django_secret_config]
 
+# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY", default="NOT_SECRET")
-DEBUG = env.bool("DEBUG", default=False)
+DEBUG = os.getenv("DEBUG", default=False)
 
-# [START cloudrun_django_csrf]
-# SECURITY WARNING: It's recommended that you use this when
-# running in production. The URLs will be known once you first deploy
-# to Cloud Run. This code takes the URLs and converts it to both these settings formats.
-CLOUDRUN_SERVICE_URLS = env("CLOUDRUN_SERVICE_URLS", default=None)
+
+CLOUDRUN_SERVICE_URLS = env("CLOUDRUN_SERVICE_URLS", default=None) # Comma-separated list of URLs for CSRF trusted origins
 if CLOUDRUN_SERVICE_URLS:
     CSRF_TRUSTED_ORIGINS = env("CLOUDRUN_SERVICE_URLS").split(",")
     # Remove the scheme from URLs for ALLOWED_HOSTS
@@ -78,7 +73,7 @@ if CLOUDRUN_SERVICE_URLS:
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 else:
     ALLOWED_HOSTS = ["*"]
-# [END cloudrun_django_csrf]
+    CSRF_TRUSTED_ORIGINS = ["http://localhost", "http://127.0.0.1"]
 
 
 # Application definition
@@ -91,7 +86,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'storages',
 ]
 
 MIDDLEWARE = [
@@ -130,9 +124,11 @@ WSGI_APPLICATION = 'villanua_web_project.wsgi.application'
 # Database
 
 DB_TYPE = os.getenv("DB_TYPE", "cloud").lower()
+USE_CLOUD_SQL_AUTH_PROXY = os.getenv("USE_CLOUD_SQL_AUTH_PROXY", "false").lower() == "true"
+INSTANCE_CONNECTION_NAME = os.getenv("INSTANCE_CONNECTION_NAME")
 
 if DB_TYPE == "sqlite":
-    logging.info("Using SQLite database")
+    print("Using SQLite database")
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -140,24 +136,23 @@ if DB_TYPE == "sqlite":
         }
     }
 else:
-    logging.info("Using PostgreSQL database")
-    # Use django-environ to parse the connection string
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            "NAME": os.getenv("POSTGRE_DB"),
-            "USER": os.getenv("POSTGRE_USER"),
-            "PASSWORD": os.getenv("POSTGRE_PASSWORD"),
-            "HOST": os.getenv("POSTGRE_HOST","127.0.0.1"),
-            "PORT": os.getenv("POSTGRE_PORT", "5432"),
-            "CONN_MAX_AGE": 500,
+    if USE_CLOUD_SQL_AUTH_PROXY:
+        print("Using PostgreSQL database")
+        host = "127.0.0.1"
+        port = "5432"
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.postgresql",
+                "NAME": os.getenv("SQL_DB_NAME"),
+                "USER": os.getenv("SQL_DB_USER"),
+                "PASSWORD": os.getenv("SQL_DB_PASSWORD"),
+                "HOST": host,
+                "PORT": port,
+            }
         }
-    }
-
-    # If the flag has been set, configure to use proxy
-    if os.getenv("USE_CLOUD_SQL_AUTH_PROXY", None):
-        DATABASES["default"]["HOST"] = "127.0.0.1"
-        DATABASES["default"]["PORT"] = 5432
+    else:
+        print("Using Cloud SQL database")
+        DATABASES = {"default": env.db()}
 
 
 # Password validation
@@ -188,19 +183,32 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # [START cloudrun_django_static_config]
 # Define static storage via django-storages[google]
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / 'static_files'
 STATICFILES_DIRS = [
     BASE_DIR / 'main_page_app/static',
 ]
-STORAGES = {
-    "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
+
+if DEBUG:
+    # In development, use local static files
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
+else:
+    # In production, use WhiteNoise for serving static files
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        },
+    }
 
 # [END cloudrun_django_static_config]
 

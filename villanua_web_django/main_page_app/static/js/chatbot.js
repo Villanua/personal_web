@@ -31,6 +31,9 @@ const roboticsLogo = `\
 `;
 
 $(document).ready(function() {
+
+    let conversationId = null; // Initialize conversation ID
+
     // Show chatbot panel and hide pulsing container when the inner circle is clicked
     $('#chatbot-pulsing-container .inner').click(function() {
         console.log("Pulsing container clicked. Showing chatbot panel.");
@@ -114,8 +117,17 @@ $(document).ready(function() {
         console.log("Info: Quick button states for AJAX:", quickBtnStates);
 
         // Prepare AJAX data payload
+        const chatLog = [];
+        $('#chat-log .message').each(function() {
+            const messageContent = $(this).find('.message-content').text().trim();
+            const messageType = $(this).hasClass('user-message') ? 'user' : 'bot';
+            chatLog.push({ type: messageType, content: messageContent });
+        });
+
         const ajaxData = {
             message: userInput,
+            chatLog: chatLog, // Include the entire conversation
+            conversation_id: conversationId || null, // Include conversation ID if it exists
             csrfmiddlewaretoken: getCsrfToken(),
             allow_web_navigation: quickBtnStates['allow_web_navigation'] || false,
             internet_search: quickBtnStates['internet_search'] || false
@@ -123,16 +135,20 @@ $(document).ready(function() {
 
         // Send AJAX request to backend
         $.ajax({
-            url: '/api/adabot', // Replace with your actual endpoint
+            url: '/ada_bot', // Replace with your actual endpoint
             type: 'POST',
+            headers: { 'X-CSRFToken': getCsrfToken() },
             data: ajaxData,
             success: function(response) {
                 console.log("Success: Bot response received.", response);
+                conversationId = response.conversation_id || conversationId; // Update conversation ID if provided
                 removeTypingIndicator();
                 addBotMessageToChat(response.message || "I'm sorry, I couldn't process your request.");
             },
             error: function(xhr, status, error) {
                 console.error("Error: AJAX request failed.", status, error);
+                const response = xhr.responseJSON || {};
+                conversationId = response.conversation_id || conversationId;
                 removeTypingIndicator();
                 addBotMessageToChat("I'm sorry, I'm currently deactivated and cannot respond to you.");
             }
@@ -144,9 +160,17 @@ $(document).ready(function() {
      * @returns {string} CSRF token
      */
     function getCsrfToken() {
-        return $('input[name="csrfmiddlewaretoken"]').val() ||
-               document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ||
-               '';
+        const csrfTokenFromInput = document.querySelector('input[name="csrfmiddlewaretoken"]')?.value;
+        const csrfTokenFromMeta = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+
+        if (csrfTokenFromInput) {
+            return csrfTokenFromInput;
+        } else if (csrfTokenFromMeta) {
+            return csrfTokenFromMeta;
+        } else {
+            console.warn("CSRF token not found in input or meta tag.");
+            return '';
+        }
     }
 
     /**

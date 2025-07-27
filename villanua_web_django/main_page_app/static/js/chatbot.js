@@ -145,8 +145,18 @@ $(document).ready(function() {
             const response = JSON.parse(event.data);
             console.log("WebSocket message received:", response);
             conversationId = response.conversation_id || conversationId; // Update conversation ID if provided
-            removeTypingIndicator();
-            addBotMessageToChat(response.message || "I'm sorry, I couldn't process your request.");
+
+            // Find the last bot message in the chat log
+            let lastBotMessage = $('#chat-log .bot-message:last .message-content');
+
+            if (lastBotMessage.length === 0) {
+                // If no bot message exists, create a new one
+                removeTypingIndicator();
+                addBotMessageToChat(response.message || "");
+            } else {
+                // Update the content of the last bot message
+                lastBotMessage.html(lastBotMessage.html() + response.message);
+            }
         };
 
         socket.onerror = function(error) {

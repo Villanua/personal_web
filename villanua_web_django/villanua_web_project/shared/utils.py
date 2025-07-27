@@ -11,5 +11,5 @@ if not logger.hasHandlers():  # Only add handler if no handlers exist
     formatter = logging.Formatter('%(levelname)s:%(filename)s:%(lineno)d:%(message)s')  # Format with source info
     handler.setFormatter(formatter)
     logger.addHandler(handler)
-if eval(os.environ.get("INGESTION_DEBUG", "False")):
+if eval(os.environ.get("DEBUG", "False")):
     logger.setLevel(logging.DEBUG)

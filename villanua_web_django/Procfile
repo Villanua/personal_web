@@ -1,1 +1,0 @@
-web: gunicorn villanua_web_project.wsgi:application

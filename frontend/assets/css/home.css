@@ -1,0 +1,279 @@
+#home-page {
+  /* Define the main container for the home page with a radial gradient background */
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  background: radial-gradient(#977100, #291f00);
+}
+
+/* Define animations for floating light effects */
+.light {
+    /* Position lights absolutely and center them */
+    position: absolute;
+    width: 0px;
+    opacity: 0;
+    background-color: #dfb011;
+    box-shadow: #ffe79a 0vw 0vw 2vw 0.2vw;
+    top: 100vh;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+}
+
+.transition-light {
+  /* Similar to .light but used for transitions */
+  position: absolute;
+  width: 0px;
+  opacity: 0;
+  background-color: #dfb011;
+  box-shadow: #dfb011 0px 0px 20px 2px;
+  top: 100vh;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+/* Define animations for floating light effects with varying speeds and scales */
+.x1 {
+  animation: floatUp 4s infinite linear;
+  transform: scale(1.0);
+}
+
+.x2 {
+  animation: floatUp 7s infinite linear;
+  transform: scale(1.6);
+  left: 15%;
+}
+
+.x3 {
+  animation: floatUp 2.5s infinite linear;
+  transform: scale(0.5);
+  left: -15%;
+}
+
+.x4 {
+  animation: floatUp 4.5s infinite linear;
+  transform: scale(1.2);
+  left: -34%;
+}
+
+.x5 {
+  animation: floatUp 8s infinite linear;
+  transform: scale(2.2);
+  left: -57%;
+}
+
+.x6 {
+  animation: floatUp 3s infinite linear;
+  transform: scale(0.8);
+  left: -81%;
+}
+
+.x7 {
+  animation: floatUp 5.3s infinite linear;
+  transform: scale(3.2);
+  left: 37%;
+}
+
+.x8 {
+  animation: floatUp 4.7s infinite linear;
+  transform: scale(1.7);
+  left: 62%;
+}
+
+.x9 {
+  animation: floatUp 4.1s infinite linear;
+  transform: scale(0.9);
+  left: 85%;
+}
+
+/* Keyframes for floating lights animation */
+@keyframes floatUp {
+  0% { top: 100vh; opacity: 0; }
+  25% { opacity: 1; }
+  50% { top: 0vh; opacity: 0.8; }
+  75% { opacity: 1; }
+  100% { top: -100vh; opacity: 0; }
+}
+
+/* Style the header text with animations */
+.header {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 200;
+  text-align: center;
+  color: white;
+  font-size: 2.5em; /* Reduced font size */
+  filter: opacity(1);
+  transition: filter 1.5s ease-in-out;
+  user-select: none;
+}
+
+.header.hidden {
+  /* Apply opacity filter when the header is hidden */
+  filter: opacity(0);
+}
+
+#head1, #head2, #head3, #head4, #head5 {
+  /* Initially hide all header elements */
+  opacity: 0;
+}
+
+#head1 {
+  animation: fadeOut 1 5s ease-in;
+}
+
+#head2 {
+  animation: fadeOut 1 5s ease-in;
+  animation-delay: 6s;
+}
+
+#head3 {
+  animation: finalFade 1 5s ease-in;
+  animation-fill-mode: forwards;
+  animation-delay: 12s;
+}
+
+/* Keyframes for fade-in and fade-out effects */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  80% { opacity: 0.9; }
+  100% { opacity: 0; }
+}
+
+@keyframes finalFade {
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  80% { opacity: 0.9; }
+  100% { opacity: 1; }
+}
+
+/* Responsive styles for different screen sizes */
+@media (max-width: 1024px) {
+
+    #presentation-container {
+        margin-top: 30rem;
+    }
+
+    #presentation-container h1 {
+        font-size: 2.5rem;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    #presentation-container {
+        margin-top: 25rem;
+    }
+
+    #presentation-container h1 {
+        font-size: 2rem;
+        padding: 0.625rem;
+    }
+
+    .header {
+        font-size: 1.8em; /* Further reduce font size for smaller screens */
+    }
+
+    #chatbot-pulsing-container {
+        bottom: 2rem; /* Adjust chatbot position */
+        right: 1rem;
+        transform: scale(0.8); /* Scale down chatbot */
+    }
+}
+
+@media (max-width: 480px) {
+
+    #presentation-container {
+        margin-top: 18.75rem;
+    }
+
+    #presentation-container h1 {
+        font-size: 1.5rem;
+        padding: 0.5rem;
+    }
+
+    .header {
+        font-size: 1.4em; /* Further reduce font size for very small screens */
+    }
+
+    #chatbot-pulsing-container {
+        bottom: 1.5rem; /* Adjust chatbot position */
+        right: 0.5rem;
+        transform: scale(0.7); /* Further scale down chatbot */
+    }
+}
+
+@media (max-width: 320px) {
+
+    #presentation-container {
+        margin-top: 15rem;
+    }
+
+    #presentation-container h1 {
+        font-size: 1rem;
+        padding: 0.3125rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .header {
+        font-size: 3.5em; /* Slightly larger font size for very large screens */
+    }
+    #presentation-container h1 {
+        font-size: 4rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    .header {
+        font-size: 4em; /* Larger font size for ultra-wide screens */
+    }
+    #presentation-container h1 {
+        font-size: 5rem;
+    }
+}
+
+/* Define transition effects for moving between pages */
+/* Move from home */
+.line-effect {
+  position: absolute;
+  width: 2px; /* Width of the lines */
+  height: 100%; /* Height of the screen */
+  background-color: white;
+  top: 0;
+  left: 0;
+  animation: line-move 1s ease-in-out forwards; /* Animation to move the lines */
+  z-index: 1000; /* Ensure the lines are above everything */
+}
+
+@keyframes floatUpSlow {
+  0% {
+      top: 100vh;
+      opacity: 0;
+  }
+  25% {
+      opacity: 1;
+  }
+  50% {
+      top: 0vh;
+      opacity: 0.8;
+  }
+  75% {
+      opacity: 1;
+  }
+  100% {
+      top: -100vh;
+      opacity: 0;
+  }
+}

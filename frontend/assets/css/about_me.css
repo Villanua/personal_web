@@ -1,0 +1,375 @@
+#about-me-page {
+    width: 100%;
+    color: var(--white);
+    font-size: 1.2rem;
+    line-height: 1.8;
+    opacity: 0;
+    display: none;
+    transform: translateY(50px);
+    pointer-events: none;
+    transition: all 0.6s ease-out;
+    margin-top: -70px;
+    padding-top: 150px; /* Space to avoid overlapping with the fixed navbar */
+    background: radial-gradient(
+        circle at 0% 0%,
+        var(--gold-gradient-light) 5%,
+        var(--gray-dark)
+    );
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#about-me-page.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    animation: fadeUp 1s ease-out forwards;
+}
+
+#about-me-page .page {
+    padding: 10rem 14rem;
+    margin: 0;
+    border-radius: 0;
+}
+
+#about-me-page #general-description-page {
+    margin-top: -80px;
+    padding-top: calc(10rem + 80px); /* Adjust padding to compensate for negative margin */
+    background: radial-gradient(
+        circle at 75% 60%,
+        var(--gold-gradient-light),
+        var(--gray-dark)
+    );
+    background-blend-mode: soft-light;
+}
+
+#about-me-page #working-experience-page {
+    background: radial-gradient(
+        circle at 0% 30%,
+        var(--gold-gradient-dark) 0%,
+        var(--gray-darker) 100%
+    );
+    background-blend-mode: soft-light;
+}
+
+#about-me-page #academic-background-page {
+    background: radial-gradient(
+        circle at 40% 30%,
+        var(--gold-gradient-dark) 50%,
+        var(--gray-dark) 100%
+    );
+    background-blend-mode: soft-light;
+}
+
+.figure-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 4rem auto;
+}
+
+.figure-columns figure {
+    flex: 1 1 45%;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#about-me-page .figure-columns img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+#about-me-page figcaption {
+    font-size: 1rem;
+    color: var(--white-dark);
+    text-align: center;
+}
+
+#about-me-page #general-description-page {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+#about-me-page #general-description-page .column-text {
+    flex: 1 1 50%;
+    margin-right: 2rem;
+}
+
+#about-me-page .about-me-image {
+    flex: 1 1 35%;
+    margin: 0 3rem;
+    max-width: 30%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent);
+    mask-image: linear-gradient(to bottom, black 80%, transparent);
+}
+
+#about-me-page #greeting {
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+#about-me-page #presentation {
+    font-weight: 800; /* Make the title bolder */
+    color: var(--title-color); /* Updated to brighter gold */
+    margin-bottom: 3rem;
+}
+
+#about-me-page h2 {
+    font-size: 2.5rem; /* Increase font size for subtitles */
+    font-weight: 700; /* Make subtitles bold */
+    color: var(--title-color); /* Updated to lighter gold */
+    margin-bottom: 1.5rem;
+}
+
+#about-me-page h3 {
+    font-size: 2rem; /* Slightly increase font size for smaller subtitles */
+    font-weight: 900; /* Make smaller subtitles bold */
+    color: var(--subtitle-color); /* Updated to lighter gold */
+    margin-bottom: 1rem;
+}
+
+#about-me-page h4 {
+    font-size: 1.5rem; /* Slightly increase font size for smaller subtitles */
+    font-weight: 400; /* Make smaller subtitles bold */
+    color: var(--subtitle-color-gold); /* Updated to lighter gold */
+    margin: 3rem 0 1rem 0;
+}
+
+#about-me-page #working-experience-page .columns {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap; /* Prevent wrapping to enforce two columns */
+    gap: 2rem;
+}
+
+#about-me-page #working-experience-page .column-text {
+    flex: 1 1 50%; /* Ensure equal width for text */
+    margin-left: 2rem;
+}
+
+#about-me-page .me-spot-image {
+    flex: 1 1 50%; /* Ensure equal width for the image */
+    max-width: 50%; /* Limit the image width */
+    height: auto;
+    margin: 0 3rem;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+#about-me-page #academic-background-page .columns {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+#about-me-page #academic-background-page .column-text {
+    flex: 1 1 50%;
+    margin-right: 2rem;
+}
+
+#about-me-page .me-final-thesis-image {
+    flex: 1 1 20%;
+    margin: 0 3rem;
+    max-width: 30%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+strong {
+    font-weight: 900; /* Increase font weight for emphasis */
+    color: var(--gold-light); /* Optional: Use gold color for better visibility */
+}
+
+/* Reordered media queries from largest to smallest */
+@media (max-width: 1350px) {
+    #about-me-page .page {
+        padding: 4rem 8rem;
+    }
+
+    #about-me-page #general-description-page .column-text {
+        flex: 1 1 100%;
+        margin-right: 0;
+    }
+
+    #about-me-page .about-me-image {
+        flex: 1 1 35%;
+        max-width: 300px;
+        margin: 0 auto 2rem;
+    }
+
+    #about-me-page .me-spot-image {
+        flex: 1 1 70%;
+        width: 100%;
+        max-width: 700px;
+        margin: 0 auto 2rem;
+        margin-top: 2rem;
+    }
+
+    #about-me-page #working-experience-page .columns {
+        flex-wrap: wrap;
+    }
+
+    #about-me-page #working-experience-page .column-text {
+        flex: 1 1 100%;
+        margin-left: 0;
+    }
+
+    #about-me-page .me-final-thesis-image {
+        flex: 1 1 100%;
+        max-width: 70%;
+        margin: 0 auto 2rem;
+    }
+
+    #about-me-page #academic-background-page .columns {
+        flex-wrap: wrap;
+    }
+
+    #about-me-page #academic-background-page .column-text {
+        flex: 1 1 100%;
+        margin-right: 0;
+    }
+
+    #about-me-page #general-description-page {
+        padding-top: calc(8rem + 80px); /* Reduced padding */
+    }
+}
+
+@media (max-width: 991px) {
+    #about-me-page .page {
+        padding: 6rem 3rem;
+    }
+
+    #about-me-page #general-description-page {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #about-me-page .about-me-image {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto 2rem;
+    }
+
+    .figure-columns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .figure-columns figure {
+        width: 80%;
+        margin-bottom: 2rem;
+    }
+
+    #about-me-page #general-description-page {
+        padding-top: calc(6rem + 80px); /* Further reduced padding */
+    }
+}
+
+@media (max-width: 768px) {
+    #about-me-page .page {
+        padding: 4rem 2.5rem;
+    }
+
+    #about-me-page #presentation {
+        font-size: 2.5rem;
+    }
+
+    #about-me-page #general-description-page {
+        padding-top: calc(4rem + 80px); /* Even smaller padding */
+    }
+}
+
+@media (max-width: 480px) {
+    #about-me-page .page {
+        padding: 3rem 2rem;
+    }
+
+    #about-me-page #presentation {
+        font-size: 2rem;
+    }
+
+    #about-me-page #general-description-page {
+        padding-top: calc(3rem + 80px); /* Minimal padding for mobile */
+    }
+}
+
+@media (min-width: 1300px) {
+    #about-me-page #working-experience-page .columns {
+        flex-wrap: nowrap;
+    }
+
+    #about-me-page #working-experience-page .column-text {
+        flex: 1 1 50%;
+        margin-left: 2rem;
+    }
+
+    #about-me-page .me-spot-image {
+        flex: 1 1 50%;
+        max-width: 50%;
+        margin: 0 3rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    #about-me-page .page {
+        padding: 12rem 18rem;
+    }
+    #about-me-page #presentation {
+        font-size: 4.5rem;
+    }
+    #about-me-page h2 {
+        font-size: 3.5rem;
+    }
+    #about-me-page h3 {
+        font-size: 2.7rem;
+    }
+    #about-me-page h4 {
+        font-size: 2rem;
+    }
+    #about-me-page {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    #about-me-page .page {
+        padding: 16rem 24rem;
+    }
+    #about-me-page #presentation {
+        font-size: 5.5rem;
+    }
+    #about-me-page h2 {
+        font-size: 4rem;
+    }
+    #about-me-page h3 {
+        font-size: 3rem;
+    }
+    #about-me-page h4 {
+        font-size: 2.3rem;
+    }
+    #about-me-page {
+        font-size: 1.7rem;
+    }
+}

@@ -162,7 +162,7 @@ $(document).ready(function() {
         socket.onerror = function(error) {
             console.error("WebSocket error:", error);
             removeTypingIndicator();
-            addBotMessageToChat("I'm sorry, I'm currently deactivated and cannot respond to you.");
+            addBotMessageToChat("I'm sorry, I'm currently deactivated and cannot respond to you. Contact with the owner Ignacio Villanúa.");
         };
 
         socket.onclose = function() {

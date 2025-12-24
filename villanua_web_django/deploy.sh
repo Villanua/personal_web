@@ -21,7 +21,7 @@ echo "Deploying to Cloud Run..."
 gcloud run deploy "$SERVICE_NAME" \
   --region "$REGION" \
   --image "$IMAGE_NAME" \
-  --set-env-vars INSTANCE_CONNECTION_NAME="$PROJECT_ID:$REGION_SQL:$INSTANCE_NAME",CLOUDRUN_SERVICE_URLS='https://ignacio-villanua.com',SETTINGS_NAME='django_settings' \
+  --set-env-vars INSTANCE_CONNECTION_NAME="$PROJECT_ID:$REGION_SQL:$INSTANCE_NAME",CLOUDRUN_SERVICE_URLS='https://ignacio-villanua.com',SETTINGS_NAME='django_settings',CHAT_ACTIVATED=False \
   --add-cloudsql-instances "$PROJECT_ID:$REGION_SQL:$INSTANCE_NAME" \
   --allow-unauthenticated \
   --timeout 900

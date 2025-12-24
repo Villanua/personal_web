@@ -1,3 +1,4 @@
+import os
 import asyncio
 import json
 from asgiref.sync import sync_to_async
@@ -46,9 +47,15 @@ class AdaBotConsumer(AsyncWebsocketConsumer):
         )
 
         self.conversation = conversation
-
-        # Launch streaming response without blocking
-        asyncio.create_task(self.stream_llm_response(user_message))
+        if os.getenv("CHAT_ACTIVATED", "False") == "True":
+            # Launch streaming response without blocking
+            asyncio.create_task(self.stream_llm_response(user_message))
+        else:
+            await self.send(text_data=json.dumps({
+                "status": "error",
+                "message": "I'm sorry, I'm currently deactivated and cannot respond to you. Contact with the owner Ignacio Villanúa."
+            }))
+            await self.close()
 
     async def stream_llm_response(self, user_message):
         from .models import ChatMessage

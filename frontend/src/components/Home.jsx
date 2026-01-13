@@ -47,7 +47,7 @@ const Home = () => {
 
       <div className="z-10 text-center px-4 font-roboto font-thin">
         <motion.h1 
-          className="text-4xl md:text-8xl text-white mb-2 tracking-wider font-thin"
+          className="text-4xl md:text-8xl text-foreground mb-2 tracking-wider font-thin"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -55,7 +55,7 @@ const Home = () => {
           Welcome!
         </motion.h1>
         <motion.h2 
-          className="text-xl md:text-3xl text-gray-200 mb-1 font-thin"
+          className="text-xl md:text-3xl text-muted-foreground mb-1 font-thin"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -78,7 +78,7 @@ const Home = () => {
             href="https://www.linkedin.com/in/ignacio-villanua-cuenca/" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-white hover:text-white transition-opacity hover:opacity-80"
+            className="text-muted-foreground hover:text-foreground transition-colors"
             whileHover={{ scale: 1.1 }}
           >
             <Linkedin size={32} strokeWidth={1.5} />
@@ -87,7 +87,7 @@ const Home = () => {
             href="https://github.com/Villanua" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-white hover:text-white transition-opacity hover:opacity-80"
+            className="text-muted-foreground hover:text-foreground transition-colors"
             whileHover={{ scale: 1.1 }}
           >
             <Github size={32} strokeWidth={1.5} />
@@ -97,5 +97,6 @@ const Home = () => {
     </div>
   );
 };
+
 
 export default Home;

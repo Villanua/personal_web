@@ -7,47 +7,43 @@ const Navbar = () => {
   const [isProjectsOpen, setIsProjectsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-navbar-gradient border-b border-white/5 font-roboto">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border font-roboto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="flex-shrink-0">
-              <img 
-                src="/img/logo.png" 
-                alt="Logo" 
-                className="h-8 w-auto opacity-90 hover:opacity-100 transition-opacity" 
-                style={{ height: '2rem' }}
-              />
+            <Link to="/" className="flex-shrink-0 flex items-center gap-2">
+              <span className="font-semibold text-lg text-foreground">Villanua</span>
             </Link>
           </div>
           
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              <Link to="/about" className="text-white hover:text-gold-medium px-3 py-2 rounded-md text-base font-light transition-colors">
+            <div className="flex items-center space-x-8">
+              <Link to="/about" className="text-muted-foreground hover:text-foreground px-3 py-2 text-sm font-medium transition-colors">
                 About me
               </Link>
               
               <div className="relative">
                 <button 
                   onClick={() => setIsProjectsOpen(!isProjectsOpen)}
-                  className="text-white hover:text-gold-medium px-3 py-2 rounded-md text-base font-light flex items-center transition-colors"
+                  className="text-muted-foreground hover:text-foreground px-3 py-2 text-sm font-medium flex items-center transition-colors outline-none"
                 >
                   Projects <ChevronDown className="ml-1 w-4 h-4" />
                 </button>
                 
                 {isProjectsOpen && (
-                  <div className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-black/90 ring-1 ring-gold-dark/20 divide-y divide-white/5">
+                  <div className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-popover ring-1 ring-border divide-y divide-border">
                     <div className="py-1">
-                      <a href="https://github.com/Villanua/vectra_hw" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm text-gray-200 hover:bg-gold-deep/20 hover:text-white font-light">
+                      <a href="https://github.com/Villanua/vectra_hw" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm text-popover-foreground hover:bg-accent hover:text-accent-foreground">
                         Vectra (Work in progress)
                       </a>
-                      <a href="https://github.com/Villanua" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm text-gray-200 hover:bg-gold-deep/20 hover:text-white font-light">
+                      <a href="https://github.com/Villanua" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm text-popover-foreground hover:bg-accent hover:text-accent-foreground">
                         Ada (Work in progress)
                       </a>
                     </div>
                   </div>
                 )}
               </div>
+
             </div>
           </div>
 

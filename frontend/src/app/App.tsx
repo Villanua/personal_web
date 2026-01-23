@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, Mail, ChevronDown, Code, Brain, Cpu, BookOpen } from 'lucide-react';
+import { Github, Linkedin, Mail, ChevronDown, Code, Brain, Cpu, BookOpen, MessageSquare, Send, X, Bot } from 'lucide-react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import FullAboutMe from './FullAboutMe';
 import { Button } from '@/app/components/ui/button';
@@ -14,6 +14,107 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/app/components/ui/dialog";
+
+const Chatbot = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [input, setInput] = useState('');
+  const [messages, setMessages] = useState([
+    { role: 'assistant', text: "Hello! I'm N.V. Assistant. How can I help you today?" }
+  ]);
+  const chatEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    if (isOpen) scrollToBottom();
+  }, [messages, isOpen]);
+
+  const handleSend = () => {
+    if (!input.trim()) return;
+    const userMessage = { role: 'user', text: input };
+    setMessages(prev => [...prev, userMessage]);
+    setInput('');
+    setTimeout(() => {
+      setMessages(prev => [...prev, { 
+        role: 'assistant', 
+        text: "I am a demonstration of Nacho's engineering stack. He specializes in Robotics, AI, and Software Architecture. Feel free to explore his trajectory." 
+      }]);
+    }, 1000);
+  };
+
+  return (
+    <div className="fixed bottom-8 right-8 z-[100]">
+      <motion.button
+        onClick={() => setIsOpen(true)}
+        className="w-14 h-14 bg-zinc-900 text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform relative group"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <MessageSquare className="w-6 h-6" />
+        <span className="absolute right-full mr-4 bg-zinc-900 text-white text-[10px] uppercase tracking-[0.3em] py-2 px-4 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity rounded-none pointer-events-none">
+          Inquiry Assistant
+        </span>
+      </motion.button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 40, scale: 0.95 }}
+            className="absolute bottom-20 right-0 w-80 md:w-96 bg-white border border-zinc-100 shadow-2xl flex flex-col overflow-hidden"
+          >
+            <div className="bg-zinc-900 text-white p-6 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Bot className="w-4 h-4 text-zinc-400" />
+                <span className="text-[10px] uppercase tracking-[0.3em] font-bold">N.V. Assistant</span>
+              </div>
+              <button onClick={() => setIsOpen(false)} className="hover:rotate-90 transition-transform duration-300">
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="h-96 overflow-y-auto p-6 space-y-6 bg-zinc-50/30">
+              {messages.map((m, i) => (
+                <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                  <div className={`max-w-[85%] p-4 text-sm leading-relaxed ${
+                    m.role === 'user' 
+                    ? 'bg-zinc-900 text-white font-light' 
+                    : 'bg-white border border-zinc-100 text-zinc-600 font-light'
+                  }`}>
+                    {m.text}
+                  </div>
+                </div>
+              ))}
+              <div ref={chatEndRef} />
+            </div>
+
+            <div className="p-4 bg-white border-t border-zinc-100">
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                  placeholder="Ask anything..."
+                  className="flex-1 bg-zinc-50 border-none px-4 py-3 text-sm focus:ring-1 ring-zinc-200 outline-none transition-all placeholder:text-zinc-300 font-light"
+                />
+                <button 
+                  onClick={handleSend}
+                  className="w-12 h-12 bg-zinc-900 text-white flex items-center justify-center hover:bg-black transition-colors"
+                >
+                  <Send className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -76,7 +177,7 @@ export default function App() {
       period: 'Enero 2023 - Julio 2025',
       description: 'Liderazgo y desarrollo de proyectos de IA generativa, sistemas autónomos y robótica, desde la interacción con clientes hasta la implementación.',
       fullDetails: (
-        <div className="space-y-6 text-gray-700 leading-relaxed">
+        <div className="space-y-6 text-zinc-500 font-light leading-relaxed">
            <p>
               I work as a <strong>Software Developer at Acciona's Digital Hub</strong>, focusing on the <strong>design and development of innovative applications</strong> that bring cutting-edge technologies into real-world business solutions. While my main role is backend development, I've also contributed to frontend tasks across various projects.
             </p>
@@ -85,11 +186,11 @@ export default function App() {
             </p>
           
           <div>
-            <h4 className="font-semibold text-blue-700 mb-3 text-lg flex items-center gap-2">
+            <h4 className="font-semibold text-zinc-900 mb-4 text-lg flex items-center gap-2 tracking-tight">
                <Brain className="w-5 h-5" />
                Artificial Intelligence & Data Science Projects
             </h4>
-            <div className="space-y-4 pl-2 border-l-2 border-blue-100 ml-1">
+            <div className="space-y-4 pl-4 border-l border-zinc-200 ml-1">
                <p>
                  I've worked on a range of projects applying <strong>Machine Learning</strong> and <strong>Deep Learning</strong> techniques to extract insights, predict behaviors, and support data-driven decisions. My main focus has been on <strong>Generative AI</strong> and <strong>intelligent agent design</strong>, where I build tailored solutions that meet real client needs.
                </p>
@@ -106,16 +207,16 @@ export default function App() {
           </div>
 
           <div>
-             <h4 className="font-semibold text-blue-700 mb-3 text-lg flex items-center gap-2">
+             <h4 className="font-semibold text-zinc-900 mb-4 text-lg flex items-center gap-2 tracking-tight">
                <Cpu className="w-5 h-5" />
                Robotics Development
              </h4>
-             <div className="space-y-4 pl-2 border-l-2 border-blue-100 ml-1">
+             <div className="space-y-4 pl-4 border-l border-zinc-200 ml-1">
                <p>
                  I've worked with a wide range of <strong>robotic platforms</strong> across different domains, including <strong>collaborative manipulators</strong> and <strong>autonomous mobile robots</strong>. My experience includes programming and deploying systems using <strong>UR3</strong> and <strong>UR10</strong> robotic arms, as well as mobile platforms like <strong>Boston Dynamics Spot</strong>, <strong>Summit-XL</strong>, <strong>MiR</strong>, <strong>Bellabot</strong>, and <strong>Kettybot</strong>—each adapted to specific tasks in logistics, inspection, and human-robot interaction.
                </p>
                
-               <div className="flex flex-col md:flex-row gap-6 my-4 bg-gray-50 p-4 rounded-xl">
+               <div className="flex flex-col md:flex-row gap-6 my-4 bg-zinc-50 p-6 border border-zinc-100">
                   <div className="w-full md:w-1/3 shrink-0">
                      <img src="/img/me_spot.jpg" alt="About Me with Spot" className="rounded-lg shadow-md w-full object-cover" />
                   </div>
@@ -151,12 +252,12 @@ export default function App() {
            </p>
            <div className="grid grid-cols-2 gap-4 my-4">
               <figure className="text-center">
-                <img src="/img/slam3d.png" alt="SLAMAS" className="rounded-lg shadow-md border border-gray-100" />
-                <figcaption className="text-xs text-gray-500 mt-2">SLAMAS</figcaption>
+                <img src="/img/slam3d.png" alt="SLAMAS" className="shadow-2xl border border-zinc-100" />
+                <figcaption className="text-[10px] text-zinc-400 mt-2 uppercase tracking-widest">SLAMAS</figcaption>
               </figure>
               <figure className="text-center">
-                <img src="/img/segmentation.png" alt="Segmentation" className="rounded-lg shadow-md border border-gray-100" />
-                <figcaption className="text-xs text-gray-500 mt-2">Segmentation</figcaption>
+                <img src="/img/segmentation.png" alt="Segmentation" className="shadow-2xl border border-zinc-100" />
+                <figcaption className="text-[10px] text-zinc-400 mt-2 uppercase tracking-widest">Segmentation</figcaption>
               </figure>
            </div>
            <p>
@@ -185,24 +286,24 @@ export default function App() {
                 </p>
               </div>
               <div className="w-full md:w-1/3 shrink-0">
-                  <img src="/img/me_final_thesis.jpg" alt="About Me" className="rounded-lg shadow-lg border border-gray-100 w-full object-cover" />
+                  <img src="/img/me_final_thesis.jpg" alt="About Me" className="shadow-2xl border border-zinc-100 w-full object-cover" />
               </div>
            </div>
 
-           <div className="bg-blue-50/50 p-4 rounded-xl border border-blue-100">
-             <p className="text-sm text-blue-900">
-                My Bachelor's Thesis, titled <strong><i>"Estrategia de colaboración humano-robot en cirugía endonasal"</i> (Human-Robot Collaboration Strategy in Endonasal Surgery)</strong>, was part of the National Research Plan project <i>"Global Planner for a Robotic System for Anastomosis"</i>. The work contributed to the publication <i><a href="https://www.mdpi.com/1424-8220/21/7/2320" target="_blank" className="underline hover:text-blue-700">"Collaborative Robotic Assistant Platform for Endonasal Surgery: Preliminary In-Vitro Trials"</a></i>.
+           <div className="bg-zinc-50/50 p-6 border border-zinc-100">
+             <p className="text-sm text-zinc-900 font-light leading-relaxed">
+                My Bachelor's Thesis, titled <strong><i>"Estrategia de colaboración humano-robot en cirugía endonasal"</i> (Human-Robot Collaboration Strategy in Endonasal Surgery)</strong>, was part of the National Research Plan project <i>"Global Planner for a Robotic System for Anastomosis"</i>. The work contributed to the publication <i><a href="https://www.mdpi.com/1424-8220/21/7/2320" target="_blank" className="underline hover:text-zinc-600 transition-colors">"Collaborative Robotic Assistant Platform for Endonasal Surgery: Preliminary In-Vitro Trials"</a></i>.
              </p>
            </div>
 
             <div className="grid grid-cols-2 gap-4 my-4">
               <figure className="text-center">
-                <img src="/img/Craneeal_platform.png" alt='Craneeal platform' className="rounded-lg shadow-md border border-gray-100" />
-                <figcaption className="text-xs text-gray-500 mt-2">Craneeal platform</figcaption>
+                <img src="/img/Craneeal_platform.png" alt='Craneeal platform' className="shadow-2xl border border-zinc-100" />
+                <figcaption className="text-[10px] text-zinc-400 mt-2 uppercase tracking-widest">Craneeal platform</figcaption>
               </figure>
               <figure className="text-center">
-                <img src="/img/Craneeal_interface.png" alt='Craneeal interface' className="rounded-lg shadow-md border border-gray-100" />
-                <figcaption className="text-xs text-gray-500 mt-2">Craneeal interface</figcaption>
+                <img src="/img/Craneeal_interface.png" alt='Craneeal interface' className="shadow-2xl border border-zinc-100" />
+                <figcaption className="text-[10px] text-zinc-400 mt-2 uppercase tracking-widest">Craneeal interface</figcaption>
               </figure>
             </div>
 
@@ -247,29 +348,31 @@ export default function App() {
       <Route path="/" element={
         <div className="min-h-screen bg-white">
           {/* Navigation */}
-          <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
+          <nav className="fixed top-0 w-full bg-white/70 backdrop-blur-md z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex justify-between items-center h-16">
-                <div className="flex items-center gap-2">
-                  <Cpu className="w-6 h-6 text-blue-600" />
-                  <span className="font-semibold text-lg">Robótica & IA</span>
+              <div className="flex justify-between items-center h-20">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-zinc-900 rounded-full flex items-center justify-center">
+                    <Cpu className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="font-bold text-sm tracking-tighter uppercase">N. Villanúa</span>
                 </div>
-                <div className="hidden md:flex gap-8">
+                <div className="hidden md:flex gap-10">
                   <button 
                     onClick={() => scrollToSection('home')}
-                    className="text-gray-700 hover:text-blue-600 transition-colors"
+                    className="text-[13px] font-medium text-zinc-500 hover:text-zinc-900 transition-colors uppercase tracking-widest"
                   >
                     Home
                   </button>
                   <Link 
                     to="/about"
-                    className="text-gray-700 hover:text-blue-600 transition-colors"
+                    className="text-[13px] font-medium text-zinc-500 hover:text-zinc-900 transition-colors uppercase tracking-widest"
                   >
-                    About Me
+                    Trajectory
                   </Link>
                   <button 
                     onClick={() => scrollToSection('contact')}
-                    className="text-gray-700 hover:text-blue-600 transition-colors"
+                    className="text-[13px] font-medium text-zinc-500 hover:text-zinc-900 transition-colors uppercase tracking-widest"
                   >
                     Contact
                   </button>
@@ -282,29 +385,29 @@ export default function App() {
           <section id="home" className="h-screen flex items-center justify-center px-4 bg-white overflow-hidden relative">
             <div className="text-center z-10">
               <motion.div 
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="mb-8"
+                className="mb-12"
               >
-                <span className="text-blue-600 text-lg md:text-xl font-medium tracking-[0.2em] uppercase">
+                <span className="text-zinc-400 text-xs md:text-sm font-semibold tracking-[0.3em] uppercase">
                   Robotics & AI Engineer
                 </span>
               </motion.div>
               
               <div className="flex flex-col items-center justify-center">
-                <h1 className="text-4xl md:text-8xl font-black mb-4 text-gray-900 tracking-tight">
+                <h1 className="text-5xl md:text-9xl font-bold mb-4 text-zinc-900 tracking-tighter">
                   Building 
                 </h1>
-                <div className="h-24 md:h-32 flex items-center justify-center">
+                <div className="h-24 md:h-40 flex items-center justify-center">
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={currentWordIndex}
-                      initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
-                      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                      exit={{ opacity: 0, y: -40, filter: 'blur(10px)' }}
-                      transition={{ duration: 0.8, ease: "circOut" }}
-                      className="text-4xl md:text-8xl font-black text-blue-600 tracking-tight text-center"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      className="text-4xl md:text-9xl font-bold text-zinc-400 italic tracking-tighter text-center px-4"
                     >
                       {words[currentWordIndex]}
                     </motion.span>
@@ -315,113 +418,115 @@ export default function App() {
               <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1, duration: 1 }}
-                className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 cursor-pointer"
+                transition={{ delay: 1.5, duration: 1 }}
+                className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 cursor-pointer"
                 onClick={() => scrollToSection('about')}
               >
-                <span className="text-gray-400 text-sm uppercase tracking-widest font-medium">Scroll to explore</span>
+                <span className="text-zinc-400 text-[10px] uppercase tracking-[0.4em] font-bold">Discover</span>
                 <motion.div
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ repeat: Infinity, duration: 2 }}
+                  animate={{ y: [0, 8, 0] }}
+                  transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
                 >
-                  <ChevronDown className="w-6 h-6 text-blue-600" />
+                  <div className="w-[1px] h-12 bg-zinc-200 relative">
+                    <div className="absolute top-0 left-0 w-full h-1/2 bg-zinc-900" />
+                  </div>
                 </motion.div>
               </motion.div>
             </div>
           </section>
 
           {/* About Section */}
-          <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid md:grid-cols-2 gap-16 items-center mb-24">
+          <section id="about" className="py-32 px-4 sm:px-6 lg:px-8 bg-white border-t border-zinc-50">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-24 items-start mb-32">
                 <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8 }}
                 >
-                  <h2 className="text-4xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">About Me</h2>
-                  <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
+                  <h2 className="text-xs font-bold text-zinc-400 uppercase tracking-[0.2em] mb-8">Background</h2>
+                  <div className="space-y-8 text-xl text-zinc-600 leading-relaxed font-light">
                     <p>
-                      I'm <span className="text-blue-600 font-semibold">Nacho Villanúa</span>, a Robotics & AI Engineer with a deep passion for building systems that can perceive, reason, and act in the real world.
+                      I'm <span className="text-zinc-900 font-medium">Nacho Villanúa</span>, a Robotics & AI Engineer focused on building systems that perceive and interact with reality.
                     </p>
                     <p>
-                      My work focuses on the intersection of <span className="font-medium text-gray-900">Autonomous Robotics</span> and <span className="font-medium text-gray-900">Generative AI</span>. I specialize in developing intelligent agents, RAG systems, and software architectures for complex robotic platforms.
+                      My work explores the synergy between <span className="font-normal text-zinc-900 hover:text-zinc-500 transition-colors cursor-default underline decoration-zinc-200 underline-offset-8">Autonomous Systems</span> and <span className="font-normal text-zinc-900 hover:text-zinc-500 transition-colors cursor-default underline decoration-zinc-200 underline-offset-8">Generative AI</span>.
                     </p>
-                    <p>
+                    <p className="text-base text-zinc-400">
                       Con experiencia en entornos tanto de investigación como industriales, disfruto enfrentándome a desafíos que requieren una mezcla de rigor matemático e ingeniería creativa.
                     </p>
                   </div>
-                  <div className="mt-8">
+                  <div className="mt-12">
                     <Link to="/about">
-                      <Button className="bg-blue-600 hover:bg-blue-700 gap-2">
-                        Ver Trayectoria Completa
-                        <ChevronDown className="w-4 h-4 rotate-[270deg]" />
+                      <Button variant="outline" className="rounded-none border-zinc-900 px-8 py-6 text-xs uppercase tracking-widest hover:bg-zinc-900 hover:text-white transition-all duration-300">
+                        View Full Trajectory
                       </Button>
                     </Link>
                   </div>
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.8 }}
-                  className="relative"
+                  transition={{ duration: 1 }}
+                  className="relative group"
                 >
-                  <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl grayscale hover:grayscale-0 transition-all duration-700">
+                  <div className="aspect-[4/5] overflow-hidden bg-zinc-100">
                     <img 
                       src="/img/me.png"
                       alt="Nacho Villanúa"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover grayscale brightness-110 contrast-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000 ease-in-out"
                     />
                   </div>
-                  <div className="absolute -bottom-4 -right-4 w-full h-full border-2 border-blue-100 rounded-2xl -z-10"></div>
+                  <div className="absolute -inset-4 border border-zinc-100 -z-10 group-hover:inset-0 transition-all duration-700"></div>
                 </motion.div>
               </div>
 
               {/* Summary Sections */}
-              <div className="space-y-16 mt-16">
+              <div className="space-y-32">
                 {/* Experience Detail */}
-                <div className="space-y-8">
-                  <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-                    <Code className="w-8 h-8 text-blue-600" />
-                    Experiencia Profesional
-                  </h3>
+                <div className="space-y-12">
+                  <div className="flex items-end justify-between border-b border-zinc-100 pb-4">
+                    <h3 className="text-2xl font-bold text-zinc-900 tracking-tight">Professional Experience</h3>
+                    <span className="text-[10px] text-zinc-400 uppercase tracking-widest">01 / Experience</span>
+                  </div>
                   <div className="grid gap-6">
                     {experience.map((exp, index) => (
-                      <Card key={index} className="border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                        <CardHeader className="pb-2">
-                          <div className="flex justify-between items-start">
-                            <div>
-                              <CardTitle className="text-xl">{exp.role}</CardTitle>
-                              <CardDescription className="text-blue-600 font-medium">{exp.company}</CardDescription>
-                            </div>
-                            <Badge variant="secondary" className="bg-blue-50 text-blue-700 border-none">{exp.period}</Badge>
+                      <div key={index} className="group bg-zinc-50/50 border border-zinc-100/50 p-8 md:p-10 transition-all duration-500 hover:bg-zinc-50 hover:border-zinc-200 hover:shadow-sm">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                          <div className="space-y-1">
+                            <h4 className="text-xl md:text-2xl font-bold text-zinc-900 tracking-tight">{exp.role}</h4>
+                            <p className="text-sm text-zinc-400 font-semibold uppercase tracking-widest">{exp.company}</p>
                           </div>
-                        </CardHeader>
-                        <CardContent>
-                          <p className="text-gray-600 border-l-2 border-gray-100 pl-4">{exp.description}</p>
-                        </CardContent>
-                      </Card>
+                          <div className="text-right">
+                            <span className="text-xs text-zinc-400 font-mono tracking-tighter bg-white px-3 py-1 border border-zinc-100">{exp.period}</span>
+                          </div>
+                        </div>
+                        <div className="mt-6 max-w-3xl">
+                          <p className="text-sm text-zinc-500 leading-relaxed font-light">{exp.description}</p>
+                        </div>
+                      </div>
                     ))}
                   </div>
                 </div>
 
                 {/* Education Summary */}
-                <div className="space-y-8">
-                  <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-                    <BookOpen className="w-8 h-8 text-blue-600" />
-                    Formación Académica
-                  </h3>
-                  <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-12">
+                  <div className="flex items-end justify-between border-b border-zinc-100 pb-4">
+                    <h3 className="text-2xl font-bold text-zinc-900 tracking-tight">Academic Formation</h3>
+                    <span className="text-[10px] text-zinc-400 uppercase tracking-widest">02 / Education</span>
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-8">
                     {education.map((edu, index) => (
-                      <Card key={index} className="border-gray-100 shadow-sm">
-                        <CardHeader className="p-6">
-                          <CardTitle className="text-lg">{edu.degree}</CardTitle>
-                          <CardDescription className="text-gray-500">{edu.institution} | {edu.year}</CardDescription>
-                        </CardHeader>
-                      </Card>
+                      <div key={index} className="p-8 bg-zinc-50/50 border border-zinc-100/50 hover:bg-zinc-50 transition-colors flex flex-col justify-between group">
+                        <div className="space-y-4">
+                          <span className="text-[10px] text-zinc-400 font-mono italic bg-white px-2 py-1 border border-zinc-100 inline-block">{edu.year}</span>
+                          <h4 className="text-xl font-bold text-zinc-900 leading-tight group-hover:translate-x-1 transition-transform duration-300">{edu.degree}</h4>
+                          <p className="text-sm text-zinc-500 font-medium uppercase tracking-wider">{edu.institution}</p>
+                        </div>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -430,41 +535,43 @@ export default function App() {
           </section>
 
           {/* Contact Section */}
-          <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-4xl mb-6">Let's Work Together</h2>
-              <p className="text-xl text-gray-600 mb-8">
-                Interested in collaborating on robotics or AI projects? Feel free to contact me.
-              </p>
-              <div className="flex justify-center gap-4 flex-wrap">
-                <a href="mailto:ignacio.villanua@example.com">
-                  <Button className="bg-blue-600 hover:bg-blue-700 gap-2">
-                    <Mail className="w-4 h-4" />
-                    Send Email
-                  </Button>
+          <section id="contact" className="py-32 px-4 sm:px-6 lg:px-8 bg-zinc-900 text-white overflow-hidden relative">
+            <div className="max-w-4xl mx-auto text-center relative z-10">
+              <span className="text-[10px] text-zinc-500 uppercase tracking-[0.5em] mb-8 block">Project Inquiry</span>
+              <h2 className="text-4xl md:text-7xl font-bold mb-12 tracking-tighter text-white">Let's create something meaningful.</h2>
+              
+              <div className="flex flex-col md:flex-row justify-center items-center gap-12">
+                <a href="mailto:ignacio.villanua@example.com" className="group">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full border border-zinc-700 flex items-center justify-center group-hover:bg-white group-hover:border-white transition-all duration-300">
+                      <Mail className="w-5 h-5 text-white group-hover:text-black transition-colors" />
+                    </div>
+                    <span className="text-lg font-medium border-b border-zinc-700 group-hover:border-white transition-colors pb-1 uppercase tracking-widest text-[13px]">Email Me</span>
+                  </div>
                 </a>
-                <a href="https://linkedin.com/in/ignacio-villanua-cuenca/" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" className="gap-2">
-                    <Linkedin className="w-4 h-4" />
-                    LinkedIn
-                  </Button>
-                </a>
-                <a href="https://github.com/Villanua" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" className="gap-2">
-                    <Github className="w-4 h-4" />
-                    GitHub
-                  </Button>
-                </a>
+                <div className="flex gap-8">
+                  <a href="https://linkedin.com/in/ignacio-villanua-cuenca/" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors">
+                    <Linkedin className="w-6 h-6" />
+                  </a>
+                  <a href="https://github.com/Villanua" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors">
+                    <Github className="w-6 h-6" />
+                  </a>
+                </div>
               </div>
             </div>
           </section>
 
           {/* Footer */}
-          <footer className="py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
-            <div className="max-w-7xl mx-auto text-center text-gray-600">
-              <p>© 2026 Robotics & AI Engineer. All rights reserved.</p>
+          <footer className="py-12 px-4 sm:px-6 lg:px-8 bg-zinc-900 border-t border-zinc-800">
+            <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+              <span className="text-[10px] text-zinc-500 uppercase tracking-widest">© 2026 Nacho Villanúa</span>
+              <div className="flex gap-8">
+                <span className="text-[10px] text-zinc-500 uppercase tracking-widest">Madrid, ES</span>
+                <span className="text-[10px] text-zinc-500 uppercase tracking-widest">Built with precision</span>
+              </div>
             </div>
           </footer>
+          <Chatbot />
         </div>
       } />
     </Routes>

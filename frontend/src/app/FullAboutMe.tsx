@@ -15,147 +15,142 @@ import { Link } from 'react-router-dom';
 
 export default function FullAboutMe({ education, experience, courses, skills }: any) {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
+      <nav className="fixed top-0 w-full bg-white/70 backdrop-blur-md z-50 border-b border-zinc-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link to="/" className="flex items-center gap-2">
-              <Cpu className="w-6 h-6 text-blue-600" />
-              <span className="font-semibold text-lg">Robótica & IA</span>
+          <div className="flex justify-between items-center h-20">
+            <Link to="/" className="flex items-center gap-3 group">
+              <div className="w-8 h-8 bg-zinc-900 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Cpu className="w-4 h-4 text-white" />
+              </div>
+              <span className="font-bold text-sm tracking-tighter uppercase">N. Villanúa</span>
             </Link>
             <Link to="/">
-              <Button variant="ghost" className="gap-2">
-                <ChevronLeft className="w-4 h-4" />
-                Volver al Inicio
+              <Button variant="ghost" className="text-[10px] uppercase tracking-widest font-bold hover:bg-zinc-50 rounded-none px-6">
+                <ChevronLeft className="w-3 h-3 mr-2" />
+                Back to Home
               </Button>
             </Link>
           </div>
         </div>
       </nav>
 
-      <main className="pt-24 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <main className="pt-40 pb-32 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <section className="mb-20">
+          <section className="mb-32">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-5xl font-black text-gray-900 mb-6">Trayectoria Completa</h1>
-              <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
-                Aquí encontrarás todo el detalle de mi formación académica, experiencia profesional y las habilidades técnicas que he desarrollado a lo largo de mi carrera en el mundo de la ingeniería.
+              <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-12">Full Trajectory</h1>
+              <p className="text-xl text-zinc-500 max-w-2xl leading-relaxed font-light">
+                A detailed overview of my academic background, professional path, and the technical ecosystem I've built through years of engineering.
               </p>
             </motion.div>
           </section>
 
+          {/* Experience Section */}
+          <section className="mb-40">
+            <div className="flex items-end justify-between border-b border-zinc-100 pb-4 mb-12">
+              <h2 className="text-2xl font-bold tracking-tight">Professional Path</h2>
+              <span className="text-[10px] text-zinc-400 uppercase tracking-widest">01 / Experience</span>
+            </div>
+            <div className="space-y-1">
+              {experience.map((exp: any, index: number) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="group py-16 border-b border-zinc-50 last:border-0 hover:bg-zinc-50/50 transition-colors px-6 -mx-6">
+                    <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-8">
+                      <div>
+                        <h3 className="text-3xl font-medium tracking-tight mb-2 group-hover:translate-x-2 transition-transform duration-500">{exp.role}</h3>
+                        <div className="flex items-center gap-3">
+                          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-400">{exp.company}</span>
+                          <span className="w-1 h-1 bg-zinc-200 rounded-full"></span>
+                          <span className="text-xs font-mono text-zinc-400">{exp.period}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="prose prose-zinc max-w-4xl text-zinc-500 font-light leading-relaxed">
+                      {exp.fullDetails}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
           {/* Education Section */}
-          <section className="mb-24">
-            <h2 className="text-3xl font-bold mb-12 flex items-center gap-3">
-              <div className="w-2 h-10 bg-blue-600 rounded"></div>
-              Educación & Formación
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8">
+          <section className="mb-40">
+            <div className="flex items-end justify-between border-b border-zinc-100 pb-4 mb-20">
+              <h2 className="text-2xl font-bold tracking-tight">Academic Journey</h2>
+              <span className="text-[10px] text-zinc-400 uppercase tracking-widest">02 / Education</span>
+            </div>
+            <div className="grid gap-24">
               {education.map((edu: any, index: number) => (
-                <Card key={index} className="border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                  <CardHeader>
-                    <div className="flex justify-between items-start mb-2">
-                      <Badge variant="outline" className="text-blue-600 border-blue-100">{edu.year}</Badge>
-                    </div>
-                    <CardTitle className="text-2xl">{edu.degree}</CardTitle>
-                    <CardDescription className="text-blue-600 font-medium">{edu.institution}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="bg-gray-50 p-4 rounded-xl text-gray-700 leading-relaxed">
-                      {edu.fullDetails}
-                    </div>
-                  </CardContent>
-                </Card>
+                <div key={index} className="grid md:grid-cols-3 gap-12">
+                  <div className="space-y-4">
+                    <span className="text-[10px] font-mono text-zinc-400 italic block">{edu.year}</span>
+                    <h3 className="text-xl font-bold tracking-tight leading-tight">{edu.degree}</h3>
+                    <p className="text-sm uppercase tracking-widest font-semibold text-zinc-400">{edu.institution}</p>
+                  </div>
+                  <div className="md:col-span-2 prose prose-zinc text-zinc-500 font-light leading-relaxed">
+                    {edu.fullDetails}
+                  </div>
+                </div>
               ))}
             </div>
 
-            <div className="mt-12 bg-gray-50 rounded-2xl p-8">
-              <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                Cursos & Certificaciones Adicionales
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="mt-32 pt-20 border-t border-zinc-100">
+              <h3 className="text-xs font-bold uppercase tracking-[0.3em] mb-12 text-zinc-400">Certifications & Courses</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-100 border border-zinc-100">
                 {courses.map((course: any, index: number) => (
-                  <div key={index} className="bg-white p-4 rounded-xl border border-gray-100 flex justify-between items-center shadow-sm">
-                    <span className="text-gray-800 font-medium text-sm">{course.name}</span>
-                    <span className="text-gray-400 text-xs">{course.year}</span>
+                  <div key={index} className="bg-white p-8 flex flex-col justify-between hover:bg-zinc-50 transition-colors">
+                    <span className="text-zinc-900 font-medium mb-4 leading-snug">{course.name}</span>
+                    <span className="text-[10px] font-mono text-zinc-300">{course.year}</span>
                   </div>
                 ))}
               </div>
             </div>
           </section>
 
-          {/* Experience Section */}
-          <section className="mb-24">
-            <h2 className="text-3xl font-bold mb-12 flex items-center gap-3">
-              <div className="w-2 h-10 bg-blue-600 rounded"></div>
-              Experiencia Profesional
-            </h2>
-            <div className="space-y-8">
-              {experience.map((exp: any, index: number) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className="border-gray-100 overflow-hidden">
-                    <div className="bg-blue-600 h-1 w-full" />
-                    <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
-                      <div>
-                        <CardTitle className="text-2xl font-bold">{exp.role}</CardTitle>
-                        <CardDescription className="text-blue-600 text-lg font-medium">{exp.company}</CardDescription>
-                      </div>
-                      <Badge className="bg-blue-50 text-blue-700 hover:bg-blue-100 border-none">{exp.period}</Badge>
-                    </CardHeader>
-                    <CardContent className="pt-4">
-                      <div className="prose prose-blue max-w-none text-gray-700">
-                        {exp.fullDetails}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </section>
-
           {/* Skills Section */}
           <section>
-            <h2 className="text-3xl font-bold mb-12 flex items-center gap-3">
-              <div className="w-2 h-10 bg-blue-600 rounded"></div>
-              Ecosistema Técnico
-            </h2>
-            <div className="bg-gray-900 rounded-3xl p-8 md:p-12 text-white">
-              <div className="flex flex-wrap gap-4">
-                {skills.map((skill: string, index: number) => (
-                  <Badge 
-                    key={index} 
-                    className="bg-white/10 hover:bg-white/20 text-white border-white/10 px-6 py-3 text-lg font-light rounded-full transition-colors"
-                  >
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
+            <div className="flex items-end justify-between border-b border-zinc-100 pb-4 mb-16">
+              <h2 className="text-2xl font-bold tracking-tight">Technical Ecosystem</h2>
+              <span className="text-[10px] text-zinc-400 uppercase tracking-widest">03 / Skills</span>
+            </div>
+            <div className="flex flex-wrap gap-x-12 gap-y-8">
+              {skills.map((skill: string, index: number) => (
+                <span 
+                  key={index} 
+                  className="text-4xl md:text-6xl font-bold text-zinc-100 hover:text-zinc-900 transition-colors duration-500 cursor-default tracking-tighter"
+                >
+                  {skill}
+                </span>
+              ))}
             </div>
           </section>
         </div>
       </main>
 
-      <footer className="py-12 bg-gray-50 border-t border-gray-100">
+      <footer className="py-20 bg-zinc-900 text-white">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-gray-500 mb-6">© 2026 Nacho Villanúa. Robotics & AI Engineer.</p>
-          <div className="flex justify-center gap-6">
-            <a href="https://github.com/Villanua" className="text-gray-400 hover:text-blue-600 transition-colors"><Github className="w-6 h-6" /></a>
-            <a href="https://linkedin.com/in/ignacio-villanua-cuenca/" className="text-gray-400 hover:text-blue-600 transition-colors"><Linkedin className="w-6 h-6" /></a>
-            <a href="mailto:ignacio.villanua@example.com" className="text-gray-400 hover:text-blue-600 transition-colors"><Mail className="w-6 h-6" /></a>
+          <p className="text-[10px] uppercase tracking-[0.4em] text-zinc-500 mb-12">Built with Precision • 2026</p>
+          <div className="flex justify-center gap-12">
+            <a href="https://github.com/Villanua" className="text-zinc-500 hover:text-white transition-colors"><Github className="w-5 h-5" /></a>
+            <a href="https://linkedin.com/in/ignacio-villanua-cuenca/" className="text-zinc-500 hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></a>
+            <a href="mailto:ignacio.villanua@example.com" className="text-zinc-500 hover:text-white transition-colors"><Mail className="w-5 h-5" /></a>
           </div>
         </div>
       </footer>
     </div>
   );
 }
+

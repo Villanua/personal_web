@@ -1,5 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Mail, ChevronDown, Code, Brain, Cpu, BookOpen } from 'lucide-react';
+import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import FullAboutMe from './FullAboutMe';
 import { Button } from '@/app/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/app/components/ui/card';
 import { Badge } from '@/app/components/ui/badge';
@@ -14,8 +17,26 @@ import {
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const words = ["Robotics", "AI", "Software Development"];
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentWordIndex((prev) => (prev + 1) % words.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
+    if (window.location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      return;
+    }
     setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
     if (element) {
@@ -214,307 +235,238 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-2">
-              <Cpu className="w-6 h-6 text-blue-600" />
-              <span className="font-semibold text-lg">Robótica & IA</span>
-            </div>
-            <div className="hidden md:flex gap-8">
-              <button 
-                onClick={() => scrollToSection('home')}
-                className="text-gray-700 hover:text-blue-600 transition-colors"
-              >
-                Home
-              </button>
-              <button 
-                onClick={() => scrollToSection('about')}
-                className="text-gray-700 hover:text-blue-600 transition-colors"
-              >
-                About Me
-              </button>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="text-gray-700 hover:text-blue-600 transition-colors"
-              >
-                Contact
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <section id="home" className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <Brain className="w-5 h-5 text-blue-600" />
-                <span className="text-blue-600">Robotics & AI Engineer</span>
-              </div>
-              <h1 className="text-5xl mb-6">
-                Building the future of intelligent robotics
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Specialized in autonomous systems, computer vision, and machine learning applied to robotics.
-              </p>
-              <div className="flex gap-4 flex-wrap">
-                <Button onClick={() => scrollToSection('about')} className="bg-blue-600 hover:bg-blue-700">
-                  Know More
-                  <ChevronDown className="ml-2 w-4 h-4" />
-                </Button>
-                <Button variant="outline" onClick={() => scrollToSection('contact')}>
-                  Contact
-                </Button>
-              </div>
-              <div className="flex gap-4 mt-8">
-                <a href="https://github.com/Villanua" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600 transition-colors">
-                  <Github className="w-6 h-6" />
-                </a>
-                <a href="https://linkedin.com/in/ignacio-villanua-cuenca/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600 transition-colors">
-                  <Linkedin className="w-6 h-6" />
-                </a>
-                <a href="mailto:ignacio.villanua@example.com" className="text-gray-600 hover:text-blue-600 transition-colors">
-                  <Mail className="w-6 h-6" />
-                </a>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-blue-100 to-purple-100">
-                <img 
-                  src="/img/me.png"
-                  alt="Profile"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg border border-gray-200">
+    <Routes>
+      <Route path="/about" element={
+        <FullAboutMe 
+          education={education} 
+          experience={experience} 
+          courses={courses} 
+          skills={skills} 
+        />
+      } />
+      <Route path="/" element={
+        <div className="min-h-screen bg-white">
+          {/* Navigation */}
+          <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex justify-between items-center h-16">
                 <div className="flex items-center gap-2">
-                  <Code className="w-5 h-5 text-blue-600" />
-                  <div>
-                    <div className="text-sm text-gray-600">Active Projects</div>
-                    <div className="font-semibold">2+ on GitHub</div>
+                  <Cpu className="w-6 h-6 text-blue-600" />
+                  <span className="font-semibold text-lg">Robótica & IA</span>
+                </div>
+                <div className="hidden md:flex gap-8">
+                  <button 
+                    onClick={() => scrollToSection('home')}
+                    className="text-gray-700 hover:text-blue-600 transition-colors"
+                  >
+                    Home
+                  </button>
+                  <Link 
+                    to="/about"
+                    className="text-gray-700 hover:text-blue-600 transition-colors"
+                  >
+                    About Me
+                  </Link>
+                  <button 
+                    onClick={() => scrollToSection('contact')}
+                    className="text-gray-700 hover:text-blue-600 transition-colors"
+                  >
+                    Contact
+                  </button>
+                </div>
+              </div>
+            </div>
+          </nav>
+
+          {/* Hero Section */}
+          <section id="home" className="h-screen flex items-center justify-center px-4 bg-white overflow-hidden relative">
+            <div className="text-center z-10">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="mb-8"
+              >
+                <span className="text-blue-600 text-lg md:text-xl font-medium tracking-[0.2em] uppercase">
+                  Robotics & AI Engineer
+                </span>
+              </motion.div>
+              
+              <div className="flex flex-col items-center justify-center">
+                <h1 className="text-4xl md:text-8xl font-black mb-4 text-gray-900 tracking-tight">
+                  Building 
+                </h1>
+                <div className="h-24 md:h-32 flex items-center justify-center">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={currentWordIndex}
+                      initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
+                      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                      exit={{ opacity: 0, y: -40, filter: 'blur(10px)' }}
+                      transition={{ duration: 0.8, ease: "circOut" }}
+                      className="text-4xl md:text-8xl font-black text-blue-600 tracking-tight text-center"
+                    >
+                      {words[currentWordIndex]}
+                    </motion.span>
+                  </AnimatePresence>
+                </div>
+              </div>
+
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 1 }}
+                className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 cursor-pointer"
+                onClick={() => scrollToSection('about')}
+              >
+                <span className="text-gray-400 text-sm uppercase tracking-widest font-medium">Scroll to explore</span>
+                <motion.div
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{ repeat: Infinity, duration: 2 }}
+                >
+                  <ChevronDown className="w-6 h-6 text-blue-600" />
+                </motion.div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* About Section */}
+          <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-16 items-center mb-24">
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                >
+                  <h2 className="text-4xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">About Me</h2>
+                  <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
+                    <p>
+                      I'm <span className="text-blue-600 font-semibold">Nacho Villanúa</span>, a Robotics & AI Engineer with a deep passion for building systems that can perceive, reason, and act in the real world.
+                    </p>
+                    <p>
+                      My work focuses on the intersection of <span className="font-medium text-gray-900">Autonomous Robotics</span> and <span className="font-medium text-gray-900">Generative AI</span>. I specialize in developing intelligent agents, RAG systems, and software architectures for complex robotic platforms.
+                    </p>
+                    <p>
+                      Con experiencia en entornos tanto de investigación como industriales, disfruto enfrentándome a desafíos que requieren una mezcla de rigor matemático e ingeniería creativa.
+                    </p>
+                  </div>
+                  <div className="mt-8">
+                    <Link to="/about">
+                      <Button className="bg-blue-600 hover:bg-blue-700 gap-2">
+                        Ver Trayectoria Completa
+                        <ChevronDown className="w-4 h-4 rotate-[270deg]" />
+                      </Button>
+                    </Link>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className="relative"
+                >
+                  <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl grayscale hover:grayscale-0 transition-all duration-700">
+                    <img 
+                      src="/img/me.png"
+                      alt="Nacho Villanúa"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="absolute -bottom-4 -right-4 w-full h-full border-2 border-blue-100 rounded-2xl -z-10"></div>
+                </motion.div>
+              </div>
+
+              {/* Summary Sections */}
+              <div className="space-y-16 mt-16">
+                {/* Experience Detail */}
+                <div className="space-y-8">
+                  <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
+                    <Code className="w-8 h-8 text-blue-600" />
+                    Experiencia Profesional
+                  </h3>
+                  <div className="grid gap-6">
+                    {experience.map((exp, index) => (
+                      <Card key={index} className="border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                        <CardHeader className="pb-2">
+                          <div className="flex justify-between items-start">
+                            <div>
+                              <CardTitle className="text-xl">{exp.role}</CardTitle>
+                              <CardDescription className="text-blue-600 font-medium">{exp.company}</CardDescription>
+                            </div>
+                            <Badge variant="secondary" className="bg-blue-50 text-blue-700 border-none">{exp.period}</Badge>
+                          </div>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-gray-600 border-l-2 border-gray-100 pl-4">{exp.description}</p>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Education Summary */}
+                <div className="space-y-8">
+                  <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
+                    <BookOpen className="w-8 h-8 text-blue-600" />
+                    Formación Académica
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {education.map((edu, index) => (
+                      <Card key={index} className="border-gray-100 shadow-sm">
+                        <CardHeader className="p-6">
+                          <CardTitle className="text-lg">{edu.degree}</CardTitle>
+                          <CardDescription className="text-gray-500">{edu.institution} | {edu.year}</CardDescription>
+                        </CardHeader>
+                      </Card>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl mb-4">About Me</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Engineer passionate about the intersection between robotics and artificial intelligence.
-            </p>
-          </div>
-
-          {/* Education */}
-          <div className="mb-16">
-            <h3 className="text-2xl mb-8 flex items-center gap-2">
-              <div className="w-1 h-8 bg-blue-600 rounded"></div>
-              Formación Académica
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {education.map((edu, index) => (
-                <Dialog key={index}>
-                  <Card className="h-full flex flex-col">
-                    <CardHeader>
-                      <CardTitle className="leading-tight text-lg">{edu.degree}</CardTitle>
-                      <CardDescription>{edu.institution}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                      <p className="text-sm text-gray-600 mb-2">{edu.year}</p>
-                      <p className="text-sm text-gray-700">{edu.details}</p>
-                    </CardContent>
-                    <CardFooter>
-                      <DialogTrigger asChild>
-                        <Button variant="secondary" size="sm" className="w-full gap-2">
-                          <BookOpen className="w-4 h-4" />
-                          Ver detalles
-                        </Button>
-                      </DialogTrigger>
-                    </CardFooter>
-                  </Card>
-                  
-                  <DialogContent className="max-w-lg">
-                    <DialogHeader>
-                      <DialogTitle className="text-xl">{edu.degree}</DialogTitle>
-                      <DialogDescription className="text-base text-blue-600">
-                        {edu.institution} • {edu.year}
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="mt-4">
-                      <h4 className="font-semibold mb-2 text-sm text-gray-900">Detalle del programa y TFG/TFM</h4>
-                      <p className="text-gray-600 leading-relaxed text-justify">
-                        {edu.fullDetails}
-                      </p>
-                    </div>
-                  </DialogContent>
-                </Dialog>
-              ))}
-            </div>
-            
-            <div className="mt-8 text-center">
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant="outline" className="gap-2">
-                    <BookOpen className="w-4 h-4" />
-                    Ver formación completa
+          {/* Contact Section */}
+          <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-4xl mb-6">Let's Work Together</h2>
+              <p className="text-xl text-gray-600 mb-8">
+                Interested in collaborating on robotics or AI projects? Feel free to contact me.
+              </p>
+              <div className="flex justify-center gap-4 flex-wrap">
+                <a href="mailto:ignacio.villanua@example.com">
+                  <Button className="bg-blue-600 hover:bg-blue-700 gap-2">
+                    <Mail className="w-4 h-4" />
+                    Send Email
                   </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-                  <DialogHeader>
-                    <DialogTitle>Formación Académica Detallada</DialogTitle>
-                    <DialogDescription>
-                      Detalle de titulaciones universitarias y cursos complementarios.
-                    </DialogDescription>
-                  </DialogHeader>
-                  
-                  <div className="space-y-6 mt-4">
-                    <div className="space-y-4">
-                      <h4 className="text-lg font-semibold flex items-center gap-2">
-                        <div className="w-1 h-6 bg-blue-600 rounded"></div>
-                        Titulaciones
-                      </h4>
-                      {education.map((edu, index) => (
-                         <div key={index} className="border-l-2 border-gray-100 pl-4 py-1">
-                            <h5 className="font-medium text-gray-900">{edu.degree}</h5>
-                            <p className="text-sm text-blue-600 mb-2">{edu.institution} | {edu.year}</p>
-                            <p className="text-sm text-gray-600 leading-relaxed">{edu.fullDetails}</p>
-                         </div>
-                      ))}
-                    </div>
-
-                    <div className="space-y-4">
-                       <h4 className="text-lg font-semibold flex items-center gap-2">
-                        <div className="w-1 h-6 bg-blue-600 rounded"></div>
-                        Cursos y Certificaciones
-                      </h4>
-                      <ul className="grid gap-2">
-                        {courses.map((course, index) => (
-                          <li key={index} className="flex justify-between items-center text-sm p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                            <span className="text-gray-700 font-medium">{course.name}</span>
-                            <span className="text-gray-500 text-xs bg-white px-2 py-1 rounded border border-gray-200 shadow-sm">{course.year}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </DialogContent>
-              </Dialog>
+                </a>
+                <a href="https://linkedin.com/in/ignacio-villanua-cuenca/" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="gap-2">
+                    <Linkedin className="w-4 h-4" />
+                    LinkedIn
+                  </Button>
+                </a>
+                <a href="https://github.com/Villanua" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="gap-2">
+                    <Github className="w-4 h-4" />
+                    GitHub
+                  </Button>
+                </a>
+              </div>
             </div>
-          </div>
+          </section>
 
-          {/* Experience */}
-          <div className="mb-16">
-            <h3 className="text-2xl mb-8 flex items-center gap-2">
-              <div className="w-1 h-8 bg-blue-600 rounded"></div>
-              Professional Experience
-            </h3>
-            <div className="space-y-6">
-              {experience.map((exp, index) => (
-                <Dialog key={index}>
-                  <Card>
-                    <CardHeader>
-                      <div className="flex justify-between items-start flex-wrap gap-2">
-                        <div>
-                          <CardTitle>{exp.role}</CardTitle>
-                          <CardDescription>{exp.company}</CardDescription>
-                        </div>
-                        <Badge variant="secondary">{exp.period}</Badge>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-700 mb-4">{exp.description}</p>
-                      <DialogTrigger asChild>
-                        <Button variant="outline" size="sm" className="gap-2">
-                          <Code className="w-4 h-4" />
-                          Ver detalles del puesto
-                        </Button>
-                      </DialogTrigger>
-                    </CardContent>
-                  </Card>
-                  
-                  <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
-                    <DialogHeader>
-                      <DialogTitle className="text-xl flex items-center gap-2">
-                        {exp.role} 
-                        <span className="text-gray-400 font-normal text-base">at</span> 
-                        <span className="text-blue-600">{exp.company}</span>
-                      </DialogTitle>
-                      <DialogDescription>
-                        {exp.period}
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="mt-4 text-gray-700">
-                      {exp.fullDetails}
-                    </div>
-                  </DialogContent>
-                </Dialog>
-              ))}
+          {/* Footer */}
+          <footer className="py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
+            <div className="max-w-7xl mx-auto text-center text-gray-600">
+              <p>© 2026 Robotics & AI Engineer. All rights reserved.</p>
             </div>
-          </div>
-
-          {/* Skills */}
-          <div>
-            <h3 className="text-2xl mb-8 flex items-center gap-2">
-              <div className="w-1 h-8 bg-blue-600 rounded"></div>
-              Technical Skills
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {skills.map((skill, index) => (
-                <Badge key={index} variant="outline" className="px-4 py-2 text-sm">
-                  {skill}
-                </Badge>
-              ))}
-            </div>
-          </div>
+          </footer>
         </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-4xl mb-6">Let's Work Together</h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Interested in collaborating on robotics or AI projects? Feel free to contact me.
-          </p>
-          <div className="flex justify-center gap-4 flex-wrap">
-            <a href="mailto:ignacio.villanua@example.com">
-              <Button className="bg-blue-600 hover:bg-blue-700 gap-2">
-                <Mail className="w-4 h-4" />
-                Send Email
-              </Button>
-            </a>
-            <a href="https://linkedin.com/in/ignacio-villanua-cuenca/" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" className="gap-2">
-                <Linkedin className="w-4 h-4" />
-                LinkedIn
-              </Button>
-            </a>
-            <a href="https://github.com/Villanua" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" className="gap-2">
-                <Github className="w-4 h-4" />
-                GitHub
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
-        <div className="max-w-7xl mx-auto text-center text-gray-600">
-          <p>© 2026 Robotics & AI Engineer. All rights reserved.</p>
-        </div>
-      </footer>
-    </div>
+      } />
+    </Routes>
   );
 }

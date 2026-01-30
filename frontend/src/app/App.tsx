@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 import { useLanguage } from './i18n';
 import { dataTranslations, skillsData } from './i18n/data';
 
@@ -26,6 +27,10 @@ export default function App() {
             skills={skillsData} 
           />
         } 
+      />
+      <Route 
+        path="/contact" 
+        element={<ContactPage />} 
       />
     </Routes>
   );

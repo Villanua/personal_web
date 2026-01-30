@@ -1,0 +1,90 @@
+# Nacho Villanúa
+
+## Summary
+I am a Robotics & AI engineer, passionate about continuous learning. My love for mathematics and physics, along with a deep curiosity about how the world works, has driven me to take on the exciting challenges of robotics and artificial intelligence.
+
+I specialize in software development for robotic platforms and AI-powered applications, with a strong focus on Generative AI and intelligent agents. I also have experience in web interfaces and deploying solutions on Google Cloud Platform, always aiming to build systems that are both technically solid and practically valuable.
+
+## Contact Information
+- **Email**: NachoViCu16@gmail.com
+- **LinkedIn**: https://linkedin.com/in/ignacio-villanua-cuenca/
+- **GitHub**: https://github.com/Villanua
+- **Website**: https://ignacio-villanua.com/
+
+## Professional Experience
+
+### Teaching Assistant, Mobile Robotics | ICAI Comillas
+**January 2026 - Present**
+Delivering practical sessions on autonomous navigation, localization, and control of robotic systems for undergraduate students.
+
+### Software Developer | Syntonize
+**July 2025 - Present**
+Consulting for UNIR (Proeduca) on generative AI applications, including NLP and Predictive Marketing.
+
+### Software Developer @ Digital Hub | Acciona
+**January 2023 - July 2025**
+
+I work as a Software Developer at Acciona's Digital Hub, focusing on the design and development of innovative applications that bring cutting-edge technologies into real-world business solutions. While my main role is backend development, I've also contributed to frontend tasks across various projects.
+
+I've been involved in projects from their earliest stages: gathering requirements directly from clients, analyzing their needs, designing system architectures, planning resources and timelines, and developing the final product. I also participate in follow-up meetings to align progress with client expectations and iteratively improve our solutions.
+
+#### Artificial Intelligence & Data Science Projects
+
+I've worked on a range of projects applying Machine Learning and Deep Learning techniques to extract insights, predict behaviors, and support data-driven decisions. My main focus has been on Generative AI and intelligent agent design, where I build tailored solutions that meet real client needs.
+
+This includes developing customized RAG (Retrieval-Augmented Generation) systems with Human-in-the-Loop pipelines, creating autonomous agents capable of executing Python code, performing live web searches, or analyzing documents across modalities (text, image, tables). I've also designed agents capable of detecting inconsistencies across document bases or finding contradictions based in Knowledge Graphs.
+
+I've built agents using frameworks like LangChain and LangGraph, adapting their architectures to specific workflows and integration needs. I've also worked on applying Knowledge Graphs to structure unorganized data into meaningful graph-based relationships—helping define dependencies, enhance semantic search, and support reasoning tasks in larger systems.
+
+Additionally, I've performed fine-tuning both locally and in the cloud, applying techniques like LoRA and model quantization. This includes local fine-tuning of models such as Deepseek and Gemma, as well as cloud-based fine-tuning of Gemini 2.0 on Google Cloud Platform. These efforts have allowed me to adapt LLMs to domain-specific needs and optimize their performance for real-world use cases.
+
+#### Robotics Development
+
+I've worked with a wide range of robotic platforms across different domains, including collaborative manipulators and autonomous mobile robots. My experience includes programming and deploying systems using UR3 and UR10 robotic arms, as well as mobile platforms like Boston Dynamics Spot, Summit-XL, MiR, Bellabot, and Kettybot—each adapted to specific tasks in logistics, inspection, and human-robot interaction.
+
+For robotic arms, I've integrated peripherals such as elevators, conveyors, and custom grippers, creating complex automation workflows. On mobile robots, I've implemented localization systems using EKF and AMCL, built mission behavior logic through C++ state machines, and developed planning systems using SQLite databases for task sequencing and navigation.
+
+I've also built web interfaces connected to ROS via ROSBridge to allow intuitive control and monitoring, enhancing accessibility for operators and non-technical users. Additionally, I've managed field deployments and recovery procedures for real-world use cases, such as autonomous disinfection, event participation, and campus surveillance.
+
+## Education
+
+### Master's Degree in Robotics and Automation | Universidad Carlos III de Madrid
+**2023**
+
+I earned a Master's Degree in Robotics and Automation from Universidad Carlos III de Madrid, where I advanced my knowledge in intelligent control, machine learning, computer vision, medical robotics, humanoids, and mobile robotics.
+
+My Master's Thesis, "Simultaneous Localization and Mapping and Segmentation", focused on mobile robotics and spatial understanding. I developed a SLAM algorithm capable of generating 2D and 3D maps using point cloud registration techniques such as ICP and NDT, integrated through pose graphs.
+
+I implemented a segmentation pipeline for door and room detection using computer vision techniques, including watershed algorithms and multi-method fusion for robust detection. These components allowed me to build topological maps from geometric data, enabling structured, high-level navigation for autonomous robots.
+
+### Bachelor's Degree in Industrial Technologies Engineering | Universidad de Málaga
+**2021**
+
+I earned my Bachelor's Degree in Industrial Technologies Engineering at the University of Málaga. This multidisciplinary program provided a broad and solid understanding of engineering fundamentals, including mechanics, structural analysis, electrical systems, thermodynamics, fluid dynamics, and control theory.
+
+Beyond the core subjects, the degree emphasized analytical thinking and problem-solving, equipping me with the ability to understand and model complex systems and to approach challenges from a systemic perspective.
+
+My Bachelor's Thesis, titled "Estrategia de colaboración humano-robot en cirugía endonasal" (Human-Robot Collaboration Strategy in Endonasal Surgery), was part of the National Research Plan project "Global Planner for a Robotic System for Anastomosis". The work contributed to the publication "Collaborative Robotic Assistant Platform for Endonasal Surgery: Preliminary In-Vitro Trials".
+
+The CRANEEAL system consists of two robotic arms (one autonomous, one teleoperated via haptic interface), force sensors, and a ROS-based software architecture for seamless integration. I designed a virtual obstacle generation module to improve surgical safety through force feedback and collision avoidance.
+
+I developed a custom camera calibration setup to ensure accurate mapping between 3D environments and 2D vision, using a 3D-printed calibration piece. For human-robot interaction, I implemented a state machine based on an ontology, allowing autonomous and teleoperated mode switching through computer vision and Markov models.
+
+To unify all modules, I built a web-based interface that enables real-time monitoring and control, offering intuitive access to the system's autonomous and manual functions.
+
+I specialized in the field of automation and electronics, where I studied industrial and collaborative robotics, computer vision, digital and analog electronics, as well as machine learning and deep learning techniques applied to intelligent systems.
+
+## Skills
+
+- **Languages:** Python, C++
+- **Robotics:** ROS/ROS2, SLAM, Robot Manipulation, OpenCV
+- **AI/ML:** TensorFlow, PyTorch, Generative AI, Deep Learning, Reinforcement Learning, LangChain
+- **Cloud/DevOps:** GCP, Docker, Linux, Git
+
+## Courses & Certifications
+
+- **2024:** LangGraph - Develop LLM AI agents with LangGraph
+- **2024:** LangChain - Develop LLM applications with LangChain
+- **2024:** Introduction to Monte Carlo Methods
+- **2023:** Responsive Web Design
+- **2022:** Introduction to ROS (Robot Operating System)

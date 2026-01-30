@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion';
-import { Mail } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Mail, Plus, Minus, BrainCircuit, Bot, ChevronRight } from 'lucide-react';
+import { useState } from 'react';
 import Navigation from '../components/Navigation';
 import ExpandableSection from '../components/ExpandableSection';
 import EducationCard from '../components/EducationCard';
@@ -15,6 +16,7 @@ interface AboutPageProps {
 export default function AboutPage({ education, experience, courses, skills }: AboutPageProps) {
   const lang = useLanguage();
   const t = translations[lang];
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const handleScrollToSection = () => {};
 
@@ -79,108 +81,104 @@ export default function AboutPage({ education, experience, courses, skills }: Ab
               <h2 className="text-2xl font-bold tracking-tight">{t.professionalPath}</h2>
               <span className="text-[10px] text-zinc-400 uppercase tracking-widest">{t.experienceLabel}</span>
             </motion.div>
-            <div className="space-y-1">
-              {experience.map((exp: any, index: number) => {
-                // Detailed expandable card for Acciona
-                if (exp.company === 'Acciona') {
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 40 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-80px" }}
-                      transition={{ duration: 0.7, delay: index * 0.1 }}
-                    >
-                      <div className="group py-16 border-b border-zinc-50 last:border-0 hover:bg-zinc-50/30 transition-all duration-300 px-6 -mx-6 rounded-lg">
-                        <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-8">
-                          <div>
-                            <h3 className="text-3xl font-medium tracking-tight mb-2 group-hover:translate-x-2 transition-transform duration-500">
-                              {exp.role}
-                            </h3>
-                            <div className="flex items-center gap-3">
-                              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-400">{exp.company}</span>
-                              <span className="w-1 h-1 bg-zinc-200 rounded-full"></span>
-                              <span className="text-xs font-mono text-zinc-400">{exp.period}</span>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <motion.div 
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.2, duration: 0.6 }}
-                          className="max-w-4xl"
-                        >
-                          <div className="grid md:grid-cols-2 gap-12">
-                            <div className="space-y-6">
-                              <p className="text-zinc-600 leading-relaxed text-base">{t.acciona.intro1}</p>
-                              <p className="text-zinc-600 leading-relaxed text-base">{t.acciona.intro2}</p>
-                              
+            <div className="space-y-8">
+              {experience.map((exp: any, index: number) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.7, delay: index * 0.1 }}
+                >
+                  <div className="group bg-zinc-50/50 border border-zinc-100/50 p-8 md:p-10 transition-all duration-500 hover:bg-zinc-50 hover:border-zinc-200 hover:shadow-sm">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                      <div className="flex-1">
+                        <h3 className="text-2xl md:text-3xl font-bold text-zinc-900 tracking-tight mb-2">{exp.role}</h3>
+                        <p className="text-sm text-zinc-400 font-semibold uppercase tracking-widest">{exp.company}</p>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-xs text-zinc-400 font-mono tracking-tighter bg-white px-3 py-1 border border-zinc-100">{exp.period}</span>
+                      </div>
+                    </div>
+                    <div className="max-w-4xl">
+                      <p className="text-sm text-zinc-600 leading-relaxed font-light mb-6">{exp.description}</p>
+                      
+                      {exp.company === 'Acciona' && (
+                        <div className="mt-6">
+                          <button 
+                            onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                            className="group/btn flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-zinc-400 hover:text-zinc-900 transition-colors"
+                          >
+                            <span>{expandedIndex === index ? (t.collapseDetails || "Menos detalles") : (t.viewDetails || "Más detalles")}</span>
+                            <span className={`transition-transform duration-300 ${expandedIndex === index ? 'rotate-180' : ''}`}>
+                              <ChevronRight className="w-3 h-3" />
+                            </span>
+                          </button>
+
+                          <AnimatePresence>
+                            {expandedIndex === index && (
                               <motion.div
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.4, duration: 0.6 }}
-                                className="rounded-lg overflow-hidden border border-zinc-200"
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.4, ease: "easeInOut" }}
+                                className="overflow-hidden"
                               >
-                                <img 
-                                  src="/img/me_spot.jpg" 
-                                  alt="Acciona experience"
-                                  className="w-full h-auto object-cover"
-                                />
+                                <div className="pt-8 pb-2 space-y-8">
+                                  <div className="grid md:grid-cols-2 gap-8">
+                                    {/* AI Section */}
+                                    <motion.div 
+                                      initial={{ x: -20, opacity: 0 }}
+                                      animate={{ x: 0, opacity: 1 }}
+                                      transition={{ delay: 0.1, duration: 0.5 }}
+                                      className="relative p-6 bg-white border border-zinc-100 shadow-sm hover:shadow-md transition-shadow duration-300"
+                                    >
+                                      <div className="absolute top-0 left-0 w-1 h-full bg-zinc-900"></div>
+                                      <div className="flex items-center gap-3 mb-4">
+                                        <BrainCircuit className="w-5 h-5 text-zinc-400" />
+                                        <h4 className="text-sm font-bold uppercase tracking-wider text-zinc-900">{t.acciona?.aiTitle || "IA Generativa"}</h4>
+                                      </div>
+                                      <p className="text-xs font-semibold text-zinc-500 mb-3 uppercase tracking-wide">{t.acciona?.aiSummary}</p>
+                                      <p className="text-sm text-zinc-600 leading-relaxed font-light">{t.acciona?.aiFullText}</p>
+                                    </motion.div>
+
+                                    {/* Robotics Section */}
+                                    <motion.div 
+                                      initial={{ x: 20, opacity: 0 }}
+                                      animate={{ x: 0, opacity: 1 }}
+                                      transition={{ delay: 0.2, duration: 0.5 }}
+                                      className="relative p-6 bg-white border border-zinc-100 shadow-sm hover:shadow-md transition-shadow duration-300"
+                                    >
+                                      <div className="absolute top-0 left-0 w-1 h-full bg-zinc-300"></div>
+                                      <div className="flex items-center gap-3 mb-4">
+                                        <Bot className="w-5 h-5 text-zinc-400" />
+                                        <h4 className="text-sm font-bold uppercase tracking-wider text-zinc-900">{t.acciona?.roboticsTitle || "Robótica"}</h4>
+                                      </div>
+                                      <p className="text-xs font-semibold text-zinc-500 mb-3 uppercase tracking-wide">{t.acciona?.roboticsSummary}</p>
+                                      <p className="text-sm text-zinc-600 leading-relaxed font-light">{t.acciona?.roboticsFullText}</p>
+                                    </motion.div>
+                                  </div>
+                                  
+                                  <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.3 }}
+                                    className="pt-4 border-t border-zinc-100 flex gap-4"
+                                  >
+                                    <p className="text-zinc-600 leading-relaxed text-sm italic border-l-2 border-zinc-200 pl-4">
+                                      "{t.acciona?.intro1}"
+                                    </p>
+                                  </motion.div>
+                                </div>
                               </motion.div>
-                            </div>
-                            
-                            <div className="space-y-8">
-                              <ExpandableSection
-                                title={t.acciona.aiTitle}
-                                summary={t.acciona.aiSummary}
-                                fullText={t.acciona.aiFullText}
-                                expandText={t.acciona.clickToExpand}
-                                collapseText={t.acciona.clickToCollapse}
-                              />
-                              
-                              <ExpandableSection
-                                title={t.acciona.roboticsTitle}
-                                summary={t.acciona.roboticsSummary}
-                                fullText={t.acciona.roboticsFullText}
-                                expandText={t.acciona.clickToExpand}
-                                collapseText={t.acciona.clickToCollapse}
-                              />
-                            </div>
-                          </div>
-                        </motion.div>
-                      </div>
-                    </motion.div>
-                  );
-                } else {
-                  // Simple card for other experiences
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 40 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-80px" }}
-                      transition={{ duration: 0.7, delay: index * 0.1 }}
-                    >
-                      <div className="group py-12 border-b border-zinc-50 last:border-0 hover:bg-zinc-50/30 transition-all duration-300 px-6 -mx-6 rounded-lg">
-                        <div className="flex flex-col md:flex-row justify-between items-start gap-4">
-                          <div>
-                            <h3 className="text-2xl font-medium tracking-tight mb-2">{exp.role}</h3>
-                            <div className="flex items-center gap-3 mb-4">
-                              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-400">{exp.company}</span>
-                              <span className="w-1 h-1 bg-zinc-200 rounded-full"></span>
-                              <span className="text-xs font-mono text-zinc-400">{exp.period}</span>
-                            </div>
-                            <p className="text-zinc-600 leading-relaxed max-w-3xl">{exp.description}</p>
-                          </div>
+                            )}
+                          </AnimatePresence>
                         </div>
-                      </div>
-                    </motion.div>
-                  );
-                }
-              })}
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </section>
 

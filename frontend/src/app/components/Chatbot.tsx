@@ -51,9 +51,9 @@ export default function Chatbot() {
             initial={{ opacity: 0, y: 40, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 40, scale: 0.95 }}
-            className="absolute bottom-20 right-0 w-80 md:w-96 bg-white border border-zinc-100 shadow-2xl flex flex-col overflow-hidden"
+            className="fixed inset-0 w-full h-full md:absolute md:inset-auto md:bottom-20 md:right-0 md:w-96 md:h-auto bg-white border border-zinc-100 shadow-2xl flex flex-col overflow-hidden"
           >
-            <div className="bg-zinc-900 text-white p-6 flex items-center justify-between">
+            <div className="bg-zinc-900 text-white p-6 flex items-center justify-between shrink-0">
               <div className="flex items-center gap-3">
                 <Bot className="w-4 h-4 text-zinc-400" />
                 <span className="text-[10px] uppercase tracking-[0.3em] font-bold">N.V. Assistant</span>
@@ -63,7 +63,7 @@ export default function Chatbot() {
               </button>
             </div>
 
-            <div className="h-96 overflow-y-auto p-6 space-y-6 bg-zinc-50/30">
+            <div className="flex-1 md:h-96 overflow-y-auto p-6 space-y-6 bg-zinc-50/30">
               {messages.map((m, i) => (
                 <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-[85%] p-4 text-sm leading-relaxed ${

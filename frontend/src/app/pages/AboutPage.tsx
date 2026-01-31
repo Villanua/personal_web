@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Plus, Minus, BrainCircuit, Bot, ChevronRight, Wrench, Sparkles } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Navigation from '../components/Navigation';
 import ExpandableSection from '../components/ExpandableSection';
 import EducationCard from '../components/EducationCard';
@@ -16,9 +16,37 @@ interface AboutPageProps {
 export default function AboutPage({ education, experience, courses, skills }: AboutPageProps) {
   const lang = useLanguage();
   const t = translations[lang];
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [expandedIndices, setExpandedIndices] = useState<number[]>([]);
+  const experienceRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const handleScrollToSection = () => {};
+
+  const toggleExperience = (e: React.MouseEvent, index: number, hasDetails: boolean) => {
+    e.stopPropagation();
+    if (!hasDetails) return;
+    
+    const isExpanded = expandedIndices.includes(index);
+
+    if (isExpanded) {
+      setExpandedIndices(prev => prev.filter(i => i !== index));
+      // Usamos setTimeout para asegurar que la referencia y el DOM están listos, aunque el cálculo
+      // se basa en coordenadas absolutas que no deberían cambiar al colapsar (ya que el top es fijo)
+      setTimeout(() => {
+        const el = experienceRefs.current[index];
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          // Si la tarjeta está por encima de la zona de confort visual (tapada por header o muy arriba)
+          if (rect.top < 150) {
+            const y = rect.top + window.scrollY;
+            const yOffset = -100; // Ajuste para el header fijo
+            window.scrollTo({ top: y + yOffset, behavior: 'smooth' });
+          }
+        }
+      }, 10);
+    } else {
+      setExpandedIndices(prev => [...prev, index]);
+    }
+  };
 
   const renderContent = (content: string) => {
     return content.split('**').map((part, index) => 
@@ -104,17 +132,20 @@ export default function AboutPage({ education, experience, courses, skills }: Ab
                               exp.company === 'Syntonize' ? t.syntonize : 
                               exp.company === 'ICAI Comillas' ? t.icai : null;
                 const hasDetails = !!details;
+                const isExpanded = expandedIndices.includes(index);
                 
                 return (
                 <motion.div
                   key={index}
+                  ref={(el: HTMLDivElement | null) => { experienceRefs.current[index] = el; }}
+                  style={{ scrollMarginTop: '100px' }}
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.7, delay: index * 0.1 }}
                 >
                   <div 
-                    onClick={() => hasDetails && setExpandedIndex(expandedIndex === index ? null : index)}
+                    onClick={(e) => toggleExperience(e, index, hasDetails)}
                     className={`group bg-zinc-50/50 border border-zinc-100/50 p-8 md:p-10 transition-all duration-500 hover:bg-zinc-50 hover:border-zinc-200 hover:shadow-sm ${hasDetails ? 'cursor-pointer' : ''}`}
                   >
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
@@ -132,16 +163,17 @@ export default function AboutPage({ education, experience, courses, skills }: Ab
                       {hasDetails && (
                         <div className="mt-6">
                           <div 
+                            onClick={(e) => toggleExperience(e, index, hasDetails)}
                             className="group/btn flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-zinc-400 hover:text-zinc-900 transition-colors"
                           >
-                            <span>{expandedIndex === index ? (details?.clickToCollapse || "Ver menos detalles") : (details?.clickToExpand || "Ver más detalles")}</span>
-                            <span className={`transition-transform duration-300 ${expandedIndex === index ? 'rotate-180' : ''}`}>
+                            <span>{isExpanded ? (details?.clickToCollapse || "Ver menos detalles") : (details?.clickToExpand || "Ver más detalles")}</span>
+                            <span className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
                               <ChevronRight className="w-3 h-3" />
                             </span>
                           </div>
 
                           <AnimatePresence>
-                            {expandedIndex === index && (
+                            {isExpanded && (
                               <motion.div
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: "auto", opacity: 1 }}

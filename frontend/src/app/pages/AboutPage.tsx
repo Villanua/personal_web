@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Plus, Minus, BrainCircuit, Bot, ChevronRight } from 'lucide-react';
+import { Mail, Plus, Minus, BrainCircuit, Bot, ChevronRight, Wrench, Sparkles } from 'lucide-react';
 import { useState } from 'react';
 import Navigation from '../components/Navigation';
 import ExpandableSection from '../components/ExpandableSection';
@@ -19,6 +19,12 @@ export default function AboutPage({ education, experience, courses, skills }: Ab
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const handleScrollToSection = () => {};
+
+  const renderContent = (content: string) => {
+    return content.split('**').map((part, index) => 
+      index % 2 === 1 ? <strong key={index} className="font-medium text-zinc-900">{part}</strong> : part
+    );
+  };
 
   return (
     <div className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white">
@@ -61,10 +67,22 @@ export default function AboutPage({ education, experience, courses, skills }: Ab
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.6, duration: 0.8 }}
-                className="space-y-6 text-lg md:text-xl text-zinc-600 leading-relaxed font-light max-w-4xl"
+                className="grid md:grid-cols-[1fr_450px] gap-12 items-start"
               >
-                <p>{t.intro1}</p>
-                <p>{t.intro2}</p>
+                <div className="space-y-6 text-lg md:text-xl text-zinc-600 leading-relaxed font-light">
+                  <p>{t.intro1}</p>
+                  <p>{t.intro2}</p>
+                </div>
+                
+                <div className="hidden md:block">
+                  <div className="relative rounded-lg overflow-hidden border border-zinc-100 shadow-sm aspect-[4/5]">
+                    <img 
+                      src="/img/me_spot.jpg" 
+                      alt="Nacho with Spot Robot" 
+                      className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-500" 
+                    />
+                  </div>
+                </div>
               </motion.div>
             </motion.div>
           </section>
@@ -76,13 +94,18 @@ export default function AboutPage({ education, experience, courses, skills }: Ab
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6 }}
-              className="flex items-end justify-between border-b border-zinc-100 pb-4 mb-12"
+              className="flex items-end justify-end border-b border-zinc-100 pb-4 mb-12"
             >
-              <h2 className="text-2xl font-bold tracking-tight">{t.professionalPath}</h2>
-              <span className="text-[10px] text-zinc-400 uppercase tracking-widest">{t.experienceLabel}</span>
+              <h3 className="text-sm font-bold tracking-[0.3em] text-zinc-400">{t.professionalPath}</h3>
             </motion.div>
             <div className="space-y-8">
-              {experience.map((exp: any, index: number) => (
+              {experience.map((exp: any, index: number) => {
+                const details = exp.company === 'Acciona' ? t.acciona : 
+                              exp.company === 'Syntonize' ? t.syntonize : 
+                              exp.company === 'ICAI Comillas' ? t.icai : null;
+                const hasDetails = !!details;
+                
+                return (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 40 }}
@@ -90,7 +113,10 @@ export default function AboutPage({ education, experience, courses, skills }: Ab
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.7, delay: index * 0.1 }}
                 >
-                  <div className="group bg-zinc-50/50 border border-zinc-100/50 p-8 md:p-10 transition-all duration-500 hover:bg-zinc-50 hover:border-zinc-200 hover:shadow-sm">
+                  <div 
+                    onClick={() => hasDetails && setExpandedIndex(expandedIndex === index ? null : index)}
+                    className={`group bg-zinc-50/50 border border-zinc-100/50 p-8 md:p-10 transition-all duration-500 hover:bg-zinc-50 hover:border-zinc-200 hover:shadow-sm ${hasDetails ? 'cursor-pointer' : ''}`}
+                  >
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                       <div className="flex-1">
                         <h3 className="text-2xl md:text-3xl font-bold text-zinc-900 tracking-tight mb-2">{exp.role}</h3>
@@ -101,19 +127,18 @@ export default function AboutPage({ education, experience, courses, skills }: Ab
                       </div>
                     </div>
                     <div className="max-w-4xl">
-                      <p className="text-sm text-zinc-600 leading-relaxed font-light mb-6">{exp.description}</p>
+                      <p className="text-sm text-zinc-600 leading-relaxed font-light mb-6">{renderContent(exp.description)}</p>
                       
-                      {exp.company === 'Acciona' && (
+                      {hasDetails && (
                         <div className="mt-6">
-                          <button 
-                            onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                          <div 
                             className="group/btn flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-zinc-400 hover:text-zinc-900 transition-colors"
                           >
-                            <span>{expandedIndex === index ? (t.collapseDetails || "Menos detalles") : (t.viewDetails || "Más detalles")}</span>
+                            <span>{expandedIndex === index ? (details?.clickToCollapse || "Ver menos detalles") : (details?.clickToExpand || "Ver más detalles")}</span>
                             <span className={`transition-transform duration-300 ${expandedIndex === index ? 'rotate-180' : ''}`}>
                               <ChevronRight className="w-3 h-3" />
                             </span>
-                          </button>
+                          </div>
 
                           <AnimatePresence>
                             {expandedIndex === index && (
@@ -125,50 +150,136 @@ export default function AboutPage({ education, experience, courses, skills }: Ab
                                 className="overflow-hidden"
                               >
                                 <div className="pt-8 pb-2 space-y-8">
-                                  <div className="grid md:grid-cols-2 gap-8">
-                                    {/* AI Section */}
-                                    <motion.div 
-                                      initial={{ x: -20, opacity: 0 }}
-                                      animate={{ x: 0, opacity: 1 }}
+                                    {/* Introduction */}
+                                    <div className="text-sm text-zinc-600 leading-relaxed font-light space-y-4">
+                                      {details?.intro1 && <p>{renderContent(details.intro1)}</p>}
+                                      {details?.intro2 && <p>{renderContent(details.intro2)}</p>}
+                                    </div>
+
+                                    {/* Generic Project List (for Syntonize/ICAI if needed) */}
+                                    {details?.projectList && (
+                                      <motion.div 
+                                      initial={{ y: 20, opacity: 0 }}
+                                      animate={{ y: 0, opacity: 1 }}
                                       transition={{ delay: 0.1, duration: 0.5 }}
                                       className="relative p-6 bg-white border border-zinc-100 shadow-sm hover:shadow-md transition-shadow duration-300"
                                     >
-                                      <div className="absolute top-0 left-0 w-1 h-full bg-zinc-900"></div>
-                                      <div className="flex items-center gap-3 mb-4">
-                                        <BrainCircuit className="w-5 h-5 text-zinc-400" />
-                                        <h4 className="text-sm font-bold uppercase tracking-wider text-zinc-900">{t.acciona?.aiTitle || "IA Generativa"}</h4>
+                                      <div className="absolute top-0 left-0 w-1 h-full bg-zinc-400"></div>
+                                      <div className="flex items-center gap-3 mb-6">
+                                        <Sparkles className="w-5 h-5 text-zinc-400" />
+                                        <h4 className="text-sm font-bold uppercase tracking-wider text-zinc-900">{details.projectTitle || "Proyectos"}</h4>
                                       </div>
-                                      <p className="text-xs font-semibold text-zinc-500 mb-3 uppercase tracking-wide">{t.acciona?.aiSummary}</p>
-                                      <p className="text-sm text-zinc-600 leading-relaxed font-light">{t.acciona?.aiFullText}</p>
+                                      <ul className="space-y-4">
+                                        {details.projectList.map((item: string, i: number) => (
+                                          <li key={i} className="text-sm text-zinc-600 leading-relaxed font-light pl-4 border-l border-zinc-200">
+                                            {renderContent(item)}
+                                          </li>
+                                        ))}
+                                      </ul>
                                     </motion.div>
+                                    )}
 
-                                    {/* Robotics Section */}
+                                    {/* Robotics Section (Using Wrench) */}
+                                    {details?.roboticsSection && (
                                     <motion.div 
-                                      initial={{ x: 20, opacity: 0 }}
-                                      animate={{ x: 0, opacity: 1 }}
-                                      transition={{ delay: 0.2, duration: 0.5 }}
+                                      initial={{ y: 20, opacity: 0 }}
+                                      animate={{ y: 0, opacity: 1 }}
+                                      transition={{ delay: 0.1, duration: 0.5 }}
                                       className="relative p-6 bg-white border border-zinc-100 shadow-sm hover:shadow-md transition-shadow duration-300"
                                     >
                                       <div className="absolute top-0 left-0 w-1 h-full bg-zinc-300"></div>
-                                      <div className="flex items-center gap-3 mb-4">
-                                        <Bot className="w-5 h-5 text-zinc-400" />
-                                        <h4 className="text-sm font-bold uppercase tracking-wider text-zinc-900">{t.acciona?.roboticsTitle || "Robótica"}</h4>
+                                      <div className="flex items-center gap-3 mb-6">
+                                        <Wrench className="w-5 h-5 text-zinc-400" />
+                                        <h4 className="text-sm font-bold uppercase tracking-wider text-zinc-900">{details.roboticsSection.title}</h4>
                                       </div>
-                                      <p className="text-xs font-semibold text-zinc-500 mb-3 uppercase tracking-wide">{t.acciona?.roboticsSummary}</p>
-                                      <p className="text-sm text-zinc-600 leading-relaxed font-light">{t.acciona?.roboticsFullText}</p>
+                                      
+                                      {/* Manipulation */}
+                                      {details.roboticsSection.manipulation && (
+                                      <div className="mb-8">
+                                        <h5 className="text-xs font-bold text-zinc-800 uppercase tracking-widest mb-4">{details.roboticsSection.manipulation.title}</h5>
+                                        <ul className="space-y-4">
+                                          {details.roboticsSection.manipulation.items?.map((item: string, i: number) => (
+                                            <li key={i} className="text-sm text-zinc-600 leading-relaxed font-light pl-4 border-l border-zinc-200">
+                                              {renderContent(item)}
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                      )}
+
+                                      {/* Navigation */}
+                                      {details.roboticsSection.navigation && (
+                                      <div className="mb-8">
+                                        <h5 className="text-xs font-bold text-zinc-800 uppercase tracking-widest mb-4">{details.roboticsSection.navigation.title}</h5>
+                                        <ul className="space-y-4">
+                                          {details.roboticsSection.navigation.items?.map((item: string, i: number) => (
+                                            <li key={i} className="text-sm text-zinc-600 leading-relaxed font-light pl-4 border-l border-zinc-200">
+                                              {renderContent(item)}
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                      )}
+
+                                      {/* Interfaces */}
+                                      {details.roboticsSection.interfaces && (
+                                      <div>
+                                        <h5 className="text-xs font-bold text-zinc-800 uppercase tracking-widest mb-4">{details.roboticsSection.interfaces.title}</h5>
+                                        <ul className="space-y-4">
+                                          {details.roboticsSection.interfaces.items?.map((item: string, i: number) => (
+                                            <li key={i} className="text-sm text-zinc-600 leading-relaxed font-light pl-4 border-l border-zinc-200">
+                                              {renderContent(item)}
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                      )}
                                     </motion.div>
-                                  </div>
-                                  
-                                  <motion.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ delay: 0.3 }}
-                                    className="pt-4 border-t border-zinc-100 flex gap-4"
-                                  >
-                                    <p className="text-zinc-600 leading-relaxed text-sm italic border-l-2 border-zinc-200 pl-4">
-                                      "{t.acciona?.intro1}"
-                                    </p>
-                                  </motion.div>
+                                    )}
+
+                                    {/* AI Section (Using Sparkles) */}
+                                    {details?.aiSection && (
+                                    <motion.div 
+                                      initial={{ y: 20, opacity: 0 }}
+                                      animate={{ y: 0, opacity: 1 }}
+                                      transition={{ delay: 0.2, duration: 0.5 }}
+                                      className="relative p-6 bg-white border border-zinc-100 shadow-sm hover:shadow-md transition-shadow duration-300"
+                                    >
+                                      <div className="absolute top-0 left-0 w-1 h-full bg-zinc-900"></div>
+                                      <div className="flex items-center gap-3 mb-6">
+                                        <Sparkles className="w-5 h-5 text-zinc-400" />
+                                        <h4 className="text-sm font-bold uppercase tracking-wider text-zinc-900">{details.aiSection.title}</h4>
+                                      </div>
+                                      
+                                      {/* Generative AI */}
+                                      {details.aiSection.generativeAi && (
+                                      <div className="mb-8">
+                                        <h5 className="text-xs font-bold text-zinc-800 uppercase tracking-widest mb-4">{details.aiSection.generativeAi.title}</h5>
+                                        <ul className="space-y-4">
+                                          {details.aiSection.generativeAi.items?.map((item: string, i: number) => (
+                                            <li key={i} className="text-sm text-zinc-600 leading-relaxed font-light pl-4 border-l border-zinc-200">
+                                              {renderContent(item)}
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                      )}
+
+                                      {/* Data Science */}
+                                      {details.aiSection.dataScience && (
+                                      <div>
+                                        <h5 className="text-xs font-bold text-zinc-800 uppercase tracking-widest mb-4">{details.aiSection.dataScience.title}</h5>
+                                        <ul className="space-y-4">
+                                          {details.aiSection.dataScience.items?.map((item: string, i: number) => (
+                                            <li key={i} className="text-sm text-zinc-600 leading-relaxed font-light pl-4 border-l border-zinc-200">
+                                              {renderContent(item)}
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                      )}
+                                    </motion.div>
+                                    )}
                                 </div>
                               </motion.div>
                             )}
@@ -178,7 +289,8 @@ export default function AboutPage({ education, experience, courses, skills }: Ab
                     </div>
                   </div>
                 </motion.div>
-              ))}
+                );
+              })}
             </div>
           </section>
 
@@ -189,10 +301,9 @@ export default function AboutPage({ education, experience, courses, skills }: Ab
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6 }}
-              className="flex items-end justify-between border-b border-zinc-100 pb-4 mb-20"
+              className="flex items-end justify-end border-b border-zinc-100 pb-4 mb-20"
             >
-              <h2 className="text-2xl font-bold tracking-tight">{t.academicJourney}</h2>
-              <span className="text-[10px] text-zinc-400 uppercase tracking-widest">{t.educationLabel}</span>
+              <h3 className="text-sm font-bold tracking-[0.3em] text-zinc-400">{t.academicJourney}</h3>
             </motion.div>
             <div className="grid gap-24">
               {education.map((edu: any, index: number) => {
@@ -259,7 +370,7 @@ export default function AboutPage({ education, experience, courses, skills }: Ab
               transition={{ duration: 0.8 }}
               className="mt-32 pt-20 border-t border-zinc-100"
             >
-              <h3 className="text-xs font-bold uppercase tracking-[0.3em] mb-12 text-zinc-400">{t.certificationsTitle}</h3>
+              <h3 className="text-sm font-bold tracking-[0.3em] mb-12 text-zinc-400 text-right">{t.certificationsTitle}</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-100 border border-zinc-100">
                 {courses.map((course: any, index: number) => (
                   <motion.div 
@@ -285,10 +396,9 @@ export default function AboutPage({ education, experience, courses, skills }: Ab
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6 }}
-              className="flex items-end justify-between border-b border-zinc-100 pb-4 mb-16"
+              className="flex items-end justify-end border-b border-zinc-100 pb-4 mb-16"
             >
-              <h2 className="text-2xl font-bold tracking-tight">{t.technicalEcosystem}</h2>
-              <span className="text-[10px] text-zinc-400 uppercase tracking-widest">{t.skillsLabel}</span>
+              <h3 className="text-sm font-bold tracking-[0.3em] text-zinc-400">{t.technicalEcosystem}</h3>
             </motion.div>
             <div className="flex flex-wrap gap-x-12 gap-y-8">
               {skills.map((skill: string, index: number) => (
@@ -298,7 +408,7 @@ export default function AboutPage({ education, experience, courses, skills }: Ab
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.03, duration: 0.5 }}
-                  className="text-4xl md:text-6xl font-bold text-zinc-100 hover:text-zinc-900 transition-colors duration-500 cursor-default tracking-tighter"
+                  className="text-lg md:text-2xl font-bold text-zinc-300 hover:text-zinc-900 transition-colors duration-500 cursor-default tracking-tighter"
                 >
                   {skill}
                 </motion.span>

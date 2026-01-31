@@ -17,7 +17,7 @@ export const dataTranslations = {
         role: 'Software Developer @ Digital Hub',
         company: 'Acciona',
         period: 'Enero 2023 - Julio 2025',
-        description: 'Liderazgo y desarrollo de proyectos de IA generativa, sistemas autónomos y robótica, desde la interacción con clientes hasta la implementación.'
+        description: 'Ingeniero de Software Full Stack especializado en **Robótica** e **Inteligencia Artificial Generativa**. Liderazgo del ciclo completo de desarrollo de **sistemas autónomos** (**ROS**, **Spot**, **ROVs**) y arquitecturas **RAG** avanzadas (**Agentes**, **HITL**, **Grafos de Conocimiento**), integrando soluciones cloud robustas (**GCP**, **Docker**, **Celery**) directamente con las necesidades de negocio.'
       }
     ],
     education: [
@@ -60,7 +60,7 @@ export const dataTranslations = {
         role: 'Software Developer @ Digital Hub',
         company: 'Acciona',
         period: 'January 2023 - July 2025',
-        description: 'Leadership and development of generative AI projects, autonomous systems, and robotics, from client interaction to implementation.'
+        description: 'Full Stack Software Engineer specialized in **Robotics** and **Generative AI**. Leadership of the full development lifecycle of **autonomous systems** (**ROS**, **Spot**, **ROVs**) and advanced **RAG** architectures (**Agents**, **HITL**, **Knowledge Graphs**), integrating robust cloud solutions (**GCP**, **Docker**, **Celery**) directly with business needs.'
       }
     ],
     education: [
@@ -89,7 +89,8 @@ export const dataTranslations = {
 
 // Skills data is language-agnostic (same in both languages)
 export const skillsData = [
-  'Python', 'C++', 'ROS/ROS2', 'TensorFlow', 'PyTorch', 'OpenCV', 
-  'SLAM', 'Generative AI', 'Deep Learning', 'Reinforcement Learning',
-  'LangChain', 'GCP', 'Docker', 'Linux', 'Git', 'Robot Manipulation'
+  'Python', 'C++', 'SQL', 'JavaScript', 'HTML', 'CSS',
+  'ROS/ROS2', 'SLAM', 'Navigation', 'Robot Manipulation', 'Sensor Fusion', 'OpenCV', 'PCL',
+  'Generative AI', 'LLMs', 'RAG', 'Agents', 'NLP', 'LangChain', 'TensorFlow', 'PyTorch', 'Knowledge Graphs',
+  'GCP', 'Azure', 'Docker', 'Linux', 'FastAPI', 'Django', 'Celery', 'NGINX', 'Git'
 ];

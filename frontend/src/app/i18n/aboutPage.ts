@@ -7,33 +7,91 @@ export const aboutPageTranslations = {
     intro2: "Me especializo en el desarrollo de software para plataformas robóticas y aplicaciones potenciadas por IA, con un fuerte enfoque en IA Generativa y agentes inteligentes. También he trabajado en interfaces web y desplegado soluciones en Google Cloud Platform, siempre buscando construir sistemas que sean tanto técnicamente sólidos como prácticamente valiosos.",
     
     // Section headers
-    professionalPath: "Trayectoria Profesional",
-    academicJourney: "Trayectoria Académica",
-    technicalEcosystem: "Ecosistema Técnico",
+    professionalPath: "Experiencia",
+    academicJourney: "Educación",
+    technicalEcosystem: "Habilidades",
     certificationsTitle: "Certificaciones y Cursos",
     
-    // Labels
+    // Labels (unused as titles now)
     experienceLabel: "01 / Experiencia",
     educationLabel: "02 / Educación",
     skillsLabel: "03 / Habilidades",
     
     // Experience details
-    acciona: {
-      intro1: "Trabajo como Desarrollador de Software en el Digital Hub de Acciona, enfocándome en el diseño y desarrollo de aplicaciones innovadoras que incorporan tecnologías de vanguardia en soluciones de negocio del mundo real. Aunque mi rol principal es el desarrollo backend, también he contribuido en tareas de frontend en varios proyectos.",
-      intro2: "He participado en proyectos desde sus etapas iniciales: recopilando requisitos directamente de los clientes, analizando sus necesidades, diseñando arquitecturas de sistemas, planificando recursos y plazos, y desarrollando el producto final. También participo en reuniones de seguimiento para alinear el progreso con las expectativas del cliente y mejorar iterativamente nuestras soluciones.",
-      
-      // Generative AI section
-      aiTitle: "Inteligencia Artificial y Ciencia de Datos",
-      aiSummary: "Desarrollo de sistemas RAG, agentes autónomos inteligentes y fine-tuning de modelos de lenguaje tanto localmente como en la nube.",
-      aiFullText: "He trabajado en una variedad de proyectos aplicando técnicas de Machine Learning y Deep Learning para extraer insights, predecir comportamientos y apoyar decisiones basadas en datos. Mi enfoque principal ha sido la IA Generativa y el diseño de agentes inteligentes, construyendo soluciones personalizadas que satisfacen las necesidades reales de los clientes.\n\nEsto incluye el desarrollo de sistemas RAG (Retrieval-Augmented Generation) personalizados con pipelines Human-in-the-Loop, creando agentes autónomos capaces de ejecutar código Python, realizar búsquedas web en tiempo real o analizar documentos en múltiples modalidades (texto, imágenes, tablas). También he diseñado agentes capaces de detectar inconsistencias en bases de documentos o encontrar contradicciones basados en Knowledge Graphs.\n\nHe construido agentes utilizando frameworks como LangChain y LangGraph, adaptando sus arquitecturas a flujos de trabajo específicos y necesidades de integración. También he trabajado aplicando Knowledge Graphs para estructurar datos no organizados en relaciones significativas basadas en grafos, ayudando a definir dependencias, mejorar la búsqueda semántica y apoyar tareas de razonamiento en sistemas más grandes.\n\nAdemás, he realizado fine-tuning tanto localmente como en la nube, aplicando técnicas como LoRA y cuantización de modelos. Esto incluye fine-tuning local de modelos como Deepseek y Gemma, así como fine-tuning en la nube de Gemini 2.0 en Google Cloud Platform. Estos esfuerzos me han permitido adaptar LLMs a necesidades específicas del dominio y optimizar su rendimiento para casos de uso del mundo real.",
-      clickToExpand: "Click para ver más detalles",
-      clickToCollapse: "Click para ocultar detalles",
-      
-      // Robotics section  
-      roboticsTitle: "Desarrollo en Robótica",
-      roboticsSummary: "Trabajo con manipuladores colaborativos, robots móviles autónomos, sistemas de localización y arquitecturas basadas en ROS.",
-      roboticsFullText: "He trabajado con una amplia gama de plataformas robóticas en diferentes dominios, incluyendo manipuladores colaborativos y robots móviles autónomos. Mi experiencia incluye la programación y despliegue de sistemas utilizando brazos robóticos UR3 y UR10, así como plataformas móviles como Boston Dynamics Spot, Summit-XL, MiR, Bellabot y Kettybot, cada uno adaptado a tareas específicas en logística, inspección e interacción humano-robot.\n\nPara brazos robóticos, he integrado periféricos como elevadores, cintas transportadoras y grippers personalizados, creando flujos de trabajo de automatización complejos. En robots móviles, he implementado sistemas de localización utilizando EKF y AMCL, construido lógica de comportamiento de misión a través de máquinas de estados en C++, y desarrollado sistemas de planificación utilizando bases de datos SQLite para la secuenciación de tareas y navegación.\n\nTambién he construido interfaces web conectadas a ROS a través de ROSBridge para permitir un control y monitorización intuitivos, mejorando la accesibilidad para operadores y usuarios no técnicos. Además, he gestionado despliegues de campo y procedimientos de recuperación para casos de uso del mundo real, como desinfección autónoma, participación en eventos y vigilancia de campus."
+    icai: {
+      clickToExpand: "Ver más detalles",
+      clickToCollapse: "Ver menos detalles",
+      intro1: "Supervisión de sesiones prácticas de robótica móvil para alumnos de grado. Instrucción enfocada en algoritmos de **localización** (**SLAM**, **AMCL**), **planificación** y **seguimiento de trayectorias** en plataformas reales.",
     },
+    syntonize: {
+      clickToExpand: "Ver más detalles",
+      clickToCollapse: "Ver menos detalles",
+      intro1: "Diseño de **arquitecturas de soluciones**, **despliegue**, gestión de la **comunicación con stakeholders** y **monitorización** de aplicaciones en **producción**.",
+      projectTitle: "IA Generativa y Cloud",
+      projectList: [
+        "Desarrollo de aplicación para la inferencia de perfiles psicográficos (motivaciones, salarios, edad) de alumnos potenciales para optimizar la conversión de leads en UNIR.",
+        "Implementación de un pipeline de análisis de llamadas (**Speech-to-Text** + **LLMs**) para evaluar la calidad comercial (auditorías) y extraer perfiles profesionales automáticamente.",
+        "Diseño de una aplicación de **IA generativa** para recomendación de carreras basada en trayectorias profesionales, desplegada con **FastAPI** y microservicios en **Microsoft Azure**."
+      ]
+    },
+    acciona: {
+      clickToExpand: "Ver más detalles",
+      clickToCollapse: "Ver menos detalles",
+      summary: "Ingeniero de Software Full Stack especializado en **Robótica** e **Inteligencia Artificial Generativa**. Liderazgo del ciclo completo de desarrollo de **sistemas autónomos** (**ROS**, **Spot**, **ROVs**) y arquitecturas **RAG** avanzadas (**Agentes**, **HITL**, **Grafos de Conocimiento**), integrando soluciones cloud robustas (**GCP**, **Docker**, **Celery**) directamente con las necesidades de negocio.",
+      intro1: "Desarrollo de Software en el Digital Hub de Acciona, con foco en el diseño y creación de aplicaciones innovadoras que incorporan tecnologías de vanguardia en soluciones de negocio reales. Contribución tanto en desarrollo backend (rol principal) como en tareas de frontend en diversos proyectos.",
+      intro2: "Participación en proyectos desde etapas iniciales: recopilación de requisitos de clientes, análisis de necesidades, diseño de arquitecturas, planificación de recursos y desarrollo del producto final. Seguimiento continuo para alinear el progreso con expectativas y mejora iterativa de soluciones.",
+      
+      // Robotics section
+      roboticsSection: {
+        title: "Robótica",
+        manipulation: {
+            title: "Manipulación y Robots Móviles",
+            items: [
+                "Programación de brazos robóticos colaborativos (**UR3**, **UR10**) para tareas automatizadas, incluyendo clasificación de residuos usando visión 3D e IA.",
+                "Despliegue y programación de un robot móvil **MiR** para navegación autónoma y desinfección en entornos corporativos.",
+                "Operación y mantenimiento de **Spot** (Boston Dynamics), desplegándolo en eventos públicos y zonas de riesgo para inspección.",
+                "Calibración y configuración de **robots submarinos** (ROVs) para inspección y mantenimiento."
+            ]
+        },
+        navigation: {
+            title: "Navegación y Sensores",
+            items: [
+                "Diagnóstico y reparación de conexiones y sensores en robot **Summit-XL**, habilitando navegación autónoma con **LiDAR 2D**, **GPS-RTK** e **IMU**, integrados mediante **filtros de Kalman** y **AMCL** en **ROS**.",
+                "Diseño e implementación de algoritmo de seguimiento de trayectoria para **Summit-XL** para patrullas de seguridad nocturnas y detección de anomalías."
+            ]
+        },
+        interfaces: {
+            title: "Interfaces y Robots de Servicio",
+            items: [
+                "Desarrollo de interfaz web de teleoperación en tiempo real (**WebSockets**, **NGINX**, **Docker**) para control remoto del robot.",
+                "Programación de robots de servicio **KettyBot** y **Bellabot** para entrega de alimentos e interacción en cafetería."
+            ]
+        }
+      },
+
+      // Generative AI section
+      aiSection: {
+        title: "Inteligencia Artificial y Data Science",
+        generativeAi: {
+          title: "IA Generativa y Agentes",
+          items: [
+            "Desarrollo de un sistema de ingesta de documentos no estructurados (PDF, Word, Excel, PowerPoint, imágenes) usando **OCR** y **YOLO** para detectar tablas y elementos visuales. El pipeline extrae contenido, genera resúmenes y calcula embeddings para indexado semántico. Orquestado mediante microservicios con **Celery** para integración asíncrona en sistemas **RAG**.",
+            "Construcción de un sistema **RAG** basado en agentes con interacción humana (**HITL**), capaz de ejecutar consultas **SQL** y recuperar respuestas predefinidas. El agente aplica estrategias de reformulación y desambiguación, comunicando transparentemente las fuentes de datos.",
+            "Diseño y desarrollo de un algoritmo de detección de inconsistencias en grandes bases documentales usando filtrado semántico y grafos jerárquicos. Comparación multinivel para identificar contradicciones. Uso de **Knowledge Graphs** y protocolo **MCP**.",
+            "Fine-tuning de **Deepseek** localmente usando **LoRA** y cuantización, y de **Gemini** en **GCP**. Extracción de métricas de sistemas RAG y despliegues en nube."
+          ]
+        },
+        dataScience: {
+          title: "Ciencia de Datos",
+          items: [
+            "Desarrollo de un sistema de modelado predictivo para optimizar estrategias en licitaciones públicas, combinando **Redes Neuronales**, **KNN** y simulaciones de **Monte Carlo**. Integración en interfaz web para ajuste de parámetros.",
+            "Entrenamiento de una red neuronal convolucional (**CNN**) con **TensorFlow** para detectar grietas en carreteras, automatizando flujos de inspección."
+          ]
+        }
+      },
+      
+    },
+
     
     // Education details
     master: {
@@ -75,33 +133,91 @@ export const aboutPageTranslations = {
     intro2: "I specialize in software development for robotic platforms and AI-powered applications, with a strong focus on Generative AI and intelligent agents. I've also worked on web interfaces and deployed solutions on Google Cloud Platform, always aiming to build systems that are both technically solid and practically valuable.",
     
     // Section headers
-    professionalPath: "Professional Path",
-    academicJourney: "Academic Journey",
-    technicalEcosystem: "Technical Ecosystem",
+    professionalPath: "Experience",
+    academicJourney: "Education",
+    technicalEcosystem: "Skills",
     certificationsTitle: "Certifications & Courses",
     
-    // Labels
+    // Labels (unused as titles now)
     experienceLabel: "01 / Experience",
     educationLabel: "02 / Education",
     skillsLabel: "03 / Skills",
     
     // Experience details
-    acciona: {
-      intro1: "I work as a Software Developer at Acciona's Digital Hub, focusing on the design and development of innovative applications that bring cutting-edge technologies into real-world business solutions. While my main role is backend development, I've also contributed to frontend tasks across various projects.",
-      intro2: "I've been involved in projects from their earliest stages: gathering requirements directly from clients, analyzing their needs, designing system architectures, planning resources and timelines, and developing the final product. I also participate in follow-up meetings to align progress with client expectations and iteratively improve our solutions.",
-      
-      // Generative AI section
-      aiTitle: "Artificial Intelligence & Data Science",
-      aiSummary: "Development of RAG systems, intelligent autonomous agents, and fine-tuning of language models both locally and in the cloud.",
-      aiFullText: "I've worked on a range of projects applying Machine Learning and Deep Learning techniques to extract insights, predict behaviors, and support data-driven decisions. My main focus has been on Generative AI and intelligent agent design, where I build tailored solutions that meet real client needs.\n\nThis includes developing customized RAG (Retrieval-Augmented Generation) systems with Human-in-the-Loop pipelines, creating autonomous agents capable of executing Python code, performing live web searches, or analyzing documents across modalities (text, image, tables). I've also designed agents capable of detecting inconsistencies across document bases or finding contradictions based in Knowledge Graphs.\n\nI've built agents using frameworks like LangChain and LangGraph, adapting their architectures to specific workflows and integration needs. I've also worked on applying Knowledge Graphs to structure unorganized data into meaningful graph-based relationships—helping define dependencies, enhance semantic search, and support reasoning tasks in larger systems.\n\nAdditionally, I've performed fine-tuning both locally and in the cloud, applying techniques like LoRA and model quantization. This includes local fine-tuning of models such as Deepseek and Gemma, as well as cloud-based fine-tuning of Gemini 2.0 on Google Cloud Platform.",
-      clickToExpand: "Click for more details",
-      clickToCollapse: "Click to hide details",
-      
-      // Robotics section
-      roboticsTitle: "Robotics Development",
-      roboticsSummary: "Work with collaborative manipulators, autonomous mobile robots, localization systems, and ROS-based architectures.",
-      roboticsFullText: "I've worked with a wide range of robotic platforms across different domains, including collaborative manipulators and autonomous mobile robots. My experience includes programming and deploying systems using UR3 and UR10 robotic arms, as well as mobile platforms like Boston Dynamics Spot, Summit-XL, MiR, Bellabot, and Kettybot—each adapted to specific tasks in logistics, inspection, and human-robot interaction.\n\nFor robotic arms, I've integrated peripherals such as elevators, conveyors, and custom grippers, creating complex automation workflows. On mobile robots, I've implemented localization systems using EKF and AMCL, built mission behavior logic through C++ state machines, and developed planning systems using SQLite databases for task sequencing and navigation.\n\nI've also built web interfaces connected to ROS via ROSBridge to allow intuitive control and monitoring, enhancing accessibility for operators and non-technical users. Additionally, I've managed field deployments and recovery procedures for real-world use cases, such as autonomous disinfection, event participation, and campus surveillance."
+    icai: {
+      clickToExpand: "See more details",
+      clickToCollapse: "See less details",
+      intro1: "Supervision of practical mobile robotics sessions for undergraduate students. Instruction focused on **localization** algorithms (**SLAM**, **AMCL**), **planning**, and **trajectory tracking** on real platforms.",
     },
+    syntonize: {
+      clickToExpand: "See more details",
+      clickToCollapse: "See less details",
+      intro1: "Design of **solution architectures**, **deployment**, **stakeholder communication** management, and **monitoring** of applications in **production**.",
+      projectTitle: "Generative AI & Cloud",
+      projectList: [
+        "Development of an application for inferring psychographic profiles (motivations, salaries, age) of potential students to optimize lead conversion at UNIR.",
+        "Implementation of a call analysis pipeline (**Speech-to-Text** + **LLMs**) to evaluate commercial quality (audits) and automatically extract professional profiles.",
+        "Design of a **Generative AI** application for career recommendation based on professional trajectories, deployed with **FastAPI** and microservices on **Microsoft Azure**."
+      ]
+    },
+    acciona: {
+      clickToExpand: "See more details",
+      clickToCollapse: "See less details",
+      summary: "Full Stack Software Engineer specialized in **Robotics** and **Generative AI**. Leadership of the full development lifecycle of **autonomous systems** (**ROS**, **Spot**, **ROVs**) and advanced **RAG** architectures (**Agents**, **HITL**, **Knowledge Graphs**), integrating robust cloud solutions (**GCP**, **Docker**, **Celery**) directly with business needs.",
+      intro1: "Software Development at Acciona's Digital Hub, focusing on the design and creation of innovative applications incorporating cutting-edge technologies into real-world business solutions. Contribution to both backend (main role) and frontend tasks across various projects.",
+      intro2: "Involvement in projects from initial stages: requirement gathering, needs analysis, system architecture design, resource planning, and final product development. Continuous monitoring to align progress with expectations and iterative solution improvement.",
+
+      // Robotics section
+      roboticsSection: {
+        title: "Robotics",
+        manipulation: {
+            title: "Manipulation & Mobile Robots",
+            items: [
+                "Programmed collaborative robotic arms (**UR3**, **UR10**) for automated tasks, including the detection and classification of waste using AI-based models and 3D point clouds.",
+                "Deployed and programmed a **MiR** mobile robot for autonomous navigation and workspace disinfection within a corporate campus environment.",
+                "Operated and maintained Boston Dynamics **Spot**, deploying it in public events and high-risk zones for inspection and monitoring tasks.",
+                "Calibration and configuration of **underwater robots** (ROVs) for inspection and maintenance."
+            ]
+        },
+        navigation: {
+            title: "Navigation & Sensors",
+            items: [
+                "Diagnosed and repaired sensor and computer connections on a **Summit-XL** robot, enabling autonomous navigation using **2D LiDAR**, **RTK-GPS**, and **IMU**, integrated via **Kalman filters** and **AMCL** within the **ROS** ecosystem.",
+                "Designed and implemented a trajectory-following algorithm for the **Summit-XL** to perform nighttime security patrols, capturing images and triggering alarms upon detecting anomalies."
+            ]
+        },
+        interfaces: {
+            title: "Interfaces & Service Robots",
+            items: [
+                "Developed a real-time web interface to remotely control the **Summit-XL** robot, using **WebSockets** communication, hosted on **Docker**ized **NGINX** servers running on Ubuntu.",
+                "Programmed service robots **KettyBot** and **Bellabot** to operate in a café environment, delivering food and interacting with customers autonomously."
+            ]
+        }
+      },
+
+      // Generative AI section
+      aiSection: {
+        title: "Artificial Intelligence & Data Science Projects",
+        generativeAi: {
+          title: "Generative AI & Agents",
+          items: [
+            "Developed an unstructured document ingestion system for PDFs, Word, Excel, PowerPoint files, and images, using **OCR** and **YOLO** for detecting tables and visual elements. The pipeline extracted raw content, generated summaries, and computed embeddings for semantic indexing. All tasks were orchestrated via a microservice architecture with **Celery**-based asynchronous processing, enabling seamless integration into downstream **RAG** systems.",
+            "Built an agent-based **RAG** system with Human-in-the-Loop (**HITL**) interaction, capable of executing **SQL** queries against structured databases and retrieving predefined admin-defined responses. The agent applied advanced question reformulation and disambiguation strategies, transparently communicating data sources.",
+            "Designed and developed an inconsistency detection algorithm across large document bases using semantic filtering and a graph-based structure. Documents were organized hierarchically, enabling relationship-based reasoning to identify contradictions. Use of **Knowledge Graphs** and **MCP** protocol.",
+            "Fine-tuning of **Deepseek** LLM locally using quantization techniques, **LoRA**, etc., and on **GCP** with their **Gemini** model. Extraction of metrics from RAG systems. GCP deployments."
+          ]
+        },
+        dataScience: {
+            title: "Data Science",
+            items: [
+                "Developed a predictive modeling system to optimize bidding strategies in public tenders by forecasting competitors' offers. Combined **Neural Networks**, K-Nearest Neighbors (**KNN**), and **Monte Carlo** simulations. Integrated the model into a Django-based web interface.",
+                "Trained a convolutional neural network (**CNN**) using **TensorFlow** to detect cracks in road surfaces. The model was trained on annotated datasets and contributed to the automation of road inspection workflows."
+            ]
+        }
+      },
+      
+    },
+
     
     // Education details
     master: {

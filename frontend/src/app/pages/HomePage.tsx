@@ -36,6 +36,12 @@ export default function HomePage({ experience, education }: HomePageProps) {
     }
   };
 
+  const renderContent = (content: string) => {
+    return content.split('**').map((part, index) => 
+      index % 2 === 1 ? <strong key={index} className="font-medium text-zinc-900">{part}</strong> : part
+    );
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation onScrollToSection={scrollToSection} />
@@ -163,7 +169,7 @@ export default function HomePage({ experience, education }: HomePageProps) {
                       </div>
                     </div>
                     <div className="mt-6 max-w-3xl">
-                      <p className="text-sm text-zinc-500 leading-relaxed font-light">{exp.description}</p>
+                      <p className="text-sm text-zinc-500 leading-relaxed font-light">{renderContent(exp.description)}</p>
                     </div>
                   </div>
                 ))}

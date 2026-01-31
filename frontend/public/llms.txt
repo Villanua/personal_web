@@ -15,11 +15,15 @@ I specialize in software development for robotic platforms and AI-powered applic
 
 ### Teaching Assistant, Mobile Robotics | ICAI Comillas
 **January 2026 - Present**
-Delivering practical sessions on autonomous navigation, localization, and control of robotic systems for undergraduate students.
+Supervision of practical sessions on autonomous navigation, localization, and control of robotic systems for undergraduate students.
 
 ### Software Developer | Syntonize
 **July 2025 - Present**
-Consulting for UNIR (Proeduca) on generative AI applications, including NLP and Predictive Marketing.
+Consulting for UNIR (Proeduca) on generative AI applications.
+
+- **NLP and Predictive Marketing:** Development of an application for inferring psychographic profiles (motivations, salaries, age) of potential students to optimize lead conversion at UNIR.
+- Implementation of a call analysis pipeline (**Speech-to-Text** + **LLMs**) to evaluate commercial quality (audits) and automatically extract professional profiles.
+- Design of a **Generative AI** application for career recommendation based on professional trajectories, deployed with **FastAPI** and microservices on **Microsoft Azure**.
 
 ### Software Developer @ Digital Hub | Acciona
 **January 2023 - July 2025**
@@ -30,21 +34,25 @@ I've been involved in projects from their earliest stages: gathering requirement
 
 #### Artificial Intelligence & Data Science Projects
 
-I've worked on a range of projects applying Machine Learning and Deep Learning techniques to extract insights, predict behaviors, and support data-driven decisions. My main focus has been on Generative AI and intelligent agent design, where I build tailored solutions that meet real client needs.
+- **Generative AI & Agents:**
+  - Developed an unstructured document ingestion system for PDFs, Word, Excel, PowerPoint files, and images, using OCR and YOLO for detecting tables and visual elements. The pipeline extracted raw content, generated summaries, and computed embeddings for semantic indexing. All tasks were orchestrated via a microservice architecture with Celery-based asynchronous processing, enabling seamless integration into downstream RAG (Retrieval-Augmented Generation) systems for contextual question answering and document automation workflows.
+  - Built an agent-based Retrieval-Augmented Generation (RAG) system with Human-in-the-Loop interaction, capable of executing SQL queries against structured databases and retrieving predefined admin-defined responses based on reference questions. The agent applied advanced question reformulation and disambiguation strategies, while transparently communicating which data sources and fields were being accessed. It handled multi-reference cases by detecting and managing overlapping or conflicting answers across different sources.
+  - Designed and developed an inconsistency detection algorithm across large document bases using semantic filtering and a graph-based structure. Documents were organized hierarchically within the graph, enabling relationship-based reasoning and multi-level comparison to identify contradictions and overlapping content.
+  - Fine-tuning of Deepseek LLM locally using quantization techniques, LoRA, etc., and on GCP with their Gemini model. Extraction of metrics from RAG systems. GCP deployments. Use of Knowledge Graphs. Integration of the MCP protocol.
 
-This includes developing customized RAG (Retrieval-Augmented Generation) systems with Human-in-the-Loop pipelines, creating autonomous agents capable of executing Python code, performing live web searches, or analyzing documents across modalities (text, image, tables). I've also designed agents capable of detecting inconsistencies across document bases or finding contradictions based in Knowledge Graphs.
-
-I've built agents using frameworks like LangChain and LangGraph, adapting their architectures to specific workflows and integration needs. I've also worked on applying Knowledge Graphs to structure unorganized data into meaningful graph-based relationships—helping define dependencies, enhance semantic search, and support reasoning tasks in larger systems.
-
-Additionally, I've performed fine-tuning both locally and in the cloud, applying techniques like LoRA and model quantization. This includes local fine-tuning of models such as Deepseek and Gemma, as well as cloud-based fine-tuning of Gemini 2.0 on Google Cloud Platform. These efforts have allowed me to adapt LLMs to domain-specific needs and optimize their performance for real-world use cases.
+- **Data Science:**
+  - Developed a predictive modeling system to optimize bidding strategies in public tenders by forecasting competitors' offers. Combined neural networks, K-Nearest Neighbors (KNN), and Monte Carlo simulations to simulate competitive behavior. Integrated the model into a Django-based web interface for parameter adjustment and scenario exploration.
+  - Trained a convolutional neural network (CNN) using TensorFlow to detect cracks in road surfaces. The model was trained on annotated datasets and contributed to the automation of road inspection workflows by reliably identifying structural defects.
 
 #### Robotics Development
 
-I've worked with a wide range of robotic platforms across different domains, including collaborative manipulators and autonomous mobile robots. My experience includes programming and deploying systems using UR3 and UR10 robotic arms, as well as mobile platforms like Boston Dynamics Spot, Summit-XL, MiR, Bellabot, and Kettybot—each adapted to specific tasks in logistics, inspection, and human-robot interaction.
-
-For robotic arms, I've integrated peripherals such as elevators, conveyors, and custom grippers, creating complex automation workflows. On mobile robots, I've implemented localization systems using EKF and AMCL, built mission behavior logic through C++ state machines, and developed planning systems using SQLite databases for task sequencing and navigation.
-
-I've also built web interfaces connected to ROS via ROSBridge to allow intuitive control and monitoring, enhancing accessibility for operators and non-technical users. Additionally, I've managed field deployments and recovery procedures for real-world use cases, such as autonomous disinfection, event participation, and campus surveillance.
+- Programmed collaborative robotic arms (UR3, UR10) for automated tasks, including the detection and classification of waste using AI-based models and 3D point clouds.
+- Deployed and programmed a MiR mobile robot for autonomous navigation and workspace disinfection within a corporate campus environment.
+- Diagnosed and repaired sensor and computer connections on a Summit-XL robot, enabling autonomous navigation using 2D LiDAR, RTK-GPS, and IMU, integrated via Kalman filters and AMCL (Adaptive Monte Carlo Localization) within the ROS ecosystem.
+- Designed and implemented a trajectory-following algorithm for the Summit-XL to perform nighttime security patrols, capturing images and triggering alarms upon detecting anomalies.
+- Developed a real-time web interface to remotely control the Summit-XL robot, using WebSockets communication, hosted on Dockerized NGINX servers running on Ubuntu.
+- Programmed service robots KettyBot and Bellabot to operate in a café environment, delivering food and interacting with customers autonomously.
+- Operated and maintained Boston Dynamics Spot, deploying it in public events and high-risk zones for inspection and monitoring tasks.
 
 ## Education
 

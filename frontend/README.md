@@ -1,7 +1,7 @@
 
-  # Personal Website for Engineer
+  # Villanúa Engineer
 
-  This is a code bundle for Personal Website for Engineer. The original project is available at https://www.figma.com/design/WxvAHifAlLZJvXObMneAEi/Personal-Website-for-Engineer.
+  This is a code bundle for Villanúa Engineer. The original project is available at https://www.figma.com/design/WxvAHifAlLZJvXObMneAEi/Personal-Website-for-Engineer.
 
   ## Running the code
 

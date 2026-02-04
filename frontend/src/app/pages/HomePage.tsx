@@ -196,7 +196,7 @@ export default function HomePage({ experience, education }: HomePageProps) {
           </div>
         </div>
       </footer>
-      <Chatbot />
+      {/* <Chatbot /> */}
     </div>
   );
 }

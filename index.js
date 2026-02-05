@@ -4,14 +4,14 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-// Servimos los archivos estáticos de la carpeta dist de React
+// Serve static files from the React dist folder
 app.use(express.static(path.join(__dirname, 'frontend', 'dist')));
 
-// Capturamos cualquier ruta y devolvemos el index.html de React
+// Catch all routes and return the React index.html
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
 });
 
 app.listen(PORT, () => {
-    console.log(`Servidor escuchando en el puerto ${PORT}`);
+    console.log(`Server listening on port ${PORT}`);
 });

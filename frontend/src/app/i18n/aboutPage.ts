@@ -29,9 +29,11 @@ export const aboutPageTranslations = {
       intro1: "Diseño de **arquitecturas de soluciones**, **despliegue**, gestión de la **comunicación con stakeholders** y **monitorización** de aplicaciones en **producción**.",
       projectTitle: "IA Generativa y Cloud",
       projectList: [
-        "Desarrollo de aplicación para la inferencia de perfiles psicográficos (motivaciones, salarios, edad) de alumnos potenciales para optimizar la conversión de leads en UNIR.",
-        "Implementación de un pipeline de análisis de llamadas (**Speech-to-Text** + **LLMs**) para evaluar la calidad comercial (auditorías) y extraer perfiles profesionales automáticamente.",
-        "Diseño de una aplicación de **IA generativa** para recomendación de carreras basada en trayectorias profesionales, desplegada con **FastAPI** y microservicios en **Microsoft Azure**."
+        "Desarrollo de aplicación para la inferencia de perfiles psicográficos (motivaciones, salarios, edad) y estimación de datos personales de leads usando IA Generativa para optimizar la conversión en UNIR.",
+        "Implementación de un pipeline de análisis de llamadas (**Speech-to-Text** + **LLMs**) para extraer información y evaluar la calidad comercial (auditorías).",
+        "Desarrollo de **agentes de voz en tiempo real** para contestar llamadas telefónicas.",
+        "Diseño de una aplicación de **IA generativa** para recomendación de carreras basada en trayectorias profesionales.",
+        "Despliegues Cloud gestionados con **Terraform** en **Microsoft Azure** (FastAPI, microservicios)."
       ]
     },
     acciona: {
@@ -155,9 +157,11 @@ export const aboutPageTranslations = {
       intro1: "Design of **solution architectures**, **deployment**, **stakeholder communication** management, and **monitoring** of applications in **production**.",
       projectTitle: "Generative AI & Cloud",
       projectList: [
-        "Development of an application for inferring psychographic profiles (motivations, salaries, age) of potential students to optimize lead conversion at UNIR.",
-        "Implementation of a call analysis pipeline (**Speech-to-Text** + **LLMs**) to evaluate commercial quality (audits) and automatically extract professional profiles.",
-        "Design of a **Generative AI** application for career recommendation based on professional trajectories, deployed with **FastAPI** and microservices on **Microsoft Azure**."
+        "Development of an application for inferring psychographic profiles (motivations, salaries, age) and estimating personal data of leads using Generative AI to optimize conversion at UNIR.",
+        "Implementation of a call analysis pipeline (**Speech-to-Text** + **LLMs**) to extract information and evaluate commercial quality (audits).",
+        "Development of **Real-time Voice Agents** for answering phone calls.",
+        "Design of a **Generative AI** application for career recommendation based on professional trajectories.",
+        "Cloud deployments managed with **Terraform** on **Microsoft Azure** (FastAPI, microservices)."
       ]
     },
     acciona: {

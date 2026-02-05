@@ -90,7 +90,8 @@ export const dataTranslations = {
 // Skills data is language-agnostic (same in both languages)
 export const skillsData = [
   'Python', 'C++', 'SQL', 'JavaScript', 'HTML', 'CSS',
-  'ROS/ROS2', 'SLAM', 'Navigation', 'Robot Manipulation', 'Sensor Fusion', 'OpenCV', 'PCL',
-  'Generative AI', 'LLMs', 'RAG', 'Agents', 'NLP', 'LangChain', 'TensorFlow', 'PyTorch', 'Knowledge Graphs',
-  'GCP', 'Azure', 'Docker', 'Linux', 'FastAPI', 'Django', 'Celery', 'NGINX', 'Git'
+  'ROS/ROS2', 'Mobile Robotics', 'SLAM', 'Navigation', 'Robot Manipulation', 'Sensor Fusion', 'OpenCV', 'PCL',
+  'Generative AI', 'LLMs', 'RAG', 'Agents', 'LangChain', 'LangGraph', 'NLP', 'TensorFlow', 'PyTorch', 'Deep Learning', 'Reinforcement Learning', 'Knowledge Graphs',
+  'GCP', 'Azure', 'Docker', 'Terraform', 'Linux', 'FastAPI', 'Django', 'Livekit', 'Celery', 'NGINX', 'Git',
+  'FullStack Dev', 'Web Design', 'Databases'
 ];

@@ -21,9 +21,11 @@ Supervision of practical sessions on autonomous navigation, localization, and co
 **July 2025 - Present**
 Consulting for UNIR (Proeduca) on generative AI applications.
 
-- **NLP and Predictive Marketing:** Development of an application for inferring psychographic profiles (motivations, salaries, age) of potential students to optimize lead conversion at UNIR.
-- Implementation of a call analysis pipeline (**Speech-to-Text** + **LLMs**) to evaluate commercial quality (audits) and automatically extract professional profiles.
-- Design of a **Generative AI** application for career recommendation based on professional trajectories, deployed with **FastAPI** and microservices on **Microsoft Azure**.
+- **NLP and Predictive Marketing:** Development of an application for inferring psychographic profiles (motivations, salaries, age) and estimating personal data of leads using Generative AI to optimize conversion at UNIR.
+- Implementation of a call analysis pipeline (**Speech-to-Text** + **LLMs**) to extract information and evaluate commercial quality (audits).
+- Design of a **Generative AI** application for career recommendation based on professional trajectories.
+- Development of **Real-time Voice Agents** for answering phone calls.
+- Cloud deployments managed with **Terraform** on **Microsoft Azure** (FastAPI, microservices).
 
 ### Software Developer @ Digital Hub | Acciona
 **January 2023 - July 2025**
@@ -84,10 +86,11 @@ I specialized in the field of automation and electronics, where I studied indust
 
 ## Skills
 
-- **Languages:** Python, C++
-- **Robotics:** ROS/ROS2, SLAM, Robot Manipulation, OpenCV
-- **AI/ML:** TensorFlow, PyTorch, Generative AI, Deep Learning, Reinforcement Learning, LangChain
-- **Cloud/DevOps:** GCP, Docker, Linux, Git
+- **Languages:** Python, C++, JS, HTML, CSS
+- **Robotics:** ROS/ROS2, Mobile Robotics, SLAM, Robot Manipulation, OpenCV
+- **AI/ML:** TensorFlow, PyTorch, Generative AI, Deep Learning, Reinforcement Learning, LangChain, LangGraph
+- **Cloud/DevOps:** Azure, GCP, Terraform, Docker, Linux, Git
+- **Web Development:** FullStack Development, FastAPI, Django, Livekit, Web Design, Databases
 
 ## Courses & Certifications
 

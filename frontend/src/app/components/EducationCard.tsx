@@ -12,6 +12,7 @@ interface EducationCardProps {
     items?: readonly string[];
   }>;
   index: number;
+  images?: string[];
 }
 
 export default function EducationCard({ 
@@ -21,7 +22,8 @@ export default function EducationCard({
   intro, 
   intro2,
   sections, 
-  index 
+  index,
+  images
 }: EducationCardProps) {
   return (
     <motion.div 
@@ -86,6 +88,20 @@ export default function EducationCard({
             ))}
           </div>
         </div>
+
+        {images && images.length > 0 && (
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+            {images.map((img, i) => (
+              <div key={i} className="rounded-lg overflow-hidden border border-zinc-100 shadow-sm relative group bg-zinc-50 h-64">
+                <img 
+                  src={img} 
+                  alt={`Project image ${i+1}`} 
+                  className="w-full h-full object-contain p-2 grayscale group-hover:grayscale-0 transition-all duration-500" 
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </motion.div>
     </motion.div>
   );

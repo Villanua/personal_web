@@ -348,6 +348,7 @@ export default function AboutPage({ education, experience, courses, skills }: Ab
                       institution={edu.institution}
                       year={edu.year}
                       intro={t.master.intro}
+                      images={["/img/slam3d.png", "/img/segmentation.png"]}
                       sections={[
                         {
                           title: t.master.thesisTitle,
@@ -372,6 +373,7 @@ export default function AboutPage({ education, experience, courses, skills }: Ab
                       year={edu.year}
                       intro={t.bachelor.intro1}
                       intro2={t.bachelor.intro2}
+                      images={["/img/Craneeal_interface.png", "/img/Craneeal_platform.png"]}
                       sections={[
                         {
                           title: t.bachelor.specializationTitle,

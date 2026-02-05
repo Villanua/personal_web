@@ -102,7 +102,7 @@ export default function AboutPage({ education, experience, courses, skills }: Ab
                   <p>{t.intro2}</p>
                 </div>
                 
-                <div className="hidden md:block">
+                <div className="block">
                   <div className="relative rounded-lg overflow-hidden border border-zinc-100 shadow-sm aspect-[4/5]">
                     <img 
                       src="/img/me_spot.jpg" 

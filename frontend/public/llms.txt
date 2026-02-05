@@ -1,0 +1,101 @@
+# Nacho Villanúa
+
+## Summary
+I am a Robotics & AI engineer, passionate about continuous learning. My love for mathematics and physics, along with a deep curiosity about how the world works, has driven me to take on the exciting challenges of robotics and artificial intelligence.
+
+I specialize in software development for robotic platforms and AI-powered applications, with a strong focus on Generative AI and intelligent agents. I also have experience in web interfaces and deploying solutions on Google Cloud Platform, always aiming to build systems that are both technically solid and practically valuable.
+
+## Contact Information
+- **Email**: NachoViCu16@gmail.com
+- **LinkedIn**: https://linkedin.com/in/ignacio-villanua-cuenca/
+- **GitHub**: https://github.com/Villanua
+- **Website**: https://ignacio-villanua.com/
+
+## Professional Experience
+
+### Teaching Assistant, Mobile Robotics | ICAI Comillas
+**January 2026 - Present**
+Supervision of practical sessions on autonomous navigation, localization, and control of robotic systems for undergraduate students.
+
+### Software Developer | Syntonize
+**July 2025 - Present**
+Consulting for UNIR (Proeduca) on generative AI applications.
+
+- **NLP and Predictive Marketing:** Development of an application for inferring psychographic profiles (motivations, salaries, age) and estimating personal data of leads using Generative AI to optimize conversion at UNIR.
+- Implementation of a call analysis pipeline (**Speech-to-Text** + **LLMs**) to extract information and evaluate commercial quality (audits).
+- Design of a **Generative AI** application for career recommendation based on professional trajectories.
+- Development of **Real-time Voice Agents** for answering phone calls.
+- Cloud deployments managed with **Terraform** on **Microsoft Azure** (FastAPI, microservices).
+
+### Software Developer @ Digital Hub | Acciona
+**January 2023 - July 2025**
+
+I work as a Software Developer at Acciona's Digital Hub, focusing on the design and development of innovative applications that bring cutting-edge technologies into real-world business solutions. While my main role is backend development, I've also contributed to frontend tasks across various projects.
+
+I've been involved in projects from their earliest stages: gathering requirements directly from clients, analyzing their needs, designing system architectures, planning resources and timelines, and developing the final product. I also participate in follow-up meetings to align progress with client expectations and iteratively improve our solutions.
+
+#### Artificial Intelligence & Data Science Projects
+
+- **Generative AI & Agents:**
+  - Developed an unstructured document ingestion system for PDFs, Word, Excel, PowerPoint files, and images, using OCR and YOLO for detecting tables and visual elements. The pipeline extracted raw content, generated summaries, and computed embeddings for semantic indexing. All tasks were orchestrated via a microservice architecture with Celery-based asynchronous processing, enabling seamless integration into downstream RAG (Retrieval-Augmented Generation) systems for contextual question answering and document automation workflows.
+  - Built an agent-based Retrieval-Augmented Generation (RAG) system with Human-in-the-Loop interaction, capable of executing SQL queries against structured databases and retrieving predefined admin-defined responses based on reference questions. The agent applied advanced question reformulation and disambiguation strategies, while transparently communicating which data sources and fields were being accessed. It handled multi-reference cases by detecting and managing overlapping or conflicting answers across different sources.
+  - Designed and developed an inconsistency detection algorithm across large document bases using semantic filtering and a graph-based structure. Documents were organized hierarchically within the graph, enabling relationship-based reasoning and multi-level comparison to identify contradictions and overlapping content.
+  - Fine-tuning of Deepseek LLM locally using quantization techniques, LoRA, etc., and on GCP with their Gemini model. Extraction of metrics from RAG systems. GCP deployments. Use of Knowledge Graphs. Integration of the MCP protocol.
+
+- **Data Science:**
+  - Developed a predictive modeling system to optimize bidding strategies in public tenders by forecasting competitors' offers. Combined neural networks, K-Nearest Neighbors (KNN), and Monte Carlo simulations to simulate competitive behavior. Integrated the model into a Django-based web interface for parameter adjustment and scenario exploration.
+  - Trained a convolutional neural network (CNN) using TensorFlow to detect cracks in road surfaces. The model was trained on annotated datasets and contributed to the automation of road inspection workflows by reliably identifying structural defects.
+
+#### Robotics Development
+
+- Programmed collaborative robotic arms (UR3, UR10) for automated tasks, including the detection and classification of waste using AI-based models and 3D point clouds.
+- Deployed and programmed a MiR mobile robot for autonomous navigation and workspace disinfection within a corporate campus environment.
+- Diagnosed and repaired sensor and computer connections on a Summit-XL robot, enabling autonomous navigation using 2D LiDAR, RTK-GPS, and IMU, integrated via Kalman filters and AMCL (Adaptive Monte Carlo Localization) within the ROS ecosystem.
+- Designed and implemented a trajectory-following algorithm for the Summit-XL to perform nighttime security patrols, capturing images and triggering alarms upon detecting anomalies.
+- Developed a real-time web interface to remotely control the Summit-XL robot, using WebSockets communication, hosted on Dockerized NGINX servers running on Ubuntu.
+- Programmed service robots KettyBot and Bellabot to operate in a café environment, delivering food and interacting with customers autonomously.
+- Operated and maintained Boston Dynamics Spot, deploying it in public events and high-risk zones for inspection and monitoring tasks.
+
+## Education
+
+### Master's Degree in Robotics and Automation | Universidad Carlos III de Madrid
+**2023**
+
+I earned a Master's Degree in Robotics and Automation from Universidad Carlos III de Madrid, where I advanced my knowledge in intelligent control, machine learning, computer vision, medical robotics, humanoids, and mobile robotics.
+
+My Master's Thesis, "Simultaneous Localization and Mapping and Segmentation", focused on mobile robotics and spatial understanding. I developed a SLAM algorithm capable of generating 2D and 3D maps using point cloud registration techniques such as ICP and NDT, integrated through pose graphs.
+
+I implemented a segmentation pipeline for door and room detection using computer vision techniques, including watershed algorithms and multi-method fusion for robust detection. These components allowed me to build topological maps from geometric data, enabling structured, high-level navigation for autonomous robots.
+
+### Bachelor's Degree in Industrial Technologies Engineering | Universidad de Málaga
+**2021**
+
+I earned my Bachelor's Degree in Industrial Technologies Engineering at the University of Málaga. This multidisciplinary program provided a broad and solid understanding of engineering fundamentals, including mechanics, structural analysis, electrical systems, thermodynamics, fluid dynamics, and control theory.
+
+Beyond the core subjects, the degree emphasized analytical thinking and problem-solving, equipping me with the ability to understand and model complex systems and to approach challenges from a systemic perspective.
+
+My Bachelor's Thesis, titled "Estrategia de colaboración humano-robot en cirugía endonasal" (Human-Robot Collaboration Strategy in Endonasal Surgery), was part of the National Research Plan project "Global Planner for a Robotic System for Anastomosis". The work contributed to the publication "Collaborative Robotic Assistant Platform for Endonasal Surgery: Preliminary In-Vitro Trials".
+
+The CRANEEAL system consists of two robotic arms (one autonomous, one teleoperated via haptic interface), force sensors, and a ROS-based software architecture for seamless integration. I designed a virtual obstacle generation module to improve surgical safety through force feedback and collision avoidance.
+
+I developed a custom camera calibration setup to ensure accurate mapping between 3D environments and 2D vision, using a 3D-printed calibration piece. For human-robot interaction, I implemented a state machine based on an ontology, allowing autonomous and teleoperated mode switching through computer vision and Markov models.
+
+To unify all modules, I built a web-based interface that enables real-time monitoring and control, offering intuitive access to the system's autonomous and manual functions.
+
+I specialized in the field of automation and electronics, where I studied industrial and collaborative robotics, computer vision, digital and analog electronics, as well as machine learning and deep learning techniques applied to intelligent systems.
+
+## Skills
+
+- **Languages:** Python, C++, JS, HTML, CSS
+- **Robotics:** ROS/ROS2, Mobile Robotics, SLAM, Robot Manipulation, OpenCV
+- **AI/ML:** TensorFlow, PyTorch, Generative AI, Deep Learning, Reinforcement Learning, LangChain, LangGraph
+- **Cloud/DevOps:** Azure, GCP, Terraform, Docker, Linux, Git
+- **Web Development:** FullStack Development, FastAPI, Django, Livekit, Web Design, Databases
+
+## Courses & Certifications
+
+- **2024:** LangGraph - Develop LLM AI agents with LangGraph
+- **2024:** LangChain - Develop LLM applications with LangChain
+- **2024:** Introduction to Monte Carlo Methods
+- **2023:** Responsive Web Design
+- **2022:** Introduction to ROS (Robot Operating System)

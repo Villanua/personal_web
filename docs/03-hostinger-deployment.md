@@ -2,6 +2,17 @@
 
 There are two main ways to deploy your application: manual ZIP upload or GitHub Auto-deploy.
 
+## ⚙️ Root package.json Configuration
+Ensure your root `package.json` contains the following scripts to support the deployment commands:
+
+```json
+  "scripts": {
+    "install-all": "npm install && cd frontend && npm install",
+    "build": "cd frontend && npm install && npm run build",
+    "start": "node index.js"
+  },
+```
+
 ---
 
 ## 📦 Method A: Manual ZIP Upload (Legacy)
